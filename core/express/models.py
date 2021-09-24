@@ -12,7 +12,7 @@ class Room(models.Model):
 
 class Client(models.Model):
     id = models.CharField(max_length=11, primary_key=True, verbose_name='CI/Pasaporte')
-    rooms = models.ManyToManyField(Room, through="ClienteHabitacion", through_fields=("cliente", "habitacion"))
+    rooms = models.ManyToManyField(Room, through="ClientRoom", through_fields=("cliente", "habitacion"))
     first_name = models.CharField(max_length=30, verbose_name='Nombres')
     last_names = models.CharField(max_length=30, verbose_name='Apellidos')
     fly = models.CharField(max_length=50, verbose_name='Vuelo')
@@ -35,7 +35,7 @@ class Observ(models.Model):
     observ_id = models.CharField(
         max_length=10, primary_key=True, verbose_name='ID')
     observ_name = models.CharField(max_length=300, verbose_name='Observación')
-    clients = models.ManyToManyField(Client, through='ClientObs')
+    clients = models.ManyToManyField(Client, through='ClientOb')
 
     class Meta:
         verbose_name = "Observación"
