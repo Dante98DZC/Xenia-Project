@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', MainView, name='index'),
     # path('express/report', ReportCRUD, name='ex_report'),
-    path('express/report', include(get_urls(ReportCRUD,"ex_report"))),
+    #el segundo parametro de get_urls(ReportCRUD,"ex_report") es un nompre para el crud es opcional pq blitz lo coje del modelo
+    path('express/report/', include(get_urls(ReportCRUD,"ex_report"))),
 ]

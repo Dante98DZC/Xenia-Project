@@ -345,7 +345,32 @@
             </a>
             <ul class="sub">
               <li>
-                <a class="" href="{% url 'ex_report' %}">Reportes</a>
+              {% comment "" %}
+              <a class="" href="{% url 'ex_report' %}">Reportes</a>
+              para la url de los modelos el nombre dela url es {nombre modelo}/{view,create,detail,update,delete }
+              esto si lo q mandas es include(get_urls(ReportCRUD))
+              <a class="" href="{% url 'Reporte/view' %}">Reportes</a>
+              <a class="" href="{% url 'Reporte/create' %}">Reportes</a>
+              <a class="" href="{% url 'Reporte/detail' %}">Reportes</a>
+              <a class="" href="{% url 'Reporte/update' %}">Reportes</a>
+              <a class="" href="{% url 'Reporte/delete' %}">Reportes</a>
+              si mandas include(get_urls(ReportCRUD,"ex_report"))
+              <a class="" href="{% url 'ex_report/view' %}">Reportes</a>
+              <a class="" href="{% url 'ex_report/create' %}">Reportes</a>
+              <a class="" href="{% url 'ex_report/detail' %}">Reportes</a>
+              <a class="" href="{% url 'ex_report/update' %}">Reportes</a>
+              <a class="" href="{% url 'ex_report/delete' %}">Reportes</a>
+
+
+              y la url seria
+              express/report/view/
+              express/report/detail/
+              express/report/create/
+              express/report/update/
+              express/report/delete/
+
+              {% endcomment %}
+              <a class="" href="{% url 'ex_report/view' %}">Reportes</a>
               </li>
               <li>
                 <a class="" href="">Clientes</a>

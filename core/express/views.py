@@ -10,8 +10,9 @@ class ReportCRUD(BlitzCRUD):
         show_caption = False
         caption_is_title = True
         extend_template = "base.html"
-        data = Report
-
+        # data era antes q dejaba meter queryset tambien despues me arrepenti y deje q fuese para modelos solamente
+        #data = Report 
+        model = Report
     
         # def ExpressView(request):
         #     return render(request, 'express.html')
