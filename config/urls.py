@@ -14,10 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from core.main.views import MainView
-from django.contrib import admin
-from django.urls import path
+from core.express.views import ReportCRUD
+from django.urls import path,include
 
+from django.contrib import admin
+from blitz_work.blitzcrud import get_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', MainView, name='index')
+    path('index/', MainView, name='index'),
+    # path('express/report', ReportCRUD, name='ex_report'),
+    path('express/report', include(get_urls(ReportCRUD,"ex_report"))),
 ]
