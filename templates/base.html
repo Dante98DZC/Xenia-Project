@@ -14,7 +14,7 @@
       name="keyword"
       content="Web App, CRM, Custom, Relationship, Magnament"
     />
-    <link rel="shortcut icon" href="{% static 'img/logo-xenia-small.png' %}" />
+    <link rel="shortcut icon" href="{% static 'img/logo-xenia-small-inv.png' %}" />
 
     {% block title %}
     <title>Xenia</title>
@@ -67,7 +67,7 @@
   <body>
   
     {% block header %}
-    <header class="header dark-bg">
+    <header class="header xenia-gradient-bg">
     
       <div class="toggle-nav">
         <div
@@ -81,7 +81,7 @@
 
       <!--logo start-->
       <a href="{% url 'index' %}" class="logo">
-      <img src="{% static 'img/logo-xenia-big.png' %}" height = "40px" alt="Logo Xenia"/>
+      <img src="{% static 'img/logo-xenia-big-tr.png' %}" height = "40px" alt="Logo Xenia"/>
       </a>
       
       <!--logo end-->
@@ -387,29 +387,48 @@
     <!--sidebar start-->
     <aside>
       <div id="sidebar" class="nav-collapse">
+       
+       
+       
         <!-- sidebar menu start-->
+        
+        
+        
         <ul class="sidebar-menu">
+
+
+
+
           <li class="active">
-            <a class="" href="index.html">
+            <a class="" href="{% url 'index' %}">
               <i class="icon_house_alt"></i>
               <span>Panel de Control</span>
             </a>
           </li>
+
+
+
+
+         
           <li class="sub-menu">
             <a href="javascript:;" class="">
               <i class="icon_document_alt"></i>
-              <span>Forms</span>
+              <span>Servicio Express</span>
               <span class="menu-arrow arrow_carrot-right"></span>
             </a>
             <ul class="sub">
               <li>
-                <a class="" href="form_component.html">Form Elements</a>
+                <a class="" href="">Reportes</a>
               </li>
               <li>
-                <a class="" href="form_validation.html">Form Validation</a>
+                <a class="" href="">Clientes</a>
               </li>
             </ul>
           </li>
+
+
+
+{% comment %} 
           <li class="sub-menu">
             <a href="javascript:;" class="">
               <i class="icon_desktop"></i>
@@ -422,18 +441,32 @@
               <li><a class="" href="grids.html">Grids</a></li>
             </ul>
           </li>
+
+
+
+
+
+
           <li>
             <a class="" href="widgets.html">
               <i class="icon_genius"></i>
               <span>Widgets</span>
             </a>
           </li>
+
+
+
+
+
           <li>
             <a class="" href="chart-chartjs.html">
               <i class="icon_piechart"></i>
               <span>Charts</span>
             </a>
           </li>
+
+
+
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
@@ -445,6 +478,11 @@
               <li><a class="" href="basic_table.html">Basic Table</a></li>
             </ul>
           </li>
+
+
+
+
+
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
@@ -463,14 +501,21 @@
               <li><a class="" href="blank.html">Blank Page</a></li>
               <li><a class="" href="404.html">404 Error</a></li>
             </ul>
-          </li>
+          </li> {% endcomment %}
+
+
+
+
+
         </ul>
         <!-- sidebar menu end-->
       </div>
     </aside>
     <!--sidebar end-->
 
-    {% endblock sidebar %} {% block content %} {% endblock content %}
+    {% endblock sidebar %}
+    
+     {% block content %} {% endblock content %}
 
     <!-- container section start -->
 
@@ -478,24 +523,15 @@
     <script src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/jquery-ui-1.10.4.min.js'%}"></script>
     <script src="{% static 'js/jquery-1.8.3.min.js'%}"></script>
-    <script
-      type="text/javascript"
-      src="{% static 'js/jquery-ui-1.9.2.custom.min.js'%}"
-    ></script>
+    <script src="{% static 'js/jquery-ui-1.9.2.custom.min.js'%}" type="text/javascript"></script>
     <!-- bootstrap -->
     <script src="{% static 'js/bootstrap.min.js'%}"></script>
     <!-- nice scroll -->
     <script src="{% static 'js/jquery.scrollTo.min.js'%}"></script>
-    <script
-      src="{% static 'js/jquery.nicescroll.js'%}"
-      type="text/javascript"
-    ></script>
+    <script src="{% static 'js/jquery.nicescroll.js'%}" type="text/javascript"></script>
     <!-- charts scripts -->
     <script src="{% static 'assets/jquery-knob/js/jquery.knob.js'%}"></script>
-    <script
-      src="{% static 'js/jquery.sparkline.js"
-      type="text/javascript'%}"
-    ></script>
+    <script src="{% static 'js/jquery.sparkline.js'%}"  type = "text/javascript"></script>
     <script src="{% static 'assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js' %}"></script>
     <script src="{% static 'js/owl.carousel.js'%}"></script>
     <!-- jQuery full calendar -->
@@ -564,7 +600,7 @@
               },
             ],
           },
-          backgroundColor: "#eef3f7",
+          backgroundColor: "#7a6ff1",
           onLabelShow: function (e, el, code) {
             el.html(el.html() + " (GDP - " + gdpData[code] + ")");
           },
