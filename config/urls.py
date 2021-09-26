@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from core.main.views import MainView
+from core.login.views import LoginFormView
 from core.express.views import ReportCRUD
 from django.urls import path,include
 
@@ -23,6 +24,7 @@ from blitz_work.urls import urlpatterns
 
 urlpatterns = [
     path('',include(urlpatterns)),
+    path('login/', LoginFormView.as_view() , name='login'),
     path('admin/', admin.site.urls),
     path('index/', MainView, name='index'),
     # path('express/report', ReportCRUD, name='ex_report'),

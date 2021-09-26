@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'blitz_work',
     'core.express',
     'core.main',
+    'core.login'
 ]
 
 MIDDLEWARE = [
