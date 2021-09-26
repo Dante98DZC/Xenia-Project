@@ -19,10 +19,14 @@ from django.urls import path,include
 
 from django.contrib import admin
 from blitz_work.blitzcrud import get_urls
+from blitz_work.urls import urlpatterns
+
 urlpatterns = [
+    path('',include(urlpatterns)),
     path('admin/', admin.site.urls),
     path('index/', MainView, name='index'),
     # path('express/report', ReportCRUD, name='ex_report'),
     #el segundo parametro de get_urls(ReportCRUD,"ex_report") es un nompre para el crud es opcional pq blitz lo coje del modelo
     path('express/report/', include(get_urls(ReportCRUD,"ex_report"))),
 ]
+
