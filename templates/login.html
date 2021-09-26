@@ -27,8 +27,8 @@
     <link href="{% static 'css/elegant-icons-style.css' %}" rel="stylesheet" />
     <link href="{% static 'css/font-awesome.css' %}"  rel="stylesheet" />
     <!-- Custom styles -->
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style-responsive.css' %}" href="" rel="stylesheet" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
@@ -38,38 +38,39 @@
 
   </head>
 
-  <body class="login-img3-body">
+  <body class="login-img2-body">
+    
     <div class="container">
+      
       <form class="login-form" action="index.html">
+        
         <div class="login-wrap">
+          
           <p class="login-img"><i class="icon_lock_alt"></i></p>
+          
           <div class="input-group">
-            <span class="input-group-addon"><i class="icon_profile"></i></span>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Username"
-              autofocus
-            />
+            {% comment %} <span class="input-group-addon"><i class="icon_profile"></i></span> {% endcomment %}
+            {% comment %} <input type="text" class="form-control" placeholder="Username" autofocus/> {% endcomment %}
+          {{form.username}}
           </div>
           <div class="input-group">
-            <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Password"
-            />
+            {% comment %} <span class="input-group-addon"><i class="icon_key_alt"></i></span> {% endcomment %}
+            {% comment %} <input type="password" class="form-control" placeholder="Password"/> {% endcomment %}
+          {{form.password}}
           </div>
+
           <label class="checkbox">
             <input type="checkbox" value="remember-me" /> Remember me
             <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
           </label>
+
           <button class="btn btn-primary btn-lg btn-block" type="submit">
             Login
           </button>
           <button class="btn btn-info btn-lg btn-block" type="submit">
             Signup
           </button>
+          
         </div>
       </form>
       
