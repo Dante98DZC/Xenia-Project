@@ -1,29 +1,31 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Xenia - Loggin" />
+    <meta name="description" content="Xenia | Loggin" />
     <meta name="author" content="David Zayas" />
     <meta
       name="keyword"
       content="Web App, CRM, Custom, Relationship, Magnament"
     />
-    <link rel="shortcut icon" href="img/favicon.png" />
+    <link rel="shortcut icon" href="{% static 'img/logo-xenia-small-inv.png' %}" />
 
     <title>
-      Tursat | Login
+      Xenia | Login
     </title>
 
     <!-- Bootstrap CSS -->
-    {% comment %} <link href="{% static 'css/xenia-style.css' %}" rel="stylesheet" /> {% endcomment %}
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    {% comment %} <link href="{% static '' %}" rel="stylesheet" /> {% endcomment %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
     <!-- bootstrap theme -->
-    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap-theme.css' %}" rel="stylesheet" />
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="{% static 'css/elegant-icons-style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/font-awesome.css' %}"  rel="stylesheet" />
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/style-responsive.css" rel="stylesheet" />
