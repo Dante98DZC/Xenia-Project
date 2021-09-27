@@ -18,16 +18,17 @@
     <link href="{% static 'css/xenia-style.css' %}" rel="stylesheet" />
     <!-- Bootstrap CSS -->
 
+{% comment %} 
     <link href="{% static 'lib/bootstrap/css/bootstrap.css' %}" rel="stylesheet" />
     <link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
-   
+    {% endcomment %}
     
     <!--external css-->
 
 
     <!-- font icon -->
-     <link href="{% static 'lib/fontawesome-5.15.4/css/fontawesome.css' %}" rel="stylesheet" />
-    <link href="{% static 'lib/fontawesome-5.15.4/css/fontawesome.min.css' %}" rel="stylesheet" />
+     {% comment %} <link href="{% static 'lib/fontawesome-5.15.4/css/fontawesome.css' %}" rel="stylesheet" />
+    <link href="{% static 'lib/fontawesome-5.15.4/css/fontawesome.min.css' %}" rel="stylesheet" /> {% endcomment %}
 
    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
   <link href="{% static 'css/style-responsive.css' %}" rel="stylesheet" />
@@ -82,7 +83,7 @@
           
           <!-- task notificatoin start -->
           <li id="task_notificatoin_bar" class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="">
               <i class="fa fa-tasks"></i>
               <span class="badge bg-important">6</span>
             </a>
@@ -92,7 +93,7 @@
                 {% comment %} <p class="blue">You have 6 pending letter</p> {% endcomment %}
               </li>
               <li>
-                <a href="#">
+                <a href="">
                   <div class="task-info">
                     <div class="desc">Design PSD</div>
                     <div class="percent">90%</div>
@@ -113,7 +114,7 @@
               </li>
               
               <li class="external">
-                <a href="#">See All Tasks</a>
+                <a href="">See All Tasks</a>
               </li>
             </ul>
           </li>
@@ -129,7 +130,7 @@
           <!-- alert notification start-->
           <li id="alert_notificatoin_bar" class="dropdown">
 
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="">
 
               <i class="fa fa-bell"></i>
 
@@ -147,7 +148,7 @@
 
 
               <li>
-                <a href="#">
+                <a href="">
                   <span class="label label-primary"
                     ><i class="icon_profile"></i
                   ></span>
@@ -157,7 +158,7 @@
               </li>
                     
               <li>
-                <a href="#">See all notifications</a>
+                <a href="">See all notifications</a>
               </li>
 
 
@@ -173,7 +174,7 @@
           <!-- user login dropdown start-->
           <li class="dropdown">
             
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="">
               
               <span class="profile-ava">
               
@@ -192,7 +193,7 @@
               <div class="log-arrow-up"></div>
             
               <li class="eborder-top">
-                <a href="#"><i class="icon_profile"></i> Mi cuenta</a>
+                <a href=""><i class="icon_profile"></i> Mi cuenta</a>
               </li>
             
               <li>
@@ -385,12 +386,12 @@
     <!-- container section start -->
     
     <!-- bootstrap -->
-    <script src="{% static 'lib/bootstrap/js/bootstrap.js'%}"></script>
-    <script src="{% static 'lib/bootstrap/js/bootstrap.min.js'%}"></script>
+    {% comment %} <script src="{% static 'lib/bootstrap/js/bootstrap.js'%}"></script>
+    <script src="{% static 'lib/bootstrap/js/bootstrap.min.js'%}"></script> {% endcomment %}
 
     <!-- javascripts -->
-    <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
-    <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
+    {% comment %} <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script> {% endcomment %}
     
     <!-- nice scroll -->
     <!-- charts scripts -->
