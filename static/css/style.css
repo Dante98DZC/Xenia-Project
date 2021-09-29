@@ -3599,7 +3599,6 @@ div[data-role="editor-toolbar"] {
 /*--sidebar toggle---*/
 
 
-
 .toggle-nav {
 
     float: left;
@@ -3610,8 +3609,6 @@ div[data-role="editor-toolbar"] {
 
 }
 
-
-
 .toggle-nav .icon-reorder {
 
     cursor: pointer;
@@ -3621,10 +3618,6 @@ div[data-role="editor-toolbar"] {
     font-size: 20px;
 
 }
-
-
-
-
 
 .sidebar-closed > #sidebar > ul {
 

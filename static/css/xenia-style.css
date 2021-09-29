@@ -1,0 +1,46 @@
+
+.xenia-h-gradient-bg{
+    color : #fff;
+  
+    background : linear-gradient(to right,
+    #7a6ff1, #1a2732);
+
+    background: linear-gradient(to right,
+    #7a6ff1 , #1a2732);
+}
+
+.xenia-v-gradient-bg{
+    color : #fff;
+  
+    background : linear-gradient(to bottom,
+    #7a6ff1, #1a2732);
+
+    background: linear-gradient(to bottom,
+    #7a6ff1 , #1a2732);
+}
+
+.xenia-animated-gradient-bg{
+    color : #fff;
+  
+    background : linear-gradient(to right,
+    #7a6ff1, #1a2732 50%, #7a6ff1);
+
+    background-size: 200% auto;
+    background-position: 0 100%;
+    animation: gradient 60s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+/* --------------------------------------------------- */
+  
+  @keyframes gradient { 
+    0%   { background-position: 0 0; }
+    100% { background-position: -200% 0; }
+  }
+
+.withe-font{
+    color: #fff;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 1.5em;
+}
