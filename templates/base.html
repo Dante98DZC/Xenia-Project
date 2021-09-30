@@ -38,10 +38,10 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Pánel de Control</span></a>
+            <li class="nav-item">   <!--agregar clase active con js-->
+                <a class="nav-link" href="{% url 'index'%}">
+                    <i class="fa fa-2x fa-fw fa-tachometer-alt" ></i>
+                    <span class= "text-light">Pánel de Control</span></a>
             </li>
 
             <!-- Divider -->
@@ -54,29 +54,29 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-bolt"></i>
-                    <span>Express</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_express"
+                    aria-expanded="true" aria-controls="collapse_express">
+                    <i class="fa fa-2x fa-fw fa-bolt"></i>
+                    <span class= "text-light">Express</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tablas:</h6>
-                        <a class="collapse-item" href="{% url 'index' %}">Reportes</a>
+                <div id="collapse_express" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="xenia-color py-2 collapse-inner rounded">
+                        <h6 class="collapse-header text-light">Tablas:</h6>
+                        <a class="collapse-item" href="{% url 'ex_report/view' %}">Reportes</a>
                         <a class="collapse-item" href="{% url 'index' %}">Clientes</a>
                     </div>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-comments"></i>
-                    <span>Comentarios</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_comments"
+                    aria-expanded="true" aria-controls="collapse_comments">
+                    <i class="fa fa-2x fa-fw fa-comments"></i>
+                    <span class= "text-light">Comentarios</span>
                 </a>
-                <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tablas:</h6>
+                <div id="collapse_comments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="xenia-color py-2 collapse-inner rounded">
+                        <h6 class="collapse-header text-light">Tablas:</h6>
                         <a class="collapse-item" href="{% url 'index' %}">Reportes</a>
                         <a class="collapse-item" href="{% url 'index' %}">Clientes</a>
                     </div>
@@ -85,13 +85,13 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_vip"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-star"></i>
-                    <span>Clientes VIP</span>
+                    aria-expanded="true" aria-controls="collapse_vip">
+                    <i class="fa fa-2x fa-fw fa-star"></i>
+                    <span class= "text-light">Clientes VIP</span>
                 </a>
                 <div id="collapse_vip" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tablas:</h6>
+                    <div class="xenia-color py-2 collapse-inner rounded">
+                        <h6 class="collapse-header text-light">Tablas:</h6>
                         <a class="collapse-item" href="{% url 'index' %}">Reportes</a>
                         <a class="collapse-item" href="{% url 'index' %}">Clientes</a>
                     </div>
@@ -330,10 +330,15 @@
                 
 
                 <!-- Begin Page Content -->
-               
-{% block content %}{% endblock content %}
+                 <div class="container-fluid">  
+{% block content %}
+
+
+
+
+{% endblock content %}
                     <!-- Page Heading -->
-                
+                </div>
             <!-- End of Main Content -->
 
         </div>

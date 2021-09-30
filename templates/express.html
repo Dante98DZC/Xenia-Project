@@ -9,7 +9,10 @@
 
 
 {% block main %}
-        &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+
+       
+
+        {% comment %} &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
             &lt;a class="navbar-brand" href="#"&gt;Test&lt;/a&gt;
             &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"&gt;
                 &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
@@ -24,9 +27,13 @@
                 &lt;/li&gt;
                 &lt;/ul&gt;
             &lt;/div&gt;
-        &lt;/nav&gt;
+        &lt;/nav&gt; {% endcomment %}
         {% block content %}
-        
+         <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        </div>
         {% endblock content%}
     {% endblock main%}
 

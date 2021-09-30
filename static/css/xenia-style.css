@@ -1,3 +1,6 @@
+.xenia-color{
+    background-color: #7a6ff1;
+}
 
 .xenia-h-gradient-bg{
     color : #fff;
@@ -28,6 +31,19 @@
     background-size: 200% auto;
     background-position: 0 100%;
     animation: gradient 60s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+.xenia-animated-gradient-bg-f{
+    color : #fff;
+  
+    background : linear-gradient(to right,
+    #7a6ff1, #1a2732 50%, #7a6ff1);
+
+    background-size: 200% auto;
+    background-position: 0 100%;
+    animation: gradient 6s infinite;
     animation-fill-mode: forwards;
     animation-timing-function: linear;
 }
