@@ -38,9 +38,3 @@
     0%   { background-position: 0 0; }
     100% { background-position: -200% 0; }
   }
-
-.withe-font{
-    color: #fff;
-    text-shadow: 1px 1px 1px #ccc;
-    font-size: 1.5em;
-}
