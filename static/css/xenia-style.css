@@ -3,21 +3,11 @@
 }
 
 .xenia-h-gradient-bg{
-    color : #fff;
-  
-    background : linear-gradient(to right,
-    #7a6ff1, #1a2732);
-
     background: linear-gradient(to right,
     #7a6ff1 , #1a2732);
 }
 
 .xenia-v-gradient-bg{
-    color : #fff;
-  
-    background : linear-gradient(to bottom,
-    #7a6ff1, #1a2732);
-
     background: linear-gradient(to bottom,
     #7a6ff1 , #1a2732);
 }
