@@ -61,6 +61,8 @@
                 </a>
                 <div id="collapse_express" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="xenia-color py-2 collapse-inner rounded">
+                        <h6 class="collapse-header text-light">Control:</h6>
+                        <a class="collapse-item" href="{% url 'ex_report/view' %}">Administrador</a>
                         <h6 class="collapse-header text-light">Tablas:</h6>
                         <a class="collapse-item" href="{% url 'ex_report/view' %}">Reportes</a>
                         <a class="collapse-item" href="{% url 'ex_client/view' %}">Clientes</a>
@@ -360,15 +362,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Cerrar sesión.</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Seguro que desea cerrar la sesión?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">No, volver</button>
+                    <a class="btn btn-primary" href="login.html">Sí, cerrar</a>
                 </div>
             </div>
         </div>
@@ -379,9 +381,8 @@
     <script src="{% static 'lib\bootstrap\js\bootstrap.bundle.min.js' %} "></script>
     <!-- Core plugin JavaScript-->
     <script src="{% static 'js/jquery.easing.min.js' %}"></script>
-
     <!-- Custom scripts for all pages-->
-    <script src=" {% static 'js/sb-admin-2.min.js' %} "></script>
+    <script src=" {% static 'js/sb-admin-2.js' %} "></script>
 
 
 
