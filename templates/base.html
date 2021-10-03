@@ -13,7 +13,7 @@
 <link href="{% static 'css/xenia-style.css' %}" rel="stylesheet" />
 
 <link href="{% static 'lib/fontawesome/css/all.min.css' %}" rel="stylesheet" type="text/css">
-<link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/xenia-base.css' %}" rel="stylesheet">
 
 {% endblock extra_assets%}
 
@@ -38,7 +38,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">   <!--agregar clase active con js-->
+            <li class="nav-item" id = "nav-1">   <!--agregar clase active con js-->
                 <a class="nav-link" href="{% url 'index'%}">
                     <i class="fa fa-2x fa-fw fa-tachometer-alt" ></i>
                     <span class= "text-light">Pánel de Control</span></a>
@@ -54,7 +54,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_express"
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapse_express"
                     aria-expanded="true" aria-controls="collapse_express">
                     <i class="fa fa-2x fa-fw fa-bolt"></i>
                     <span class= "text-light">Express</span>
@@ -62,7 +62,7 @@
                 <div id="collapse_express" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="xenia-color py-2 collapse-inner rounded">
                         <h6 class="collapse-header text-light">Control:</h6>
-                        <a class="collapse-item" href="{% url 'ex_report/view' %}">Administrador</a>
+                        <a class="collapse-item" href="{% url 'ex_report/view' %}">Administrar</a>
                         <h6 class="collapse-header text-light">Tablas:</h6>
                         <a class="collapse-item" href="{% url 'ex_report/view' %}">Reportes</a>
                         <a class="collapse-item" href="{% url 'ex_client/view' %}">Clientes</a>
@@ -71,7 +71,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_comments"
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapse_comments"
                     aria-expanded="true" aria-controls="collapse_comments">
                     <i class="fa fa-2x fa-fw fa-comments"></i>
                     <span class= "text-light">Comentarios</span>
@@ -86,7 +86,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse_vip"
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapse_vip"
                     aria-expanded="true" aria-controls="collapse_vip">
                     <i class="fa fa-2x fa-fw fa-star"></i>
                     <span class= "text-light">Clientes VIP</span>
@@ -124,7 +124,7 @@
             
 {% block navbar %}
             <!-- Topbar -->
-            <nav class="navbar navbar-expand xenia-animated-gradient-bg navbar-dark topbar mb-4 static-top shadow">
+            <nav class="navbar navbar-expand xenia-animated-gradient-bg-2 navbar-dark topbar mb-4 static-top shadow">
                     <!-- Sidebar Toggle (Topbar) -->
 
                     <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3">
@@ -151,7 +151,7 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                            <a class="nav-link dropdown-toggle" href="" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
@@ -175,7 +175,7 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                            <a class="nav-link dropdown-toggle" href="" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-2x fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
@@ -185,9 +185,9 @@
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Alerts Center
+                                    Notificaciones
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-primary">
                                             <i class="fas fa-file-alt text-white"></i>
@@ -198,7 +198,7 @@
                                         <span class="font-weight-bold">A new monthly report is ready to download!</span>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-success">
                                             <i class="fas fa-donate text-white"></i>
@@ -209,7 +209,7 @@
                                         $290.29 has been deposited into your account!
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="">
                                     <div class="mr-3">
                                         <div class="icon-circle bg-warning">
                                             <i class="fas fa-exclamation-triangle text-white"></i>
@@ -220,15 +220,15 @@
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="">Show All Alerts</a>
                             </div>
                         </li>
 
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                            <a class="nav-link dropdown-toggle" href="" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-2x fa-envelope fa-fw"></i>
+                                <i class="fas fa-2x fa-briefcase fa-fw"></i>
                                 <!-- Counter - Messages -->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
@@ -238,7 +238,7 @@
                                 <h6 class="dropdown-header">
                                     Tareas
                                 </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="">
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="{% static 'img/profile-avatar.jpg' %}"
                                             alt="...">
@@ -250,7 +250,7 @@
                                         <div class="small text-gray-500">Emily Fowler · 58m</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="">
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="{% static 'img/profile-avatar.jpg' %}"
                                             alt="...">
@@ -262,7 +262,7 @@
                                         <div class="small text-gray-500">Jae Chun · 1d</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="">
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="{% static 'img/profile-avatar.jpg' %}"
                                             alt="...">
@@ -274,7 +274,7 @@
                                         <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="">
                                     <div class="dropdown-list-image mr-3">
                                         <img class="rounded-circle" src="{% static 'img/profile-avatar.jpg' %}"
                                             alt="...">
@@ -286,7 +286,7 @@
                                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="">Read More Messages</a>
                             </div>
                         </li>
 
@@ -294,7 +294,7 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline font-weight-bold small">Jane Doe</span>
                                 <img class="img-profile rounded-circle"
@@ -303,20 +303,20 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="">
                                     <i class="fas fa-2x fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="">
                                     <i class="fas fa-2x fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Configuración
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="">
                                     <i class="fas fa-2x fa-archive fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Documentacíon
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-2x fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -382,7 +382,7 @@
     <!-- Core plugin JavaScript-->
     <script src="{% static 'js/jquery.easing.min.js' %}"></script>
     <!-- Custom scripts for all pages-->
-    <script src=" {% static 'js/sb-admin-2.js' %} "></script>
+    <script src=" {% static 'js/xenia-base.js' %} "></script>
 
 
 

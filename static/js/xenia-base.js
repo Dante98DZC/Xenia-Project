@@ -34,6 +34,11 @@
     }
   });
 
+  // var elemento = document.getElementById("nav-1");
+  // elemento.className += " active";
+
+
+
   // Scroll to top button appear
   // $(document).on('scroll', function() {
   //   var scrollDistance = $(this).scrollTop();

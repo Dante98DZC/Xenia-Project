@@ -3,18 +3,19 @@
 }
 
 .xenia-h-gradient-bg{
+    color: white;
     background: linear-gradient(to right,
     #7a6ff1 , #1a2732);
 }
 
 .xenia-v-gradient-bg{
+    color: white;
     background: linear-gradient(to bottom,
-    #7a6ff1 , #1a2732);
+    #7a6ff1 10%, #1a2732);
 }
 
 .xenia-animated-gradient-bg{
-    color : #fff;
-  
+    color: white;
     background : linear-gradient(to right,
     #7a6ff1, #1a2732 50%, #7a6ff1);
 
@@ -26,8 +27,7 @@
 }
 
 .xenia-animated-gradient-bg-f{
-    color : #fff;
-  
+    color: white;
     background : linear-gradient(to right,
     #7a6ff1, #1a2732 50%, #7a6ff1);
 
@@ -38,9 +38,31 @@
     animation-timing-function: linear;
 }
 
-/* --------------------------------------------------- */
+
+.xenia-animated-gradient-bg-2 {
+    color: white;
+    background-color: #7a6ff1;
+    background : linear-gradient(to right,
+    #7a6ff1, #1a2732 , #7a6ff1 );
+
+    background-size: 200% auto;
+    background-position: 0 100%;
+    /* animation-fill-mode: forwards; */
+    animation-timing-function: linear;
   
-  @keyframes gradient { 
+    -webkit-animation: 1s linear 0s 2 alternate move_eye; 
+    animation: 1s linear 0s 2 alternate move_eye;
+  }
+
+/* --------------------------------------------------- */
+@-webkit-keyframes gradient { 
     0%   { background-position: 0 0; }
     100% { background-position: -200% 0; }
-  }
+}
+    @keyframes gradient { 
+    0%   { background-position: 0 0; }
+    100% { background-position: -200% 0; }
+}
+
+@-webkit-keyframes move_eye { from { background-position: 0 0; } to { background-position: -100% 0; }  }
+    @keyframes move_eye { from { background-position: 0 0; } to { background-position: -100% 0; }  }

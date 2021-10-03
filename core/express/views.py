@@ -1,19 +1,25 @@
+# from django.db.models.aggregates import Count
 from django.shortcuts import render
 # Create your views here.
- 
+
+# from django.db.models.aggregates import Count
+from django.db.models import Count, F, Value
 from core.express.models import Report
 from core.express.models import Client
 from blitz_work.blitzcrud import BlitzCRUD
 
 
 class ReportCRUD(BlitzCRUD):
+        model = Report
         show_title = True
         show_caption = False
         caption_is_title = True
         extend_template = "base.html"
         paginate_by = 10
         exclude = ['']
-        model = Report
+        # include = {"client_name": F("client__first_name")}
+        # include_header = {"client_name": "Nombre Cliente"}
+        
         
         dark_mode_switch_label = None
         delete_messages = {"success": "Operación completada", "error": "No fue posible completar la operación"}
