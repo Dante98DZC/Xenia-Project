@@ -17,8 +17,8 @@ class ReportCRUD(BlitzCRUD):
         extend_template = "base.html"
         paginate_by = 10
         exclude = ['']
-        # include = {"client_name": F("client__first_name")}
-        # include_header = {"client_name": "Nombre Cliente"}
+        include = {"client_name":F("client__client__first_name")}
+        include_header = {"client_name": "Nombre Cliente"}
         
         
         dark_mode_switch_label = None

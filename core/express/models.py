@@ -73,7 +73,7 @@ class ClientRoom(models.Model):
                                  verbose_name='Fecha hospedaje')
 
     def __str__(self):
-        return '%s %s' % (self.room, self.client)
+        return str(self.room)
 
     class Meta:
         verbose_name = "Habitación Cliente"
@@ -151,7 +151,7 @@ class Report(models.Model):
     report_number = models.AutoField(
         primary_key=True, verbose_name='No. Reporte')
     client_room = models.ForeignKey(ClientRoom, on_delete=models.CASCADE, verbose_name='No. Habitación')
-    client_name = models.ForeignKey(ClientRoom, on_delete=models.CASCADE, verbose_name='Cliente')
+    # client_name = models.ForeignKey(ClientRoom, on_delete=models.CASCADE, verbose_name='Cliente')
     executive = models.ForeignKey(Executive, on_delete=models.CASCADE, verbose_name="Ejecutivo")
     attendant = models.ForeignKey(Attendants, on_delete=models.CASCADE, verbose_name="Encargado")
     kind = models.ForeignKey(KindRep, on_delete=models.CASCADE, verbose_name="Tipo")
