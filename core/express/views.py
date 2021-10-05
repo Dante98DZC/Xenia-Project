@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 # from django.db.models.aggregates import Count
 from django.db.models import Count, F, Value
+from django.db.models.functions import Concat
 from core.express.models import Report
 from core.express.models import Client
 from blitz_work.blitzcrud import BlitzCRUD
@@ -17,7 +18,7 @@ class ReportCRUD(BlitzCRUD):
         extend_template = "base.html"
         paginate_by = 10
         exclude = ['']
-        include = {"client_name":F("client__client__first_name")}
+        include = {"client_name":Concat(F("client_room__client__first_name"),Value(" "),F("client_room__client__last_name"))}
         include_header = {"client_name": "Nombre Cliente"}
         
         
