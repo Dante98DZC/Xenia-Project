@@ -19,6 +19,7 @@ class ReportCRUD(BlitzCRUD):
         show_caption = False
         caption_is_title = True
         extend_template = "base.html"
+        template_name = "base_crud.html"
         table_template = "table.html"
         paginate_by = 10
         exclude = ['']
