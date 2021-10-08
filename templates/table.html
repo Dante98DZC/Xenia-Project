@@ -1,0 +1,47 @@
+{% extends "blitz_crud_table.html" %}
+{% load static %}
+
+
+
+
+{% block blitz_crud_table %}
+ 
+
+ <table 
+    data-toggle="table"
+    data-show-columns="true"
+    data-show-toggle="true"
+    data-pagination="true"
+    data-search="true"
+    data-resizable = "true"
+   >
+
+<thead>
+
+    <tr>
+
+        {% for header in context.headers %}
+            <th data-sortable="true">
+            {{header.text}}
+            </th> 
+        {% endfor %}
+
+    </tr>
+
+</thead>
+
+<tbody>
+    {% for row in context.values %}
+                    {% for value in row.values %}
+                        <td>{{value}}</td>
+                    {% endfor %}
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+    {% endblock blitz_crud_table %}
+    
+    {%block blitz_crud_pagination %}
+    {% endblock blitz_crud_pagination %}
+    {% comment %} --------------------------------------------------------------------- {% endcomment %}
+    

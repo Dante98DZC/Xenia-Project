@@ -1,8 +1,5 @@
-# from django.db.models.aggregates import Count
 from django.shortcuts import render
-# Create your views here.
 
-# from django.db.models.aggregates import Count
 from django.db.models import Count, F, Value
 from django.db.models.functions import Concat
 from core.express.models import Report
@@ -11,16 +8,23 @@ from blitz_work.blitzcrud import BlitzCRUD
 
 
 class ReportCRUD(BlitzCRUD):
+        
+        # def __init__(self, **kwargs):
+        #         super().__init__(**kwargs)
+        #         self.__fields = ["report_number","client_first_name","client_last_name","client_room",
+        #                          "executive","attendant","kind","description","get_date_time","com_date_time",
+        #                          "response_date_time","responsed","responce"]
         model = Report
         show_title = True
         show_caption = False
         caption_is_title = True
         extend_template = "base.html"
+        table_template = "table.html"
         paginate_by = 10
         exclude = ['']
-        include = {"client_name":Concat(F("client_room__client__first_name"),Value(" "),F("client_room__client__last_name"))}
-        include_header = {"client_name": "Nombre Cliente"}
-        
+        # include = {"client_name":Concat(F("client_room__client__first_name"),Value(" "),F("client_room__client__last_name"))}
+        include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
+        include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
         
         dark_mode_switch_label = None
         delete_messages = {"success": "Operación completada", "error": "No fue posible completar la operación"}
@@ -38,6 +42,4 @@ class ClientsCRUD(BlitzCRUD):
         show_caption = False
         caption_is_title = True
         extend_template = "base.html"
-        # data era antes q dejaba meter queryset tambien despues me arrepenti y deje q fuese para modelos solamente
-        #data = Report 
         model = Client

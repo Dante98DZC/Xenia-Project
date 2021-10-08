@@ -1,7 +1,7 @@
 {% extends 'blitz_base_light_dark.html' %} 
 {% load static %} 
 {% block language%}en{% endblock language %} 
-{% block title %}Xenia{% endblock %} 
+{% block title %}Xenia{% endblock title%} 
 {% block extra_assets %}
 
 <meta name="description" content="Web Application for Client Relationship" />
@@ -11,6 +11,9 @@
 <link rel="shortcut icon" href="{% static 'img/logo-xenia-small-inv.png' %}" />
 
 <link href="{% static 'css/xenia-style.css' %}" rel="stylesheet" />
+
+<link href="{% static 'lib/bootstrap-table-master/dist/bootstrap-table.min.css' %}" rel="stylesheet" />
+<link href="{% static 'lib/jquery-resizable-columns-gh-pages/dist/jquery.resizableColumns.css' %}" rel="stylesheet">
 
 <link href="{% static 'lib/fontawesome/css/all.min.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'css/xenia-base.css' %}" rel="stylesheet">
@@ -179,7 +182,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-2x fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
+                                <span class="badge badge-danger badge-counter">99+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -230,7 +233,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-2x fa-briefcase fa-fw"></i>
                                 <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
+                                <span class="badge badge-danger badge-counter">99</span>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -333,12 +336,17 @@
 
                 <!-- Begin Page Content -->
                  <div class="container-fluid">  
+
+
+              
+
 {% block content %}
 
 
-
-
 {% endblock content %}
+
+
+
                     <!-- Page Heading -->
                 </div>
             <!-- End of Main Content -->
@@ -378,12 +386,17 @@
 
     <!-- Bootstrap core JavaScript-->
     {% comment %} <script src="vendor/jquery/jquery.min.js"></script> {% endcomment %}
-    <script src="{% static 'lib\bootstrap\js\bootstrap.bundle.min.js' %} "></script>
+    <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
     <!-- Core plugin JavaScript-->
     <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-table-master/dist/bootstrap-table.min.js' %} "></script>
+    {% comment %} <script src="{% static 'lib/bootstrap-table-master/extensions/dist/editable/bootstrap-table-editable.js' %} "></script> {% endcomment %}
+   
+    <script src="{% static 'lib/bootstrap-table-master/dist/extensions/resizable/bootstrap-table-resizable.js' %}"></script>
+    
+    <script src="{% static 'lib/jquery-resizable-columns-gh-pages/dist/jquery.resizableColumns.min.js' %}"></script>
+
     <!-- Custom scripts for all pages-->
     <script src=" {% static 'js/xenia-base.js' %} "></script>
-
-
 
 {% endblock main %}
