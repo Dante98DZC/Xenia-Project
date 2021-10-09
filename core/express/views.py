@@ -1,3 +1,4 @@
+from django.db.models.query_utils import Q
 from django.shortcuts import render
 
 from django.db.models import Count, F, Value
@@ -23,6 +24,7 @@ class ReportCRUD(BlitzCRUD):
         table_template = "table.html"
         paginate_by = 10
         exclude = ['']
+        fields_priority=['client_first_name','client_last_name','responsed']
         # include = {"client_name":Concat(F("client_room__client__first_name"),Value(" "),F("client_room__client__last_name"))}
         include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
         include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
@@ -37,7 +39,9 @@ class ReportCRUD(BlitzCRUD):
         crud_buttons = {"add": "Nuevo", "create": "Crear", "details": "Detalle",
                         "update": "Actualizar", "edit": "Editar", "delete": "Eliminar", "cancel": "Cancelar",
                         "return": "Regresar", "search": "Buscar"}
-        
+
+        def get_fields_lookup(self, value):
+                return [Q(client_room__room__number__icontains=value),Q(client_room__client__id__icontains=value)]
 class ClientsCRUD(BlitzCRUD):
         show_title = True
         show_caption = False
