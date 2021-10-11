@@ -1,3 +1,4 @@
+from django.db.models.query_utils import Q
 from django.shortcuts import render
 
 from django.db.models import Count, F, Value
