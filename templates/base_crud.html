@@ -1,13 +1,36 @@
 {% extends "blitz_base_crud.html" %}
 {% block content %}
-{% for message in messages %}
+
+{% comment %} {% for message in messages %}
     <div class="alert {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}alert-danger{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}alert-warning{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}alert-success{% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}alert-info{% else %}alert-primary{% endif %}"role="alert">{{ message }}</div>
-{% endfor %}
-<div class="container">
-    {% if context.title and context.show_title or context.title_as_caption%}<h1>{% if context.title_as_caption %}{{context.caption}}{% else %}{{context.title}}{% endif %}</h1>{% endif %}
-    {% include 'blitz_crud_search.html' with search_text=crud_button.search %}
-    <h1>Hola David, esto es lo que querias hacer?</h1>
-    <div class="btn-toolbar mb-3" role="toolbar">
+{% endfor %} {% endcomment %}
+
+{% comment %} <div class="container"> {% endcomment %}
+    
+  
+    {% comment %} {% if context.title and context.show_title or context.title_as_caption%}
+    
+    <h1>
+    
+    {% if context.title_as_caption %}
+    
+    {{context.caption}}
+    
+        {% else %}
+        
+        {{context.title}}
+        
+    {% endif %}
+    
+    </h1>{% endif %}  {% endcomment %}
+    
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"> {{context.caption}}</h1>
+    </div> 
+
+    {% comment %} {% include 'blitz_crud_search.html' with search_text=crud_button.search %} {% endcomment %}
+    {% comment %} <div class="btn-toolbar mb-3" role="toolbar">
         <div class="btn-group mr-1">
             <a role="button" href="{% url crud_url.create %}" class="btn btn-outline-success"><i class="fas fa-plus"></i> {{crud_button.add}}</a>
         </div>
@@ -25,7 +48,9 @@
                 <button role="button" class="btn btn-outline-secondary" onclick="cancelSelection();" ><i class="fas fa-times"></i> {{crud_button.cancel}}</button>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
     {% include table_template %}
-</div>
+
+{% comment %} </div> {% endcomment %}
+
 {% endblock %}

@@ -1,24 +1,98 @@
-{% extends "blitz_crud_table.html" %}
-{% load static %}
+{% block blitz_crud_table_template %}
+
+
+<div class="">
+    {% block blitz_crud_table %}
+  
+
+<style>
+#toolbar {
+  margin: 0;
+}
+</style>
+
+    <div id="toolbar" class="select">
+        <select class="form-control">
+            <option value="">Export Basic</option>
+            <option value="all">Export All</option>
+            <option value="selected">Export Selected</option>
+        </select>
+
+{% comment %} <div class="btn-toolbar mt-2" role="toolbar">
+        <div class="btn-group mr-1">
+            <a role="button" href="{% url crud_url.create %}" class="btn btn-outline-success"><i class="fas fa-plus"></i> {{crud_button.add}}</a>
+        </div>
+        <div class="blitzSelectionButtons">
+            <div class="btn-group">
+                <button type="button" role="button" onclick="getSelected('{% url crud_url.update %}');" class="btn btn-outline-warning"><i class="fas fa-edit"></i> {{crud_button.edit}}</button>
+            </div>
+            <div class="btn-group">
+                <button type="button" role="button" onclick="getSelected('{% url crud_url.detail %}');" class="btn btn-outline-info"><i class="fas fa-eye"></i> {{crud_button.details}}</a>
+            </div>
+            <div class="btn-group">
+                <button  type="button" role="button" onclick="getSelected('{% url crud_url.delete %}');" class="btn btn-outline-danger"><i class="fas fa-trash"></i> {{crud_button.delete}}</button>
+            </div>
+            <div class="btn-group">
+                <button role="button" class="btn btn-outline-secondary" onclick="cancelSelection();" ><i class="fas fa-times"></i> {{crud_button.cancel}}</button>
+            </div>
+        </div> {% endcomment %}
+    </div>
 
 
 
+<table 
+    id = "table"
+    data-toolbar="#toolbar"
 
-{% block blitz_crud_table %}
- 
+    data-show-button-text="false"
 
- <table 
+    data-buttons-order = ['export','btnAdd','paginationSwitch', 'toggle', 'refresh', 'fullscreen', 'columns']
+
+    data-toolbar-align= "right"
+    data-buttons-align = "left"
+    data-search-align = "left"
+
+    data-sticky-header = "true"
+
+    data-show-export="true"
+    
+    data-show-refresh="true"
+    data-show-fullscreen="true"
+
     data-toggle="table"
-    data-show-columns="true"
     data-show-toggle="true"
+
+    data-show-columns="true"
+    data-show-columns-toggle-all="true"
+
+    {% comment %} data-detail-view="true"
+    data-detail-formatter="detailFormatter {% endcomment %}
+
+    {% comment %} data-multiple-select-row="true"
+    data-click-to-select="true"  {% endcomment %}
+
+    {% comment %} data-show-pagination-switch="true" {% endcomment %}
     data-pagination="true"
+    data-page-list="[2, 10, 25, 50, 100, all]" 
+    data-smart-display = "false"
+
+    data-id-field="id"
+
+    data-classes="table table-striped"
+
     data-search="true"
     data-resizable = "true"
-   >
+
+    data-buttons="buttons"
+    data-buttons-class="primary"
+    {% comment %} TODO: ponerle un padding a pantalla completa
+    {% endcomment %}
+>
 
 <thead>
 
     <tr>
+        {% comment %} <th data-field="state" data-checkbox="true"></th> {% endcomment %}
 
         {% for header in context.headers %}
             <th data-sortable="true">
@@ -39,9 +113,69 @@
     {% endfor %}
 </tbody>
 </table>
-    {% endblock blitz_crud_table %}
+
+</div>
+{% endblock blitz_crud_table %}
     
-    {%block blitz_crud_pagination %}
-    {% endblock blitz_crud_pagination %}
-    {% comment %} --------------------------------------------------------------------- {% endcomment %}
     
+    {% endblock blitz_crud_table_template %}
+    
+    {% block blitz_crud_pagination %}
+{% comment %} </div>
+<nav>
+    <ul class="pagination justify-content-end">
+        <li class="page-item {% if context.page.has_previous is False %}disabled{% endif %}">
+            <a class="page-link" href="?table={{context.caption}}&order={{context.current_order}}&page={% if context.page.has_previous %}{{ context.page.previous_page_number }}{% else %}{{context.page.number}}{% endif %}{{context.search}}">&laquo;</a>
+        </li>
+        <li class="page-item">
+            <div class="dropdown">
+                <button class="page-link dropdown-toggle" type="button" id="blitzPaginationDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{context.page.number}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="blitzPaginationDropdownMenuButton">
+                    {% for page in context.page.paginator.page_range %}
+                    <a class="dropdown-item {% if page == context.page.number %}active{% endif %}" href="?table={{context.caption}}&order={{context.current_order}}&page={{ page }}{{context.search}}">{{ page }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </li>
+        <li class="page-item disabled"><a class="page-link" >of</a></li>
+        <li class="page-item"><a class="page-link" href="?table={{context.caption}}&order={{context.current_order}}&page={{ context.page.paginator.num_pages }}{{context.search}}">{{ context.page.paginator.num_pages }}</a></li>
+        <li class="page-item {% if context.page.has_next is False %}disabled{% endif %}">
+        <a class="page-link" href="?table={{context.caption}}&order={{context.current_order}}&page={% if context.page.has_next %}{{ context.page.next_page_number }}{% else %}{{context.page.number}}{% endif %}{{context.search}}">&raquo;</a>
+        </li>
+    </ul>
+</nav> {% endcomment %}
+{% endblock blitz_crud_pagination %}
+
+
+<script>
+  function buttons () {
+    return {
+      btnAdd: {
+        text: 'Add new row',
+        icon: 'fa-plus',
+        event: function () {
+          alert('Do some stuff to e.g. add a new row')
+        },
+        attributes: {
+          title: 'Add a new row to the table'
+        }
+      }
+    }
+  }
+</script>
+
+<script>
+  var $table = $('#table')
+
+  $(function() {
+    $('#toolbar').find('select').change(function () {
+      $table.bootstrapTable('destroy').bootstrapTable({
+        exportDataType: $(this).val(),
+        exportTypes: ['xml', 'csv', 'txt', 'excel', 'pdf']
+      })
+    }).trigger('change')
+  })
+
+</script>

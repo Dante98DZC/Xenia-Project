@@ -9,11 +9,6 @@ from blitz_work.blitzcrud import BlitzCRUD
 
 class ReportCRUD(BlitzCRUD):
         
-        # def __init__(self, **kwargs):
-        #         super().__init__(**kwargs)
-        #         self.__fields = ["report_number","client_first_name","client_last_name","client_room",
-        #                          "executive","attendant","kind","description","get_date_time","com_date_time",
-        #                          "response_date_time","responsed","responce"]
         model = Report
         show_title = True
         show_caption = False
@@ -23,9 +18,10 @@ class ReportCRUD(BlitzCRUD):
         table_template = "table.html"
         paginate_by = 10
         exclude = ['']
-        # include = {"client_name":Concat(F("client_room__client__first_name"),Value(" "),F("client_room__client__last_name"))}
-        include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
-        include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
+        include = {"client_name":Concat(F("client_room__client__first_name"),Value(" "),F("client_room__client__last_name"))}
+        # include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
+        # include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
+        include_header = {"client_name": "Cliente"}
         
         dark_mode_switch_label = None
         delete_messages = {"success": "Operación completada", "error": "No fue posible completar la operación"}
@@ -37,6 +33,9 @@ class ReportCRUD(BlitzCRUD):
         crud_buttons = {"add": "Nuevo", "create": "Crear", "details": "Detalle",
                         "update": "Actualizar", "edit": "Editar", "delete": "Eliminar", "cancel": "Cancelar",
                         "return": "Regresar", "search": "Buscar"}
+        fields_priority = ["report_number","client_name","client_room","kind","description",
+                                "executive","attendant","get_date_time","com_date_time",
+                                "response_date_time","responsed","responce"]
         
 class ClientsCRUD(BlitzCRUD):
         show_title = True
