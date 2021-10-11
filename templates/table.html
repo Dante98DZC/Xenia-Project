@@ -181,6 +181,7 @@
     </ul>
 </nav> {% endcomment %}
 {% endblock blitz_crud_pagination %}
-{% block more_assets %}
+
+{% block table_assets %}
 <script src=" {% static 'js/report-view.js' %}" create-url="{% url crud_url.create %}" delete-url="{% url crud_url.delete %}"></script>
-{% endblock more_assets %}
+{% endblock table_assets %}
