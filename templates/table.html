@@ -73,7 +73,7 @@
     data-detail-formatter="detailFormatter {% endcomment %}
 
     data-multiple-select-row="true"
-    data-click-to-select="true"  
+    data-click-to-select="true"
 
     {% comment %} data-show-pagination-switch="true" {% endcomment %}
 
@@ -112,12 +112,12 @@
 
 <tbody>
 
- 
+
             {% for row in context.values %}
-               
+
                 <tr class="blitzTr">
                     <input type="hidden" value="{{row.pk}}" name="pk-{{forloop.counter0}}" id="pk-{{forloop.counter0}}">
-                   
+
                     <th scope="row">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input blitzCheck" id="blitz-select-{{forloop.counter0}}">
@@ -125,9 +125,9 @@
                         </div>
                     </th>
                     
-                  
+
                     {% for value in row.values %}
-                       
+
                         <td>{{value}}</td>
                         
                     {% endfor %}

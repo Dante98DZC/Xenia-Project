@@ -10,17 +10,14 @@
 <meta name="keyword" content="Web App, CRM, Custom, Relationship, Magnament" />
 <link rel="shortcut icon" href="{% static 'img/logo-xenia-small-inv.png' %}" />
 
+
+
+<link href="{% static 'css/bootstrap-table.min.css' %}" rel="stylesheet" />
+<link href="{% static 'css/jquery.resizableColumns.css' %}" rel="stylesheet">
+
+<link href="{% static 'css/bootstrap-table-sticky-header.min.css' %}" rel="stylesheet" />
+
 <link href="{% static 'css/xenia-style.css' %}" rel="stylesheet" />
-
-<link href="{% static 'lib/bootstrap-table/dist/bootstrap-table.min.css' %}" rel="stylesheet" />
-<link href="{% static 'lib/jquery-resizable-columns-gh-pages/dist/jquery.resizableColumns.css' %}" rel="stylesheet">
-
-<link href="{% static 'lib/bootstrap-table/dist/extensions/sticky-header/bootstrap-table-sticky-header.css' %}" rel="stylesheet" />
-
-  
-
-
-<link href="{% static 'lib/fontawesome/css/all.min.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'css/xenia-base.css' %}" rel="stylesheet">
 
 {% endblock extra_assets%}
@@ -391,24 +388,23 @@
 
     <!-- Bootstrap core JavaScript-->
     {% comment %} <script src="vendor/jquery/jquery.min.js"></script> {% endcomment %}
-    <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
+    {% comment %} <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %} "></script> {% endcomment %}
     <!-- Core plugin JavaScript-->
-    <script src="{% static 'js/jquery.easing.min.js' %}"></script>
-    <script src="{% static 'lib/bootstrap-table/dist/bootstrap-table.min.js' %} "></script>
+    {% comment %} <script src="{% static 'js/jquery.easing.min.js' %}"></script> {% endcomment %}
+
+    <script src="{% static 'js/bootstrap-table.min.js' %} "></script>
     {% comment %} <script src="{% static 'lib/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.min.js' %} "></script> {% endcomment %}
    
-    <script src="{% static 'lib/bootstrap-table/dist/extensions/resizable/bootstrap-table-resizable.js' %}"></script>
-    <script src="{% static 'lib/jquery-resizable-columns-gh-pages/dist/jquery.resizableColumns.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-table-resizable.min.js' %}"></script>
+    <script src="{% static 'js/jquery.resizableColumns.min.js' %}"></script>
 
-    <script src="{% static 'lib/tableExport.jquery.plugin/tableExport.min.js' %}"></script>
-    <script src="{% static 'lib/tableExport.jquery.plugin/libs/jsPDF/jspdf.umd.min.js' %}"></script>
+    <script src="{% static 'js/tableExport.min.js' %}"></script>
+    <script src="{% static 'js/jspdf.umd.min.js' %}"></script>
     {% comment %} <script src="{% static 'js/jspdf.plugin.autotable.min.js' %}"></script> {% endcomment %}
     
-    <script src="{% static 'lib/bootstrap-table/dist/extensions/export/bootstrap-table-export.js' %}"></script>
-    
+    <script src="{% static 'js/bootstrap-table-export.min.js' %}"></script>
 
-    <script src="{% static 'lib/bootstrap-table/dist/extensions/sticky-header/bootstrap-table-sticky-header.js' %}"></script>
-
+    <script src="{% static 'js/bootstrap-table-sticky-header.min.js' %}"></script>
 
     <!-- Custom scripts for all pages-->
     <script src=" {% static 'js/xenia-base.js' %} "></script>
