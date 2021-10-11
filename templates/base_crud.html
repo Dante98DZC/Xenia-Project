@@ -1,4 +1,5 @@
-{% extends "blitz_base_crud.html" %}
+{% extends extend_template %}
+{% load static %}   
 {% block content %}
 
 {% comment %} {% for message in messages %}
@@ -54,3 +55,6 @@
 {% comment %} </div> {% endcomment %}
 
 {% endblock %}
+{% block more_assets %}
+<script src=" {% static 'js/report-view.js' %}" create-url="{% url crud_url.create %}" delete-url="{% url crud_url.delete %}"></script>
+{% endblock more_assets %}

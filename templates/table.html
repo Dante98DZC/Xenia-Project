@@ -189,11 +189,20 @@
         text: 'Add new row',
         icon: 'fa-plus',
         event: function () {
-          document.location.href = '/express/report/create/'
+          window.location = '{% url crud_url.create %}'
         },
         attributes: {
           title: 'Add a new row to the table',
-          //href: '/index/'
+        }
+      },
+      btnDelete: {
+        text: 'Remove item(s)',
+        icon: 'fa-trash',
+        event: function () {
+          getSelected('{% url crud_url.delete %}')
+        },
+        attributes: {
+          title: 'Remove item(s)',
         }
       }
     }
