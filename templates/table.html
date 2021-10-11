@@ -189,10 +189,11 @@
         text: 'Add new row',
         icon: 'fa-plus',
         event: function () {
-          alert('Do some stuff to e.g. add a new row')
+          document.location.href = '/express/report/create/'
         },
         attributes: {
-          title: 'Add a new row to the table'
+          title: 'Add a new row to the table',
+          //href: '/index/'
         }
       }
     }
