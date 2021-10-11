@@ -66,3 +66,12 @@
 
 @-webkit-keyframes move_eye { from { background-position: 0 0; } to { background-position: -100% 0; }  }
     @keyframes move_eye { from { background-position: 0 0; } to { background-position: -100% 0; }  }
+
+.tableforblitz tbody td:first-child + td{
+    display:none;
+    visibility:hidden;
+}
+.tableforblitz thead tr th:first-child + th{
+    display:none;
+    visibility:hidden;
+}

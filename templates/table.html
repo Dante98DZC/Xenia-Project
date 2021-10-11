@@ -61,7 +61,8 @@
     
     data-buttons="buttons"
     data-buttons-class="secondary"
-    data-buttons-order = ['export','btnAdd','paginationSwitch', 'toggle', 'refresh', 'fullscreen', 'columns']
+    data-buttons-order = ['export','btnAdd','btnEdit','btnDetail','btnDelete','paginationSwitch', 'toggle', 'refresh', 'fullscreen', 'columns']
+    data-minimum-count-columns = 2
 
     data-show-export="true"
     data-show-refresh="true"
@@ -73,7 +74,7 @@
     {% comment %} data-detail-view="true"
     data-detail-formatter="detailFormatter {% endcomment %}
 
-    data-multiple-select-row="true"
+    {% comment %} data-multiple-select-row="true" {% endcomment %}
     data-click-to-select="true"
 
     {% comment %} data-show-pagination-switch="true" {% endcomment %}
@@ -85,7 +86,7 @@
     data-page-list="[2, 10, 25, 50, 100, all]" 
     data-smart-display = "false"
 
-    data-classes="table table-striped table-bordered"
+    data-classes="table table-striped table-bordered tableforblitz"
 
     data-resizable = "true"
     data-search="true"
@@ -100,7 +101,7 @@
         {% comment %} <th data-field="state" data-checkbox="true"></th> {% endcomment %}
 
         <th data-field="state" data-checkbox="true"></th>
-        
+        <th></th>
         {% for header in context.headers %}
             <th data-align="center" data-sortable="true">
             {{header.text}}
@@ -117,9 +118,9 @@
             {% for row in context.values %}
 
                 <tr class="blitzTr">
-                    <input type="hidden" value="{{row.pk}}" name="pk-{{forloop.counter0}}" id="pk-{{forloop.counter0}}">
-
-                    <th scope="row">
+                    <td></td>
+                    <th scope="row" class="blitz-checkbox">
+                        <input type="hidden" value="{{row.pk}}" name="pk-{{forloop.counter0}}" id="pk-{{forloop.counter0}}">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input blitzCheck" id="blitz-select-{{forloop.counter0}}">
                             <label class="custom-control-label" for="blitz-select-{{forloop.counter0}}"><span class="str-only"></span></label>
@@ -181,7 +182,14 @@
     </ul>
 </nav> {% endcomment %}
 {% endblock blitz_crud_pagination %}
+<<<<<<< HEAD
 
 {% block table_assets %}
 <script src=" {% static 'js/report-view.js' %}" create-url="{% url crud_url.create %}" delete-url="{% url crud_url.delete %}"></script>
 {% endblock table_assets %}
+=======
+{% block more_assets %}
+<script src=" {% static 'js/crud-buton-actions.js' %}"></script>
+<script src=" {% static 'js/report-view.js' %}" create-url="{% url crud_url.create %}" update-url="{% url crud_url.update %}" detail-url="{% url crud_url.detail %}" delete-url="{% url crud_url.delete %}"></script>
+{% endblock more_assets %}
+>>>>>>> Mejorado UI. Demaciado para explicar.
