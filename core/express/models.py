@@ -9,7 +9,9 @@ class RoomState(models.Model):
     class Meta:
         verbose_name = "Estado Habitación"
         verbose_name_plural = "Estado Habitaciones"
-
+    
+    def __str__(self):
+        return self.room_state
 
 class Room(models.Model):
     number = models.CharField(
