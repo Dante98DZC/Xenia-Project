@@ -5,10 +5,12 @@ $(function () {
         .change(function () {
             $table.bootstrapTable("destroy").bootstrapTable({
                 exportDataType: $(this).val(),
-                exportTypes: ["xml", "csv", "txt", "excel", "pdf"],
+                exportTypes: ["xml", "csv", "txt", "excel", "pdf"]
             });
         })
         .trigger("change");
+
+    
 });
 var currentScript = document.currentScript;
 function buttons() {

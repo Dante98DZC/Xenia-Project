@@ -390,16 +390,17 @@
     {% comment %} <script src="vendor/jquery/jquery.min.js"></script> {% endcomment %}
     {% comment %} <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %} "></script> {% endcomment %}
     <!-- Core plugin JavaScript-->
-    {% comment %} <script src="{% static 'js/jquery.easing.min.js' %}"></script> {% endcomment %}
-
+    
     <script src="{% static 'js/bootstrap-table.min.js' %} "></script>
     {% comment %} <script src="{% static 'lib/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.min.js' %} "></script> {% endcomment %}
    
     <script src="{% static 'js/bootstrap-table-resizable.min.js' %}"></script>
     <script src="{% static 'js/jquery.resizableColumns.min.js' %}"></script>
 
-    <script src="{% static 'js/tableExport.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/FileSaver.min.js' %}"></script>
     <script src="{% static 'js/jspdf.umd.min.js' %}"></script>
+    <script src="{% static 'js/jspdf.plugin.autotable.js' %}"></script><!--TODO: agregar autotable plugin al export PDF-->
+    <script src="{% static 'js/tableExport.min.js' %}"></script>
     {% comment %} <script src="{% static 'js/jspdf.plugin.autotable.min.js' %}"></script> {% endcomment %}
     
     <script src="{% static 'js/bootstrap-table-export.min.js' %}"></script>
