@@ -17,6 +17,7 @@ class ReportCRUD(BlitzCRUD):
         extend_template = "base.html"
         template_name = "base_crud.html"
         table_template = "table.html"
+        create_template = "create.html"
         paginate_by = 10
         exclude = ['']
         include = {"client_name":Concat(F("client_room__client__first_name"),Value(" "),F("client_room__client__last_name"))}
