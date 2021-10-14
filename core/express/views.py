@@ -32,7 +32,7 @@ class ReportCRUD(BlitzCRUD):
         update_title = "Editar Reporte"
         detail_title = "Detalle del Reporte"
         delete_text = "¿Desea eliminar de forma permanente los siguientes elementos?"
-        crud_buttons = {"add": "Nuevo", "create": "Crear", "details": "Detalle",
+        crud_buttons = {"add": "Nuevo", "create": "Guardar", "details": "Detalle",
                         "update": "Actualizar", "edit": "Editar", "delete": "Eliminar", "cancel": "Cancelar",
                         "return": "Regresar", "search": "Buscar"}
         fields_priority = ["report_number","client_name","client_room","kind","description",

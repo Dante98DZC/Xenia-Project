@@ -2,23 +2,36 @@
 {% block content %}
 
     {% if context.title %}
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"> {{context.title}}</h1>
+        <a role="button" href="{% url crud_url.view %}" type="button" class="btn"><i class="fas fa-times text-dark"></i></a>
     </div> 
+
     {% endif %}
 
     <form method="POST">
      {% csrf_token %}
-     <div class="float-right" style="padding-bottom: 10px;">
-            <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> {{crud_button.create}}</button>
-            <a role="button" href="{% url crud_url.view %}" type="button" class="btn btn-secondary"><i class="fas fa-times"></i> {{crud_button.cancel}}</a>
-        </div>
-       
+    
         <div class="card" style="margin-bottom: 7px;">
             <div class="card-body">
                 {{form.as_p}}
             </div>
         </div>
+
+           <div class="row my-3">
+            <div class="col-md-6 col-sm-6 col-xs-6 mb-1 pad-adjust">
+                <a   class="btn btn-outline-danger " role="button" href="{% url crud_url.view %}" type="button" ><i class="fas fa-times"></i> {{crud_button.cancel}}</a>
+              
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 mb-1 pad-adjust">
+                
+                <button  class="btn btn-outline-primary btn-block"  type="submit"><i class="fas fa-save"></i> {{crud_button.create}}</button>
+            </div>
+        </div>
+        
     </form>
+        
+    
+   
 
 {% endblock %}
