@@ -1,4 +1,6 @@
-{% extends extend_template %} {% block content %} {% if context.title %}
+{% extends extend_template %} {% block content %}
+
+{% if context.title %}
 <div class="d-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">{{context.title}}</h1>
   <a
@@ -11,12 +13,8 @@
   ></a>
 </div>
 
-    {% if context.title %}
-    <div class="d-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"> {{context.title}}</h1>
-        <a role="button" href="{% if return %}{% url return %}{% else %}{% url crud_url.view %}{% endif %}" type="button" title="Cerrar" class="mr-3"><i class="fas fa-2x fa-times text-dark"></i></a>
-    </div>
 
+{% endif %}
 <form method="POST">
   {% csrf_token %}
 
@@ -34,10 +32,6 @@
                 <button  class="btn btn-outline-primary btn-block rounded-pill"  type="submit"><i class="fas fa-save"></i> {{crud_button.create}}</button>
             </div>
         </div>
-        
     </form>
-        
-    
-   
 
 {% endblock %}
