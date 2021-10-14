@@ -15,7 +15,7 @@ Including another URLconf
 """
 from core.main.views import MainView
 from core.login.views import LoginFormView
-from core.express.views import ReportCRUD
+from core.express.views import ExecutiveCRUD, ReportCRUD
 from core.express.views import ClientsCRUD
 from django.urls import path,include
 
@@ -32,5 +32,6 @@ urlpatterns = [
     #el segundo parametro de get_urls(ReportCRUD,"ex_report") es un nompre para el crud es opcional pq blitz lo coje del modelo
     path('express/report/', include(get_urls(ReportCRUD,"ex_report"))),
     path('express/client/', include(get_urls(ClientsCRUD,"ex_client"))),
+    path('express/executive/', include(get_urls(ExecutiveCRUD,"ex_executive"))),
 ]
 
