@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 from django.db.models import Count, F, Value
 from django.db.models.functions import Concat
-from core.express.models import Report
+from core.express.models import Executive, Report
 from core.express.models import Client
 from blitz_work.blitzcrud import BlitzCRUD
 
@@ -45,3 +45,10 @@ class ClientsCRUD(BlitzCRUD):
         caption_is_title = True
         extend_template = "base.html"
         model = Client
+
+class ExecutiveCRUD(BlitzCRUD):
+        show_title = True
+        show_caption = False
+        caption_is_title = True
+        extend_template = "base.html"
+        model = Executive
