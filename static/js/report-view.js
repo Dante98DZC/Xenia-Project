@@ -16,6 +16,7 @@ $(function () {
         "div.dropdown-menu.dropdown-menu-right>label.dropdown-item.dropdown-item-marker:first-child+div.dropdown-divider+label.dropdown-item.dropdown-item-marker"
     ).hide();
 });
+
 var currentScript = document.currentScript;
 function buttons() {
     return {
@@ -73,3 +74,7 @@ function buttons() {
         },
     };
 }
+
+
+function formatYesNo(value,row,index){
+return value=="False" ? 'No' : 'Yes';}
