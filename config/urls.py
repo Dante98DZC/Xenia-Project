@@ -15,8 +15,8 @@ Including another URLconf
 """
 from core.main.views import MainView
 from core.login.views import LoginFormView
-from core.express.views import ExecutiveCRUD, ReportCRUD
-from core.express.views import ClientsCRUD
+from core.express.views import ExecutiveCRUD, ReportCRUD, ClientsCRUD, RoomCRUD, ClientRoomCRUD,RoomStateCRUD
+
 from django.urls import path,include
 
 from django.contrib import admin
@@ -33,5 +33,9 @@ urlpatterns = [
     path('express/report/', include(get_urls(ReportCRUD,"ex_report"))),
     path('express/client/', include(get_urls(ClientsCRUD,"ex_client"))),
     path('express/executive/', include(get_urls(ExecutiveCRUD,"ex_executive"))),
+    path('express/room/', include(get_urls(RoomCRUD,"ex_room"))),
+    path('express/client_room/', include(get_urls(ClientRoomCRUD,"ex_client_room"))),
+    path('express/room_state/', include(get_urls(RoomStateCRUD,"ex_room_state"))),
+    
 ]
 

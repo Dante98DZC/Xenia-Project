@@ -3,8 +3,7 @@ from django.shortcuts import render
 
 from django.db.models import Count, F, Value
 from django.db.models.functions import Concat
-from core.express.models import Executive, Report
-from core.express.models import Client
+from core.express.models import Executive, Report, Client , Room, ClientRoom, RoomState
 from blitz_work.blitzcrud import BlitzCRUD
 
 
@@ -27,8 +26,9 @@ class ReportCRUD(BlitzCRUD):
     include_header = {"client_name": "Cliente"}
 
     dark_mode_switch_label = None
-    delete_messages = {"success": "Operación completada",
-                       "error": "No fue posible completar la operación"}
+    
+    
+    delete_messages = "{'success': 'Operación completada','error': 'No fue posible completar la operación'}"
     create_title = "Nuevo Reporte"
     delete_title = "Eliminar Reporte"
     update_title = "Editar Reporte"
@@ -37,6 +37,7 @@ class ReportCRUD(BlitzCRUD):
     crud_buttons = {"add": "Nuevo", "create": "Guardar", "details": "Detalle",
                     "update": "Actualizar", "edit": "Editar", "delete": "Eliminar", "cancel": "Cancelar",
                     "return": "Regresar", "search": "Buscar"}
+    
     fields_priority = ["report_number", "client_name", "client_room", "kind", "description",
                        "executive", "attendant", "get_date_time", "com_date_time",
                        "response_date_time", "responsed", "responce"]
@@ -47,11 +48,78 @@ class ClientsCRUD(BlitzCRUD):
         show_caption = False
         caption_is_title = True
         extend_template = "base.html"
+        template_name = "base_crud.html"
+        table_template = "table.html"
+        create_template = "create.html"
         model = Client
+        form_exclude = []
 
 class ExecutiveCRUD(BlitzCRUD):
         show_title = True
         show_caption = False
         caption_is_title = True
         extend_template = "base.html"
+        template_name = "base_crud.html"
+        table_template = "table.html"
+        create_template = "create.html"
         model = Executive
+
+class RoomCRUD(BlitzCRUD):
+        show_title = True
+        show_caption = False
+        caption_is_title = True
+        extend_template = "base.html"
+        template_name = "base_crud.html"
+        table_template = "table.html"
+        create_template = "create.html"
+        model = Room
+        delete_messages = {"success": "Operación completada",
+                       "error": "No fue posible completar la operación"}
+        create_title = "Nueva Habitación"
+        delete_title = "Eliminar Habitación"
+        update_title = "Editar Habitación"
+        detail_title = "Detalle de Habitación"
+        delete_text = "¿Desea eliminar de forma permanente los siguientes elementos?"
+        crud_buttons = {"add": "Nuevo", "create": "Guardar", "details": "Detalle",
+                    "update": "Actualizar", "edit": "Editar", "delete": "Eliminar", "cancel": "Cancelar",
+                    "return": "Regresar", "search": "Buscar"}
+        
+class ClientRoomCRUD(BlitzCRUD):
+        show_title = True
+        show_caption = False
+        caption_is_title = True
+        extend_template = "base.html"
+        template_name = "base_crud.html"
+        table_template = "table.html"
+        create_template = "create.html"
+        model = ClientRoom
+        delete_messages = {"success": "Operación completada",
+                       "error": "No fue posible completar la operación"}
+        create_title = "Asignacion Cliente Habitación"
+        delete_title = "Eliminar Asignacion Cliente Habitación"
+        update_title = "Editar Asignacion Cliente Habitación"
+        detail_title = "Detalle de Asignacion Cliente Habitación"
+        delete_text = "¿Desea eliminar de forma permanente los siguientes elementos?"
+        crud_buttons = {"add": "Nuevo", "create": "Guardar", "details": "Detalle",
+                    "update": "Actualizar", "edit": "Editar", "delete": "Eliminar", "cancel": "Cancelar",
+                    "return": "Regresar", "search": "Buscar"}
+        
+class RoomStateCRUD(BlitzCRUD):
+        show_title = True
+        show_caption = False
+        caption_is_title = True
+        extend_template = "base.html"
+        template_name = "base_crud.html"
+        table_template = "table.html"
+        create_template = "create.html"
+        model = RoomState
+        delete_messages = {"success": "Operación completada",
+                       "error": "No fue posible completar la operación"}
+        create_title = "Nuevo estado de habitación"
+        delete_title = "Eliminar estado de habitación"
+        update_title = "Editar estado de habitación"
+        detail_title = "Detalle de estado de habitación"
+        delete_text = "¿Desea eliminar de forma permanente los siguientes elementos?"
+        crud_buttons = {"add": "Nuevo", "create": "Guardar", "details": "Detalle",
+                    "update": "Actualizar", "edit": "Editar", "delete": "Eliminar", "cancel": "Cancelar",
+                    "return": "Regresar", "search": "Buscar"}

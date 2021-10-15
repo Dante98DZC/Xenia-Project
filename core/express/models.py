@@ -17,7 +17,7 @@ class RoomState(models.Model):
 class Room(models.Model):
     number = models.CharField(
         max_length=4, primary_key=True, verbose_name='No Hab.')
-    state = models.ForeignKey(RoomState, on_delete=models.CASCADE)
+    state = models.ForeignKey(RoomState, on_delete=models.CASCADE, verbose_name='Estado')
 
     def __str__(self):
         return self.number
@@ -70,15 +70,15 @@ class ClientOb(models.Model):
 
 
 class ClientRoom(models.Model):
-    client = models.ForeignKey(
-        Client, on_delete=models.CASCADE, verbose_name="Cliente")
     room = models.ForeignKey(
         Room, on_delete=models.CASCADE, verbose_name="No. Hab")
+    client = models.ForeignKey(
+        Client, on_delete=models.CASCADE, verbose_name="Cliente")
     host_date = models.DateField(default=datetime.now,
                                  verbose_name='Fecha hospedaje')
 
     def __str__(self):
-        return str(self.room)
+        return '%s %s' % (self.room, self.client)
 
     class Meta:
         verbose_name = "Habitación Cliente"
@@ -96,7 +96,7 @@ class Departament(models.Model):
         verbose_name_plural = "Departamentos"
 
 
-class Attendants(models.Model):
+class Attendant(models.Model):
     ci_attendant = models.CharField(
         max_length=11, primary_key=True, verbose_name='Ci Encargado')
     first_name = models.CharField(max_length=30, verbose_name='Nombres')
@@ -135,7 +135,7 @@ class Executive(models.Model):
 
     class Meta:
         verbose_name = "Ejecutivo"
-        verbose_name_plural = "Ejecutivo"
+        verbose_name_plural = "Ejecutivos"
 
 
 class Responce(models.Model):
@@ -160,7 +160,7 @@ class Report(models.Model):
     executive = models.ForeignKey(
         Executive, on_delete=models.CASCADE, verbose_name="Ejecutivo")
     attendant = models.ForeignKey(
-        Attendants, on_delete=models.CASCADE, verbose_name="Encargado")
+        Attendant, on_delete=models.CASCADE, verbose_name="Encargado")
     kind = models.ForeignKey(
         KindRep, on_delete=models.CASCADE, verbose_name="Tipo")
     description = models.CharField(max_length=500, verbose_name='Descripción')
