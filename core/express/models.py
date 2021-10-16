@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.db.models import Max
 
 
 class RoomState(models.Model):
@@ -15,11 +16,18 @@ class RoomState(models.Model):
 
 
 class Room(models.Model):
-    number = models.AutoField(primary_key=True, verbose_name='No Hab.')
+    def room_number():
+        no = Room.objects.aggregate(last_room=Max("number"))["last_room"]
+        if no == None:
+            return 1
+        else:
+            return no + 1
+
+    number = models.IntegerField(primary_key=True, verbose_name='No Hab.', default=room_number)
     state = models.ForeignKey(RoomState, blank=True, null=True ,on_delete=models.CASCADE, verbose_name='Estado')
 
     def __str__(self):
-        return self.number
+        return str(self.number)
 
     class Meta:
         verbose_name = "Habitación"

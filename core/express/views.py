@@ -51,8 +51,7 @@ class ExecutiveCRUD(XeniaCRUD):
 class RoomCRUD(XeniaCRUD):
     model = Room
     exclude = ['']
-    include = {"client_name": Concat(F("client_room__client__first_name"), Value(
-        " "), F("client_room__client__last_name"))}
+    form_exclude = []
     # include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
     # include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
     include_header = {"client_name": "Cliente"}
