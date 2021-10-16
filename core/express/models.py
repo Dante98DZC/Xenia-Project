@@ -15,9 +15,8 @@ class RoomState(models.Model):
 
 
 class Room(models.Model):
-    number = models.CharField(
-        max_length=4, primary_key=True, verbose_name='No Hab.')
-    state = models.ForeignKey(RoomState, on_delete=models.CASCADE, verbose_name='Estado')
+    number = models.AutoField(primary_key=True, verbose_name='No Hab.')
+    state = models.ForeignKey(RoomState, blank=True, null=True ,on_delete=models.CASCADE, verbose_name='Estado')
 
     def __str__(self):
         return self.number
@@ -73,8 +72,8 @@ class ClientRoom(models.Model):
     room = models.ForeignKey(
         Room, on_delete=models.CASCADE, verbose_name="No. Hab")
     client = models.ForeignKey(
-        Client, on_delete=models.CASCADE, verbose_name="Cliente")
-    host_date = models.DateField(default=datetime.now,
+        Client,blank=True,null=True, on_delete=models.CASCADE, verbose_name="Cliente")
+    host_date = models.DateField(default=datetime.now,blank=True,null=True,
                                  verbose_name='Fecha hospedaje')
 
     def __str__(self):
