@@ -2,7 +2,7 @@
 
 {% if context.title %}
 <div class="d-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">{{context.title}}</h1>
+  <h1 class="h3 mb-0 text-gray-800">{{context.title}}{% if context.crud_extra_title %} {{context.crud_extra_title}}{% endif %}</h1>
   <a
     role="button"
     href="{% if return %}{% url return %}{% if extra_return %}?return={{extra_return}}{% endif %}{% else %}{% url crud_url.view %}{% endif %}"
