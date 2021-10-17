@@ -1,9 +1,9 @@
 from django.db.models.query_utils import Q
-from django.shortcuts import render
+# from django.shortcuts import render
 
 from django.db.models import Count, F, Value
 from django.db.models.functions import Concat
-from core.express.models import Executive, Report, Client, Room, ClientRoom, RoomState
+from core.express.models import Executive, Report, Client, Room, ClientRoom, RoomState,Observ,Attendant,Departament
 from blitz_work.blitzcrud import BlitzCRUD
 
 
@@ -72,3 +72,13 @@ class ClientsCRUD(XeniaCRUD):
 
 class ExecutiveCRUD(XeniaCRUD):
     model = Executive
+    
+
+class ObservCRUD(XeniaCRUD):
+    model = Observ
+
+class AttendantCRUD(XeniaCRUD):
+    model = Attendant
+    
+class DepartamentCRUD(XeniaCRUD):
+    model = Departament

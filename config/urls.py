@@ -15,7 +15,7 @@ Including another URLconf
 """
 from core.main.views import MainView
 from core.login.views import LoginFormView
-from core.express.views import ExecutiveCRUD, ReportCRUD, ClientsCRUD, RoomCRUD, ClientRoomCRUD,RoomStateCRUD
+from core.express.views import ExecutiveCRUD,AttendantCRUD,DepartamentCRUD, ReportCRUD, ClientsCRUD, RoomCRUD, ClientRoomCRUD,RoomStateCRUD,ObservCRUD
 
 from django.urls import path,include
 
@@ -36,6 +36,9 @@ urlpatterns = [
     path('api/room/', include(get_urls(RoomCRUD,"api_room"))),
     path('api/client_room/', include(get_urls(ClientRoomCRUD,"api_client_room"))),
     path('api/room_state/', include(get_urls(RoomStateCRUD,"api_room_state"))),
+    path('api/observ/', include(get_urls(ObservCRUD,"api_observ"))),
+    path('api/attendant/', include(get_urls(AttendantCRUD,"api_attendant"))),
+    path('api/departament/', include(get_urls(DepartamentCRUD,"api_departament"))),
     
 ]
 
