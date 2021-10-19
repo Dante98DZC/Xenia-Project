@@ -15,8 +15,8 @@ Including another URLconf
 """
 from core.main.views import MainView
 from core.login.views import LoginFormView
-from core.express.views import ReportCRUD
-from core.express.views import ClientsCRUD
+from core.express.views import ExecutiveCRUD,AttendantCRUD,DepartamentCRUD, ReportCRUD, ClientsCRUD, RoomCRUD, ClientRoomCRUD,RoomStateCRUD,ObservCRUD,ResponceCRUD,KindCRUD
+
 from django.urls import path,include
 
 from django.contrib import admin
@@ -28,9 +28,21 @@ urlpatterns = [
     path('login/', LoginFormView.as_view() , name='login'),
     path('admin/', admin.site.urls),
     path('index/', MainView, name='index'),
-    # path('express/report', ReportCRUD, name='ex_report'),
-    #el segundo parametro de get_urls(ReportCRUD,"ex_report") es un nompre para el crud es opcional pq blitz lo coje del modelo
-    path('express/report/', include(get_urls(ReportCRUD,"ex_report"))),
-    path('express/client/', include(get_urls(ClientsCRUD,"ex_client"))),
+    # path('express/report', ReportCRUD, name='api_report'),
+    #el segundo parametro de get_urls(ReportCRUD,"api_report") es un nompre para el crud es opcional pq blitz lo coje del modelo
+    path('api/report/', include(get_urls(ReportCRUD,"api_report"))),
+    path('api/client/', include(get_urls(ClientsCRUD,"api_client"))),
+    path('api/executive/', include(get_urls(ExecutiveCRUD,"api_executive"))),
+    path('api/room/', include(get_urls(RoomCRUD,"api_room"))),
+    path('api/client_room/', include(get_urls(ClientRoomCRUD,"api_client_room"))),
+    path('api/room_state/', include(get_urls(RoomStateCRUD,"api_room_state"))),
+    path('api/observ/', include(get_urls(ObservCRUD,"api_observ"))),
+    path('api/attendant/', include(get_urls(AttendantCRUD,"api_attendant"))),
+    path('api/departament/', include(get_urls(DepartamentCRUD,"api_departament"))),
+    path('api/responce/', include(get_urls(ResponceCRUD,"api_responce"))),
+    path('api/kindrep/', include(get_urls(KindCRUD,"api_kindrep"))),
+    
+    
+    
 ]
 

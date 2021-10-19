@@ -1,25 +1,33 @@
 from django.db import models
 from datetime import datetime
+from django.db.models import Max
 
 
 class RoomState(models.Model):
     room_state = models.CharField(
-        max_length=300, verbose_name='Estado Habitación')
+        unique=True, max_length= 120, verbose_name='Estado Habitación')
 
     class Meta:
         verbose_name = "Estado Habitación"
         verbose_name_plural = "Estado Habitaciones"
-    
+
     def __str__(self):
         return self.room_state
 
+
 class Room(models.Model):
-    number = models.CharField(
-        max_length=4, primary_key=True, verbose_name='No Hab.')
-    state = models.ForeignKey(RoomState, on_delete=models.CASCADE)
+    def room_number():
+        no = Room.objects.aggregate(last_room=Max("number"))["last_room"]
+        if no == None:
+            return 1
+        else:
+            return no + 1
+
+    number = models.IntegerField(primary_key=True, verbose_name='No Hab.', default=room_number)
+    state = models.ForeignKey(RoomState, blank=True, null=True ,on_delete=models.CASCADE, verbose_name='Estado')
 
     def __str__(self):
-        return self.number
+        return str(self.number)
 
     class Meta:
         verbose_name = "Habitación"
@@ -27,11 +35,14 @@ class Room(models.Model):
 
 
 class Observ(models.Model):
-    observ_name = models.CharField(max_length=300, verbose_name='Observación')
+    observ_name = models.CharField(unique=True, max_length= 120, verbose_name='Nombre de Estancia')
 
+    def __str__(self):
+        return str(self.observ_name)
+    
     class Meta:
-        verbose_name = "Observación"
-        verbose_name_plural = "Observaciones"
+        verbose_name = "Estancia"
+        verbose_name_plural = "Estancias"
 
 
 class Client(models.Model):
@@ -47,8 +58,8 @@ class Client(models.Model):
         default=datetime.now, verbose_name='Fecha LLegada')
     leave_date = models.DateField(verbose_name='Fecha Salida')
     observations = models.ManyToManyField(
-        Observ, through="ClientOb", through_fields=("client", "observ"))
-    
+        Observ, through="ClientOb", through_fields=("client", "observ"), verbose_name="Estancia")
+
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)
 
@@ -58,24 +69,26 @@ class Client(models.Model):
 
 
 class ClientOb(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    observ = models.ForeignKey(Observ, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE,verbose_name='Cliente')
+    observ = models.ForeignKey(Observ, on_delete=models.CASCADE,verbose_name='Estancia')
     observ_date = models.DateField(
-        default=datetime.now, verbose_name='Fecha de Observación')
+        default=datetime.now, verbose_name='Fecha estancia')
 
     class Meta:
-        verbose_name = "Observ Cliente"
-        verbose_name_plural = "Observ Clientes"
+        verbose_name = "Estancia Cliente"
+        verbose_name_plural = "Estancias Clientes"
 
 
 class ClientRoom(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Cliente")
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name="No. Hab")
-    host_date = models.DateField(default=datetime.now,
+    room = models.ForeignKey(
+        Room, on_delete=models.CASCADE, verbose_name="No. Hab")
+    client = models.ForeignKey(
+        Client,blank=True,null=True, on_delete=models.CASCADE, verbose_name="Cliente")
+    host_date = models.DateField(default=datetime.now,blank=True,null=True,
                                  verbose_name='Fecha hospedaje')
 
     def __str__(self):
-        return str(self.room)
+        return '%s : %s' % (self.room, self.client)
 
     class Meta:
         verbose_name = "Habitación Cliente"
@@ -83,23 +96,24 @@ class ClientRoom(models.Model):
 
 
 class Departament(models.Model):
-    id_dpt = models.CharField(
-        primary_key=True, max_length=10, verbose_name='ID Dpt')
     name_dpt = models.CharField(max_length=50, verbose_name='Nombre Dpt')
     phone_number = models.CharField(max_length=10, verbose_name='Teléfono Dpt')
 
+    def __str__(self):
+        return self.name_dpt
+    
     class Meta:
         verbose_name = "Departamento"
         verbose_name_plural = "Departamentos"
 
 
-class Attendants(models.Model):
+class Attendant(models.Model):
     ci_attendant = models.CharField(
-        max_length=11, primary_key=True, verbose_name='Ci Encargado')
+        max_length=11, primary_key=True, verbose_name='CI')
     first_name = models.CharField(max_length=30, verbose_name='Nombres')
     last_name = models.CharField(max_length=30, verbose_name='Apellidos')
-    dpt = models.ForeignKey(Departament, on_delete=models.CASCADE)
-    
+    dpt = models.ForeignKey(Departament, on_delete=models.CASCADE, verbose_name='Departamento')
+
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)
 
@@ -109,15 +123,14 @@ class Attendants(models.Model):
 
 
 class KindRep(models.Model):
-    id_kind = models.AutoField(primary_key=True, verbose_name='ID Tipo')
-    name_kind = models.CharField(max_length=50, verbose_name='Nombre Tipo')
-    
+    name_kind = models.CharField(max_length=50, unique=True, verbose_name='Nombre')
+
     def __str__(self):
         return self.name_kind
 
     class Meta:
-        verbose_name = "Tipo Reporte"
-        verbose_name_plural = "Tipo Reportes"
+        verbose_name = "Tipo de Reporte"
+        verbose_name_plural = "Tipo de Reportes"
 
 
 class Executive(models.Model):
@@ -129,20 +142,17 @@ class Executive(models.Model):
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)
-    
+
     class Meta:
         verbose_name = "Ejecutivo"
-        verbose_name_plural = "Ejecutivo"
+        verbose_name_plural = "Ejecutivos"
 
 
 class Responce(models.Model):
-    id_response = models.BigAutoField(
-        primary_key=True, verbose_name='ID Respuesta')
-    description = models.CharField(max_length=500, verbose_name='Descripción')
+    description = models.TextField(verbose_name='Descripción')
 
     def __str__(self):
         return self.description
-    
 
     class Meta:
         verbose_name = "Respuesta"
@@ -152,12 +162,16 @@ class Responce(models.Model):
 class Report(models.Model):
     report_number = models.AutoField(
         primary_key=True, verbose_name='No.')
-    client_room = models.ForeignKey(ClientRoom, on_delete=models.CASCADE, verbose_name='No. Habitación')
+    client_room = models.ForeignKey(
+        ClientRoom, on_delete=models.CASCADE, verbose_name='Habitación | Cliente')
     # client_name = models.ForeignKey(ClientRoom, on_delete=models.CASCADE, verbose_name='Cliente')
-    executive = models.ForeignKey(Executive, on_delete=models.CASCADE, verbose_name="Ejecutivo")
-    attendant = models.ForeignKey(Attendants, on_delete=models.CASCADE, verbose_name="Encargado")
-    kind = models.ForeignKey(KindRep, on_delete=models.CASCADE, verbose_name="Tipo")
-    description = models.CharField(max_length=500, verbose_name='Descripción')
+    executive = models.ForeignKey(
+        Executive, on_delete=models.CASCADE, verbose_name="Ejecutivo")
+    attendant = models.ForeignKey(
+        Attendant, on_delete=models.CASCADE, verbose_name="Encargado")
+    kind = models.ForeignKey(
+        KindRep, on_delete=models.CASCADE, verbose_name="Tipo de reporte")
+    description = models.TextField(verbose_name='Descripción')
     get_date_time = models.DateTimeField(
         default=datetime.now, verbose_name='Fecha de recibo')
     com_date_time = models.DateTimeField(
@@ -168,7 +182,6 @@ class Report(models.Model):
     responce = models.ForeignKey(
         Responce, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Respuesta')
 
-    
     class Meta:
         verbose_name = "Reporte"
         verbose_name_plural = "Reportes"

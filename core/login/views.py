@@ -5,4 +5,6 @@ class LoginFormView(LoginView):
     template_name = 'login.html'    
 
     def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Xenia | Inicio de sesión"
+        return context

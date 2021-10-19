@@ -1,0 +1,39 @@
+{% extends extend_template %} {% block content %}
+
+{% if context.title %}
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">{{context.title}}{% if context.crud_extra_title %} {{context.crud_extra_title}}{% endif %}</h1>
+  <a
+    role="button"
+    href="{% if return %}{% url return %}{% if extra_return %}?return={{extra_return}}{% endif %}{% else %}{% url crud_url.view %}{% endif %}"
+    type="button"
+    title="Cerrar"
+    class="mr-3"
+    ><i class="fas fa-2x fa-backspace text-dark"></i
+  ></a>
+</div>
+
+
+{% endif %}
+<form method="POST">
+  {% csrf_token %}
+
+  <div class="card" style="margin-bottom: 7px">
+    <div class="card-body">{% include form_template %}</div>
+  </div>
+
+           <div class="row my-3">
+            <div class="col-md-6 col-sm-6 col-xs-6  mb-1 pad-adjust">
+                <a   class="btn btn-outline-danger rounded-pill float-right" role="button" 
+                href="{% if return %}{% url return %}{% if extra_return %}?return={{extra_return}}{% endif %}{% else %}{% url crud_url.view %}{% endif %}"
+                type="button" ><i class="fas fa-times"></i> {{crud_button.cancel}}</a>
+              
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 mb-1 pad-adjust">
+                
+                <button  class="btn btn-outline-primary btn-block rounded-pill"  type="submit"><i class="fas fa-save"></i> {{crud_button.create}}</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

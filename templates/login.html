@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,65 +13,42 @@
     />
     <link rel="shortcut icon" href="{% static 'img/logo-xenia-small-inv.png' %}" />
 
-    <title>
-      Xenia | Login
-    </title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/loggin-style.css' %} ">
 
-    <!-- Bootstrap CSS -->
-    {% comment %} <link href="{% static '' %}" rel="stylesheet" /> {% endcomment %}
-    <link href="{% static 'lib/bootstrap-4.3.1-dist/bootstrap.min.css' %}" rel="stylesheet" />
+    <title>{{}}</title>
+</head>
 
-    <!-- bootstrap theme -->
-    
-    <!--external css-->
-    <!-- font icon -->
-   
-
-     <link href="{% static 'lib/fontawesome-5.15.4/font-awesome.css' %}" rel="stylesheet" />
-     <link href="{% static 'lib/fontawesome-5.15.4/font-awesome.min.css' %}" rel="stylesheet" />
-    <!-- Custom styles -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/style-responsive.css' %}" href="" rel="stylesheet" />
-
-
-  </head>
-
-  <body class="login-img2-body">
-    
-    <div class="container">
-      
-      <form class="login-form" action="index.html">
-        
-        <div class="login-wrap">
-          
-          <p class="login-img"><i class="icon_lock_alt"></i></p>
-          
-          <div class="input-group">
-            {% comment %} <span class="input-group-addon"><i class="icon_profile"></i></span> {% endcomment %}
-            {% comment %} <input type="text" class="form-control" placeholder="Username" autofocus/> {% endcomment %}
-          {{form.username}}
-          </div>
-          <div class="input-group">
-            {% comment %} <span class="input-group-addon"><i class="icon_key_alt"></i></span> {% endcomment %}
-            {% comment %} <input type="password" class="form-control" placeholder="Password"/> {% endcomment %}
-          {{form.password}}
-          </div>
-
-          <label class="checkbox">
-            <input type="checkbox" value="remember-me" /> Remember me
-            <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
-          </label>
-
-          <button class="btn btn-primary btn-lg btn-block" type="submit">
-            Login
-          </button>
-          <button class="btn btn-info btn-lg btn-block" type="submit">
-            Signup
-          </button>
-          
-        </div>
+<body>
+<!-- partial:index.partial.html -->
+<body id="particles-js"></body>
+<div class="animated bounceInDown">
+  <div class="container">
+    <span class="error animated tada" id="msg"></span>
+    <form name="form1" class="box" onsubmit="return checkStuff()">
+      <h4>Xenia<span>Inicio de sesión</span></h4>
+      <h5>Sign in to your account.</h5>
+        <input type="text" name="email" placeholder="Email" autocomplete="off">
+        <i class="typcn typcn-eye" id="eye"></i>
+        <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off">
+        <label>
+          <input type="checkbox">
+          <span></span>
+          <small class="rmb">Recordarme siempre</small>
+        </label>
+        <a href="#" class="forgetpass">Forget Password?</a>
+        <input type="submit" value="Sign in" class="btn1">
       </form>
+        <a href="#" class="dnthave">Don’t have an account? Sign up</a>
+  </div> 
+       <div class="footer">
       
     </div>
-  </body>
+</div>
+<!-- partial -->
+  <script src="{% static 'assets/animated-nodes.js' %}" ></script><script  src="{% static 'js/loggin.js' %} "></script>
+
+</body>
 </html>
+
