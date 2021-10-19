@@ -3,7 +3,7 @@ from django.db.models.query_utils import Q
 
 from django.db.models import Count, F, Value
 from django.db.models.functions import Concat
-from core.express.models import Executive, Report, Client, Room, ClientRoom, RoomState,Observ,Attendant,Departament
+from core.express.models import Executive, Report, Client, Room, ClientRoom, RoomState,Observ,Attendant,Departament,Responce, KindRep
 from blitz_work.blitzcrud import BlitzCRUD
 
 
@@ -32,6 +32,10 @@ class XeniaCRUD(BlitzCRUD):
 
 class ReportCRUD(XeniaCRUD):
     model = Report
+    form_template = "components/custom/ex_report_form.html"
+    fields= ["report_number","kind", "description",
+                       "executive", "attendant", "get_date_time", "com_date_time",
+                       "response_date_time", "responsed", "responce"]
     exclude = ['']
     include = {"client_name": Concat(F("client_room__client__first_name"), Value(
         " "), F("client_room__client__last_name"))}
@@ -82,3 +86,9 @@ class AttendantCRUD(XeniaCRUD):
     
 class DepartamentCRUD(XeniaCRUD):
     model = Departament
+
+class ResponceCRUD(XeniaCRUD):
+    model = Responce
+    
+class KindCRUD(XeniaCRUD):
+    model = KindRep

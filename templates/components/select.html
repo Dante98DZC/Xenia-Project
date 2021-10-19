@@ -9,6 +9,6 @@
   
   </div>
   <div class="col-auto">
-  {% if related_crud_url %}<a class="blitz-crud-related-model-add" title="{{model_name}}" href="{% if related_crud_url %}{% url related_crud_url %}?return={{redirect}}{% if extra_url %}{% for return_url in extra_url %}&return={{return_url}}{% endfor %}{% endif %}{% else %} # {% endif %}" role="button"><i class="fa fa-plus text-primary" aria-hidden="true"></i></a>{% endif %}
+  {% if related_crud_url %}<a class="blitz-crud-related-model-add ml-0" title="{{model_name}}" href="{% if related_crud_url %}{% url related_crud_url %}?return={{redirect}}{% if extra_url %}{% for return_url in extra_url %}&return={{return_url}}{% endfor %}{% endif %}{% else %} # {% endif %}" role="button"><i class="ml-0 fa fa-plus text-primary" aria-hidden="true"></i></a>{% endif %}
   </div>
 </div>

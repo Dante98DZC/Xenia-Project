@@ -13,65 +13,30 @@
     />
     <link rel="shortcut icon" href="{% static 'img/logo-xenia-small-inv.png' %}" />
 
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/style.css' %} ">
+</head>
+
+<body>
+
     <title>
-      Xenia | Login
+      {{title}}
     </title>
-
-    <!-- Bootstrap CSS -->
-    {% comment %} <link href="{% static '' %}" rel="stylesheet" /> {% endcomment %}
-    <link href="{% static 'lib/bootstrap-4.3.1-dist/bootstrap.min.css' %}" rel="stylesheet" />
-
-    <!-- bootstrap theme -->
-    
-    <!--external css-->
-    <!-- font icon -->
-   
-
-     <link href="{% static 'lib/fontawesome-5.15.4/font-awesome.css' %}" rel="stylesheet" />
-     <link href="{% static 'lib/fontawesome-5.15.4/font-awesome.min.css' %}" rel="stylesheet" />
-    <!-- Custom styles -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/style-responsive.css' %}" href="" rel="stylesheet" />
-
 
   </head>
 
-  <body class="login-img2-body">
-    
-    <div class="container">
-      
-      <form class="login-form" action="index.html">
-        
-        <div class="login-wrap">
-          
-          <p class="login-img"><i class="icon_lock_alt"></i></p>
-          
-          <div class="input-group">
-            {% comment %} <span class="input-group-addon"><i class="icon_profile"></i></span> {% endcomment %}
-            {% comment %} <input type="text" class="form-control" placeholder="Username" autofocus/> {% endcomment %}
-          {{form.username}}
-          </div>
-          <div class="input-group">
-            {% comment %} <span class="input-group-addon"><i class="icon_key_alt"></i></span> {% endcomment %}
-            {% comment %} <input type="password" class="form-control" placeholder="Password"/> {% endcomment %}
-          {{form.password}}
-          </div>
-
-          <label class="checkbox">
-            <input type="checkbox" value="remember-me" /> Remember me
-            <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
-          </label>
-
-          <button class="btn btn-primary btn-lg btn-block" type="submit">
-            Login
-          </button>
-          <button class="btn btn-info btn-lg btn-block" type="submit">
-            Signup
-          </button>
-          
-        </div>
-      </form>
-      
+      <div class="login-dark">
+        <form method="post">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+            <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Log In</button></div><a href="#" class="forgot">Forgot your email or password?</a></form>
     </div>
-  </body>
+    <script src="{% static 'js/jquery.min.js' %} "></script>
+    <script src="{% static ' js/bootstrap.bundle.min.js'%}"></script>
+</body>
+
+</html>
+
 </html>
