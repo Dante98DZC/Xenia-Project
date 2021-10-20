@@ -17,37 +17,84 @@
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %} ">
     <link rel="stylesheet" href="{% static 'css/loggin-style.css' %} ">
 
-    <title>{{}}</title>
+    <title>{{title}}</title>
 </head>
 
 <body>
 <!-- partial:index.partial.html -->
 <body id="particles-js"></body>
-<div class="animated bounceInDown">
+<div>
+<div class="animate__animated animate__bounceInDown">
   <div class="container">
     <span class="error animated tada" id="msg"></span>
-    <form name="form1" class="box" onsubmit="return checkStuff()">
-      <h4>Xenia<span>Inicio de sesión</span></h4>
-      <h5>Sign in to your account.</h5>
-        <input type="text" name="email" placeholder="Email" autocomplete="off">
-        <i class="typcn typcn-eye" id="eye"></i>
-        <input type="password" name="password" placeholder="Passsword" id="pwd" autocomplete="off">
-        <label>
-          <input type="checkbox">
-          <span></span>
-          <small class="rmb">Recordarme siempre</small>
-        </label>
-        <a href="#" class="forgetpass">Forget Password?</a>
-        <input type="submit" value="Sign in" class="btn1">
-      </form>
-        <a href="#" class="dnthave">Don’t have an account? Sign up</a>
-  </div> 
-       <div class="footer">
+    <form name="form1">
       
+      <div class="d-block my-2">
+      <a href="javascript:location.reload()"  title="Xenia" class="">
+                <img src="{% static 'img/logo-xenia-big-tr.png' %}" height = 50px alt="Logo Xenia"/>
+            </a>
+      </div>
+      
+      <h4 class="mb-1 text-center text-white text-title"><span>Inicio de sesión</span></h4>
+
+      <h5 class="text text-center text-white-50 text-subtitle">Iniciar sesión en su cuenta.</h5>
+        
+
+      
+  <div>
+  
+  
+        <div class="form-group row mx-5">
+        <label class="text-white" for="input-user-name">Usuario</label>
+        <input type="text" class="form-control" name="user" aria-describedby="userHelp" placeholder="User name" autocomplete="off" id="input-user-name">
+        </div>
+        {% comment %} <i class="typcn typcn-eye" id="eye"></i> {% endcomment %}
+       
+        <div class="form-group row mx-5">
+          <label class="text-white" for="input-pas">Contraseña</label>
+        <input type="password" class="form-control" name="password" placeholder="Passsword" id="input-pas" autocomplete="off">
+        </div>
+
+      <div class = "d-flex mx-1">
+
+      <div class="custom-control custom-checkbox text-white">
+        <input type="checkbox" class="custom-control-input" id="customCheck1">
+        <label class="custom-control-label rmb" for="customCheck1">Recuerdame</label>
+      </div>
+  
+  
+      <div class="ml-auto">
+        <a href="#">Olvidaste la contraseña?</a>
+      </div>
+
     </div>
+
+        <input type="submit" value="Iniciar sesión" class="btn rounded-pill btn-outline-success float-center">
+
+      </form>
+      
+      
+      <div class="">
+          <a href="#" class="text text-center">No tienes cuenta? Registrate</a>
+      </div>
+        
+       
+
+  </div> 
+      
+
+
+
+
+      <div class="footer">
+      
+      </div>
 </div>
+</div>
+
 <!-- partial -->
-  <script src="{% static 'assets/animated-nodes.js' %}" ></script><script  src="{% static 'js/loggin.js' %} "></script>
+  <script src="{% static 'assets/animated-nodes.js' %}" ></script>
+  <script  src="{% static 'js/loggin.js' %} "></script>
 
 </body>
 </html>
