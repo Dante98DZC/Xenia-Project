@@ -21,18 +21,22 @@ body, html {
 
 .container{
   margin: 0;
+  width:350px;
+  height: 30em;
   top: 50px;
   left: 50%;
   position: absolute;
+
   text-align: center;
   transform: translateX(-50%);
-  background-color: rgb( 33, 41, 66 );
+
   border-radius: 9px;
   border-top: 10px solid #79a6fe;
   border-bottom: 10px solid #79a6fe;
-  width: 400px;
-  height: 500px;
   box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53);
+  
+  background-color: transparent
+  /* filter: opacity(80%); */
 }
 
 .text-title{

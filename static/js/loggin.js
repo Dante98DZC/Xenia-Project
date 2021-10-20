@@ -34,9 +34,11 @@
 //   }
 // }
 
-// ParticlesJS
 
+
+// ParticlesJS
 // ParticlesJS Config.
+
 particlesJS("particles-js", {
   "particles": {
     "number": {
