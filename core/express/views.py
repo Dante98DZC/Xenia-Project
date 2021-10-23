@@ -5,6 +5,8 @@ from django.db.models import Count, F, Value
 from django.db.models.functions import Concat
 from core.express.models import *
 from blitz_work.blitzcrud import BlitzCRUD
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 
 class XeniaCRUD(BlitzCRUD):
@@ -27,6 +29,10 @@ class XeniaCRUD(BlitzCRUD):
     crud_buttons = {"add": "Nuevo", "create": "Guardar", "details": "Detalle",
                     "update": "Actualizar", "edit": "Editar", "delete": "Eliminar", "cancel": "Cancelar",
                     "return": "Regresar", "search": "Buscar"}
+    
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
 
 
