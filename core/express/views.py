@@ -3,7 +3,7 @@ from django.db.models.query_utils import Q
 
 from django.db.models import Count, F, Value
 from django.db.models.functions import Concat
-from core.express.models import Executive, Report, Client, Room, ClientRoom, RoomState,Observ,Attendant,Departament,Responce, KindRep
+from core.express.models import *
 from blitz_work.blitzcrud import BlitzCRUD
 
 

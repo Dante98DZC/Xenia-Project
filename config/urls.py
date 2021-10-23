@@ -25,9 +25,9 @@ from blitz_work.urls import urlpatterns
 
 urlpatterns = [
     path('',include(urlpatterns)),
-    path('login/', LoginFormView.as_view() , name='login'),
+    path('login/', include('core.login.urls')),
     path('admin/', admin.site.urls),
-    path('index/', MainView, name='index'),
+    path('dashboard/', MainView, name='dashboard'),
     # path('express/report', ReportCRUD, name='api_report'),
     #el segundo parametro de get_urls(ReportCRUD,"api_report") es un nompre para el crud es opcional pq blitz lo coje del modelo
     path('api/report/', include(get_urls(ReportCRUD,"api_report"))),

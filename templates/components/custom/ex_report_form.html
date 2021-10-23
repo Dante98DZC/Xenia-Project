@@ -1,3 +1,4 @@
+{% load widget_tweaks%}
 
 {% comment %} 
 
@@ -33,7 +34,7 @@
     <div class="col-12">
         {{ form.description.errors }}
         {% if not form.description.is_hidden %}{{ form.description.label_tag }}{% endif %} 
-            {{ form.description }}
+            {{ form.description| attr:'rows:"3"' }}
         {% if form.description.help_text %}
         
         <p class="help">{{ form.description.help_text|safe }}</p>

@@ -1,10 +1,13 @@
 /* CSS Libraries Used 
 
-*Animate.css by Daniel Eden.
-*FontAwesome 4.7.0
-*Typicons
-
+Font: IBM Plex Thai Looped SemiBold
 */
+@font-face {
+  font-family: 'ibm';
+  src: local('Ibm'),
+       url('../static/fonts/IBMPlexSansThaiLooped-Regular.ttf') format("truetype");
+}
+
 body, html {
   font-family: sans-serif;
   background-color: #1d243d;
@@ -31,18 +34,20 @@ body, html {
   transform: translateX(-50%);
 
   border-radius: 9px;
-  border-top: 10px solid #79a6fe;
-  border-bottom: 10px solid #79a6fe;
+  border-top: 10px solid #7a6ff1;
+  border-bottom: 10px solid #7a6ff1;
   box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53);
   
-  background-color: transparent
+  background-color: rgba(25, 31, 53, 0.9);  /* 50% transparent */
   /* filter: opacity(80%); */
 }
 
 .text-title{
   font-size: larger;
+  font-family: Verdana;
 }
 
 .text-subtitle{
   font-size: smaller;
+  font-family: Verdana;
 }

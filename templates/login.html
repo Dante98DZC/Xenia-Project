@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks%}
 
 <!DOCTYPE html>
 <html lang="es">
@@ -15,52 +16,59 @@
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/fa.all.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'css/jquery.toastmessage.css' %} ">
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %} ">
     <link rel="stylesheet" href="{% static 'css/loggin-style.css' %} ">
-    
 
     <title>{{title}}</title>
 </head>
 
 <body>
-<!-- partial:index.partial.html -->
+<!-- partial:dashboard.partial.html -->
 <body id="particles-js"></body>
-<div>
-<div class="animate__animated animate__bounceInDown">
+
+
+
+<div class="">
+  
   <div class="container">
-    <span class="error animated tada" id="msg"></span>
-    <form name="form1">
-      
+    
+    <form name="login-form" action="." method="post">
+      {% csrf_token %}
       <div class="d-block my-4">
-      <a href="javascript:location.reload()"  title="Xenia" class="">
-                <img src="{% static 'img/logo-xenia-big-tr.png' %}" height = 50px alt="Logo Xenia"/>
-            </a>
+        <a href="javascript:location.reload()"  title="Xenia">
+          <img src="{% static 'img/logo-xenia-big-tr.png' %}" height = 50px alt="Logo Xenia"/>
+        </a>
       </div>
       
       <h4 class="mb-1 text-center text-white text-title"><span>Inicio de sesión</span></h4>
 
       <h5 class="text text-center text-white-50 text-subtitle">Iniciar sesión en su cuenta.</h5>
         
-<div class="h-100 mt-4" style="">
-  <div class= "">
-
-      {% comment %} <i class="typcn typcn-eye" id="eye"></i> {% endcomment %}
-
-
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <div class="input-group-text"><i class="fa fa-user"></i></div>
+      <div class="mt-4">
+        
+        <div>
+          <div class="input-group mb-3">
+            {{form.username | add_class:'form-control'| attr:'autocomplete:off' | attr:'placeholder:Usuario'}}
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <i class="fa fa-user"></i>
+              </div>
+            </div>
         </div>
-        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Usuario">
+
+     
+          <div class="input-group">
+            {{form.password| add_class:'form-control'| attr:'autocomplete:off' | attr:'placeholder:Contraseña'}}
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <i class="fa fa-key"></i>
+              </div>
+            </div>
+          </div>
+       
+      
       </div>
-
-<div class="input-group">
-<div class="input-group-prepend">
-          <div class="input-group-text"><i class="fa fa-key"></i></div>
-        </div>
-        <input type="password" class="form-control" name="password" placeholder="Contraseña" id="input-pas" autocomplete="off">
-        </div>
-</div>
     <div class = "d-flex mx-1 mt-2 mb-5">
 
       <div class="custom-control custom-checkbox text-white">
@@ -74,9 +82,11 @@
       </div>
 
     </div>
-        
-          <button class="btn btn-primary w-100 mb-40 mt-5 mb-1" type="submit">Iniciar sesión</button>
-          <p href="#" class="text-white">Don't have an account? <a href="register.html">Register Now</a></p>
+          
+          <button class="btn btn-primary rounded-pill w-100 mb-40 mt-5 mb-1" type="submit">
+            Iniciar sesión
+            </button>
+          <p class="text-white">No tienes una cuenta? <a href="#">Registrate</a></p>
 
       </form>
   </div> 
@@ -85,12 +95,31 @@
 </div>
 
 </div>
-</div>
 
+    
 <!-- partial -->
-  <script src="{% static 'assets/animated-nodes.js' %}" ></script>
-  <script  src="{% static 'js/loggin.js' %} "></script>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/jquery.toastmessage.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/animated-nodes.js' %}" type="text/javascript"></script>
+<script  src="{% static 'js/loggin.js' %} " type="text/javascript"></script>
+  <script type="application/javascript">
 
+  {% if form.errors %}
+        var errors = '';
+        {% for field in form %}
+            {% for error in field.errors %}
+              errors += '{{ error }} \n';
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          errors += '{{error}} \n';
+        {% endfor %}
+
+      $().toastmessage('showErrorToast', errors);
+
+      {% endif %}
+
+
+</script>
 </body>
 </html>
-
