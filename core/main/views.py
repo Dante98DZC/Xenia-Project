@@ -12,4 +12,6 @@ class DashboardView(TemplateView):
         context["panel"] = 'Panel de control'
         return context
     
-    
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
