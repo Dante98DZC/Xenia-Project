@@ -10,16 +10,9 @@
 <meta name="keyword" content="Web App, CRM, Custom, Relationship, Magnament" />
 <link rel="shortcut icon" href="{% static 'img/logo-xenia-small-inv.png' %}" />
 
-
-
-<link href="{% static 'css/bootstrap-table.min.css' %}" rel="stylesheet" />
-<link href="{% static 'css/jquery.resizableColumns.css' %}" rel="stylesheet">
-
-<link href="{% static 'css/bootstrap-table-sticky-header.min.css' %}" rel="stylesheet" />
-<link href="{% static 'css/bootstrap-table-fixed-columns.min.css' %}" rel="stylesheet" />
-
 <link href="{% static 'css/xenia-style.css' %}" rel="stylesheet" />
 <link href="{% static 'css/xenia-base.css' %}" rel="stylesheet">
+
 {% block more_assets %}{% endblock more_assets %}
 {% endblock extra_assets%}
 
@@ -37,8 +30,7 @@
             <ul class="navbar-nav xenia-v-gradient-bg sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-
-            <a href="javascript:location.reload()"  title="Xenia" class="sidebar-brand d-flex align-items-center justify-content-center">
+            <a title="Ir arriba" class="my-2 text-center" style="cursor: pointer" id="brand">
                 <img src="{% static 'img/logo-xenia-big-tr.png' %}" height = 50px alt="Logo Xenia"/>
             </a>
 
@@ -308,8 +300,9 @@
                                 <img class="img-profile rounded-circle"
                                     src="{% static 'img/profile-avatar.jpg' %}">
                             </a>
+                            
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            <div class="dropdown-menu dropdown-menu-right"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="">
                                     <i class="fas fa-2x fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -324,7 +317,7 @@
                                     Documentacíon
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" data-toggle="modal" id="logout-btn" data-target="#logout_modal">
                                     <i class="fas fa-2x fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cerrar sesión
                                 </a>
@@ -336,14 +329,11 @@
                 </nav>
                 <!-- End of Topbar -->
 
-               {% endblock navbar %}
+            {% endblock navbar %}
                 
 
                 <!-- Begin Page Content -->
-                 <div class="container-fluid px-3">  
-
-
-              
+                <div class="container-fluid px-3">  
 
 {% block content %}
 
@@ -351,8 +341,6 @@
 {% endblock content %}
 
 
-
-                    <!-- Page Heading -->
                 </div>
             <!-- End of Main Content -->
 
@@ -360,22 +348,15 @@
         <!-- End of Content Wrapper -->
 
     </div>
-
-
     <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabdashboard="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="logout_modal" tabdashboard="-1" role="dialog"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cerrar sesión.</h5>
+                    <h5 class="modal-title"><i class="fa fa-exclamation-triangle text-warning"> </i> Cerrar sesión.</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -383,34 +364,43 @@
                 <div class="modal-body">Seguro que desea cerrar la sesión?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">No, volver</button>
-                    <a class="btn btn-primary" href="{% url 'logout' %}">Sí, cerrar</a>
+                    <a id="logout_confirm_btn" class="btn btn-primary" href="{% url 'logout' %}">Sí, cerrar</a>
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
+
 
     <!-- Bootstrap core JavaScript-->
-    {% comment %} <script src="vendor/jquery/jquery.min.js"></script> {% endcomment %}
-    {% comment %} <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %} "></script> {% endcomment %}
+    
     <!-- Core plugin JavaScript-->
-    
-    <script src="{% static 'js/bootstrap-table.min.js' %} "></script>
-    {% comment %} <script src="{% static 'lib/bootstrap-table/dist/extensions/editable/bootstrap-table-editable.min.js' %} "></script> {% endcomment %}
-   
-    <script src="{% static 'js/bootstrap-table-resizable.min.js' %}"></script>
-    <script src="{% static 'js/jquery.resizableColumns.min.js' %}"></script>
 
-    <script type="text/javascript" src="{% static 'js/FileSaver.min.js' %}"></script>
-    <script src="{% static 'js/jspdf.umd.min.js' %}"></script>
-    <script src="{% static 'js/jspdf.plugin.autotable.js' %}"></script><!--TODO: agregar autotable plugin al export PDF-->
-    <script src="{% static 'js/tableExport.min.js' %}"></script>
-    {% comment %} <script src="{% static 'js/jspdf.plugin.autotable.min.js' %}"></script> {% endcomment %}
-    
-    <script src="{% static 'js/bootstrap-table-export.min.js' %}"></script>
+    <!--Notification Plugin: No funciona por libreria togle-bootstrap heredada de blitz-light-dark-->
+    {% comment %} <script src="{% static 'lib/toastr/toastr.min.js' %}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{% static 'lib/toastr/toastr.min.css' %} "> {% endcomment %}
 
-    <script src="{% static 'js/bootstrap-table-sticky-header.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap-table-fixed-columns.min.js' %}"></script>
+    
     <!-- Custom scripts for all pages-->
     <script src=" {% static 'js/xenia-base.js' %} "></script>
 
-{% endblock main %}
+
+    <script>
+
+     $("#logout_modal").keyup(function(event){
+        if(event.keyCode == 13){
+        $("#logout_confirm_btn").click();
+        }
+    });
+
+  $('#brand').click(function (event){
+        $('body,html').animate({
+            scrollTop:0
+        },1000)
+    });
+    
+   
+    {% comment %} $('#logout-btn').click(function (event) { toastr.warning('Warning')
+ }); {% endcomment %}
+
+    </script>
+{%endblock main %}
