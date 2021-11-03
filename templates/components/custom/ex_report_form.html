@@ -14,7 +14,7 @@
     <div class="col-6">
         {{ form.client_room.errors }}
         {% if not form.client_room.is_hidden %}{{ form.client_room.label_tag }}{% endif %} 
-            {{ form.client_room }} Esto hay q cambiarlo por Room
+            {{ form.client_room }} TODO: Esto hay q cambiarlo por Room
         {% if form.client_room.help_text %}
         
         <p class="help">{{ form.client_room.help_text|safe }}</p>
@@ -49,7 +49,7 @@
         {{ form.executive.errors }}
         {% if not form.executive.is_hidden %}{{ form.executive.label_tag }}{% endif %} 
             {{ form.executive }}
-            Cambiar esto por info d usuario
+            TODO:Cambiar esto por info d usuario
         {% if form.executive.help_text %}
         
         <p class="help">{{ form.executive.help_text|safe }}</p>
@@ -87,14 +87,15 @@
     </div>
     
 </div>
-<div class="form-row mb-1">
-    <div class="col-4">
+<div class="form-row mb-1 mt-3 align-content-center">
+<div class="border rounded d-flex col-4">
+<div class="col-6">
         {{ form.responsed.errors }}
         {% if not form.responsed.is_hidden %}{{ form.responsed.label_tag }}{% endif %} 
         
-        <div class="border border rounded">
+       
             {{ form.responsed }}
-        </div>
+   
             
         
 
@@ -103,13 +104,13 @@
         <p class="help">{{ form.responsed.help_text|safe }}</p>
         {% endif %}
     </div>
-     <div class="col-4">
+     <div class="col-6">
         {{ form.agree.errors }}
         {% if not form.agree.is_hidden %}{{ form.agree.label_tag }}{% endif %} 
         
-        <div class="border border rounded">
+        
             {{ form.agree }}
-        </div>
+        
             
         
 
@@ -118,7 +119,9 @@
         <p class="help">{{ form.agree.help_text|safe }}</p>
         {% endif %}
     </div>
-    <div class="col-4">
+</div>
+    
+    <div class="col-8">
         {{ form.response_date_time.errors }}
         {% if not form.response_date_time.is_hidden %}{{ form.response_date_time.label_tag }}{% endif %} 
             
