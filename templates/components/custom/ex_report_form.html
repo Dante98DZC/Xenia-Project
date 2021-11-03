@@ -87,7 +87,7 @@
     
 </div>
 <div class="form-row mb-1">
-    <div class="col-8">
+    <div class="col-4">
         {{ form.responsed.errors }}
         {% if not form.responsed.is_hidden %}{{ form.responsed.label_tag }}{% endif %} 
         
@@ -100,6 +100,21 @@
         {% if form.responsed.help_text %}
         
         <p class="help">{{ form.responsed.help_text|safe }}</p>
+        {% endif %}
+    </div>
+     <div class="col-4">
+        {{ form.agree.errors }}
+        {% if not form.agree.is_hidden %}{{ form.agree.label_tag }}{% endif %} 
+        
+        <div class="border border rounded">
+            {{ form.agree }}
+        </div>
+            
+        
+
+        {% if form.agree.help_text %}
+        
+        <p class="help">{{ form.agree.help_text|safe }}</p>
         {% endif %}
     </div>
     <div class="col-4">

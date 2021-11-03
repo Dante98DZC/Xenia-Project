@@ -50,7 +50,7 @@ class ReportCRUD(XeniaCRUD):
     include_header = {"client_name": "Cliente","room":"Hab","departament" : "Departamento"}
     fields_priority = ["report_number", "client_name", "room", "kind", "description",
                        "executive", "attendant", "departament", "get_date_time", "top_date_time",
-                       "response_date_time", "responsed", "responce"]
+                       "response_date_time", "responsed", "agree", "responce"]
 
 
 

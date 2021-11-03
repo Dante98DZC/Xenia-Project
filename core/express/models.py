@@ -179,6 +179,7 @@ class Report(models.Model):
     response_date_time = models.DateTimeField(
         blank=True, null=True, verbose_name='Fecha de respuesta')
     responsed = models.BooleanField(default=False, verbose_name='Resuelto')
+    agree = models.BooleanField(default=False, verbose_name='Conforme')
     responce = models.ForeignKey(
         Responce, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Respuesta')
 
