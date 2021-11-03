@@ -1,14 +1,14 @@
 {% extends extend_template %} {% block content %}
 
 {% if context.title %}
-<div class="d-flex align-items-center justify-content-between mb-4">
+<div class="d-flex align-items-center mb-4">
   <h1 class="h3 mb-0 text-gray-800">{{context.title}}{% if context.crud_extra_title %} {{context.crud_extra_title}}{% endif %}</h1>
   <a
     role="button"
     href="{% if return %}{% url return %}{% if extra_return %}?return={{extra_return}}{% endif %}{% else %}{% url crud_url.view %}{% endif %}"
     type="button"
     title="Cerrar"
-    class="mr-3 close"
+    class="ml-auto mr-3 close"
     ><i class="fas fa-times text-dark"></i
   ></a>
 </div>

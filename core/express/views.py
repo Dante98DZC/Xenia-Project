@@ -42,13 +42,14 @@ class ReportCRUD(XeniaCRUD):
     fields= ["report_number","kind", "description",
                        "executive", "attendant", "get_date_time", "top_date_time",
                        "response_date_time", "responsed", "responce"]
-    exclude = ['client_room']
-    include = {"client_name": Concat(F("client_room__client__first_name"), Value(
-        " "), F("client_room__client__last_name")),"room":F("client_room__room__number") , "departament": F("attendant__dpt__name_dpt")}
+    exclude = []
+    include = {"departament": F("attendant__dpt__name_dpt")}
+    # include = {"client_name": Concat(F("client_room__client__first_name"), Value(
+    #     " "), F("client_room__client__last_name")),"room":F("client_room__room__number") , "departament": F("attendant__dpt__name_dpt")}
     # include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
     # include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
-    include_header = {"client_name": "Cliente","room":"Hab","departament" : "Departamento"}
-    fields_priority = ["report_number", "client_name", "room", "kind", "description",
+    include_header = {"departament" : "Departamento"}
+    fields_priority = ["report_number", "room", "kind", "description",
                        "executive", "attendant", "departament", "get_date_time", "top_date_time",
                        "response_date_time", "responsed", "agree", "responce"]
 

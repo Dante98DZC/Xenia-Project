@@ -162,8 +162,8 @@ class Responce(models.Model):
 class Report(models.Model):
     report_number = models.AutoField(
         primary_key=True, verbose_name='No.')
-    client_room = models.ForeignKey(
-        ClientRoom, on_delete=models.CASCADE, verbose_name='Habitación | Cliente')
+    room = models.ForeignKey(
+        Room, on_delete=models.CASCADE, verbose_name='Habitación')
     # client_name = models.ForeignKey(ClientRoom, on_delete=models.CASCADE, verbose_name='Cliente')
     executive = models.ForeignKey(
         Executive, on_delete=models.CASCADE, verbose_name="Ejecutivo")
