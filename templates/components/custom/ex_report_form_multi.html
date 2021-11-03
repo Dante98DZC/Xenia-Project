@@ -91,6 +91,7 @@
 <div class="form-row mb-1 mt-3 align-content-center">
 <div class="border rounded d-flex col-4">
 <div class="col-6">
+<div class="responsed">
         {{ form.responsed.errors }}
         {% if not form.responsed.is_hidden %}{{ form.responsed.label_tag }}{% endif %} 
         
@@ -104,8 +105,9 @@
         
         <p class="help">{{ form.responsed.help_text|safe }}</p>
         {% endif %}
+</div>
     </div>
-     <div class="col-6">
+     <div class="col-6 report-response-conditional">
         {{ form.agree.errors }}
         {% if not form.agree.is_hidden %}{{ form.agree.label_tag }}{% endif %} 
         
@@ -122,7 +124,7 @@
     </div>
 </div>
     
-    <div class="col-8">
+    <div class="col-8 report-response-conditional">
         {{ form.response_date_time.errors }}
         {% if not form.response_date_time.is_hidden %}{{ form.response_date_time.label_tag }}{% endif %} 
             
