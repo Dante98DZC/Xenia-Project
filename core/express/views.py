@@ -40,6 +40,7 @@ class XeniaCRUD(BlitzCRUD):
 class ReportCRUD(XeniaCRUD):
     model = Report
     form_template = "components/custom/ex_report_form.html"
+    multiform_template = "components/custom/ex_report_form_multi.html"
     fields= ["report_number","kind", "description",
                        "executive", "attendant", "get_date_time", "top_date_time",
                        "response_date_time", "responsed", "responce"]
