@@ -18,6 +18,7 @@ class XeniaCRUD(BlitzCRUD):
     template_name = "base_crud.html"
     table_template = "table.html"
     create_template = "create.html"
+    update_template = "update.html"
     create_title = "Nuevo"
     delete_title = "Eliminar"
     update_title = "Editar"
