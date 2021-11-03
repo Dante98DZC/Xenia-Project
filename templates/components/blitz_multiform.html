@@ -1,14 +1,17 @@
-{{ form.management_form }}
-<table>
-    {% for individualform in form %}
-        {% for field in individualform %}
-            <div>
-                {{ field.errors }}
-                {% if not field.is_hidden %}{{ field.label_tag }}{% endif %} {{ field }}
-                {% if field.help_text %}
-                    <p class="help">{{ field.help_text|safe }}</p>
-                {% endif %}
-            </div>
-        {% endfor %}
-    {% endfor %}
-</table>
+{% for form in formset %}
+    <div class="card" style="margin-bottom: 7px;">
+        <div class="card-body">
+            <table>
+                {% for field in form %}
+                    <div>
+                        {{ field.errors }}
+                        {% if not field.is_hidden %}{{ field.label_tag }}{% endif %} {{ field }}
+                        {% if field.help_text %}
+                            <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endfor %}

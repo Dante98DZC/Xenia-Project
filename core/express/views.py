@@ -1,12 +1,13 @@
-from django.db.models.query_utils import Q
-# from django.shortcuts import render
-
+from blitz_work.blitzcrud import BlitzCRUD
+from core.express.models import *
+from django.contrib.auth.decorators import login_required
 from django.db.models import Count, F, Value
 from django.db.models.functions import Concat
-from core.express.models import *
-from blitz_work.blitzcrud import BlitzCRUD
+from django.db.models.query_utils import Q
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+
+# from django.shortcuts import render
+
 
 
 class XeniaCRUD(BlitzCRUD):
@@ -61,7 +62,7 @@ class ExecutiveCRUD(XeniaCRUD):
 
 class RoomCRUD(XeniaCRUD):
     model = Room
-    exclude = ['']
+    exclude = ['id']
     form_exclude = []
     # include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
     # include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
