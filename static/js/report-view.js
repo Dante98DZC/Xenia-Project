@@ -21,17 +21,17 @@ var currentScript = document.currentScript;
 function buttons() {
     return {
         btnAdd: {
-            text: "Add new row",
+            text: "Crear registro",
             icon: "fa-plus",
             event: function () {
                 window.location = currentScript.getAttribute("create-url");
             },
             attributes: {
-                title: "Add a new row to the table",
+                title: "Crear registro",
             },
         },
         btnDelete: {
-            text: "Remove item(s)",
+            text: "Eliminar elemento(s)",
             icon: "fa-trash",
             event: function () {
                 if (anyRowSelected()) {
@@ -41,11 +41,11 @@ function buttons() {
                 }
             },
             attributes: {
-                title: "Remove item(s)",
+                title: "Eliminar elemento(s)",
             },
         },
         btnEdit: {
-            text: "Update item(s)",
+            text: "Editar registro(s)",
             icon: "fa-edit",
             event: function () {
                 if (anyRowSelected()) {
@@ -55,23 +55,9 @@ function buttons() {
                 }
             },
             attributes: {
-                title: "Update item(s)",
+                title: "Editar registro(s)",
             },
-        },
-        btnDetail: {
-            text: "Show detail from item(s)",
-            icon: "fa-eye",
-            event: function () {
-                if (anyRowSelected()) {
-                    crudElementsAction(
-                        currentScript.getAttribute("detail-url")
-                    );
-                }
-            },
-            attributes: {
-                title: "Show detail from item(s)",
-            },
-        },
+        }
     };
 }
 

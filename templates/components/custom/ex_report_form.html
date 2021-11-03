@@ -3,7 +3,7 @@
 {% comment %} 
 
 ["report_number", "client_name", "client_room", "kind", "description",
-                    "executive", "attendant", "get_date_time", "com_date_time",
+                    "executive", "attendant", "get_date_time", "top_date_time",
                     "response_date_time", "responsed", "responce"] 
 
 {% endcomment %}
@@ -14,7 +14,7 @@
     <div class="col-6">
         {{ form.client_room.errors }}
         {% if not form.client_room.is_hidden %}{{ form.client_room.label_tag }}{% endif %} 
-            {{ form.client_room }}
+            {{ form.client_room }} Esto hay q cambiarlo por Room
         {% if form.client_room.help_text %}
         
         <p class="help">{{ form.client_room.help_text|safe }}</p>
@@ -76,12 +76,12 @@
         {% endif %}
     </div>
     <div class="col-4">
-        {{ form.com_date_time.errors }}
-        {% if not form.com_date_time.is_hidden %}{{ form.com_date_time.label_tag }}{% endif %} 
-            {{ form.com_date_time }}
-        {% if form.com_date_time.help_text %}
+        {{ form.top_date_time.errors }}
+        {% if not form.top_date_time.is_hidden %}{{ form.top_date_time.label_tag }}{% endif %} 
+            {{ form.top_date_time }}
+        {% if form.top_date_time.help_text %}
         
-        <p class="help">{{ form.com_date_time.help_text|safe }}</p>
+        <p class="help">{{ form.top_date_time.help_text|safe }}</p>
         {% endif %}
     </div>
     
@@ -105,7 +105,8 @@
     <div class="col-4">
         {{ form.response_date_time.errors }}
         {% if not form.response_date_time.is_hidden %}{{ form.response_date_time.label_tag }}{% endif %} 
-            {{ form.response_date_time }}
+            
+            {% if True%}{{ form.response_date_time}} {% else %} {{ form.response_date_time | attr:"disabled" }} {% endif %}
         {% if form.response_date_time.help_text %}
         
         <p class="help">{{ form.response_date_time.help_text|safe }}</p>

@@ -174,8 +174,8 @@ class Report(models.Model):
     description = models.TextField(verbose_name='Descripción')
     get_date_time = models.DateTimeField(
         default=datetime.now, verbose_name='Fecha de recibo')
-    com_date_time = models.DateTimeField(
-        default=datetime.now, verbose_name='Fecha de comunicado')
+    top_date_time = models.DateTimeField(
+        default=datetime.now, verbose_name='Fecha tope')
     response_date_time = models.DateTimeField(
         blank=True, null=True, verbose_name='Fecha de respuesta')
     responsed = models.BooleanField(default=False, verbose_name='Resuelto')
