@@ -149,7 +149,7 @@ class Executive(models.Model):
 
 
 class Responce(models.Model):
-    description = models.TextField(verbose_name='Descripción')
+    description = models.TextField(unique=True,verbose_name='Descripción')
 
     def __str__(self):
         return self.description
