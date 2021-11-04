@@ -103,10 +103,9 @@
         {% if form.responsed.help_text %}
         
         <p class="help">{{ form.responsed.help_text|safe }}</p>
-</div>
         {% endif %}
+</div>
     </div>
-
      <div class="col-6 report-response-conditional">
         {{ form.agree.errors }}
         {% if not form.agree.is_hidden %}{{ form.agree.label_tag }}{% endif %} 
