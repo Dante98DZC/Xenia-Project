@@ -1,5 +1,6 @@
-from django.db import models
 from datetime import datetime
+
+from django.db import models
 from django.db.models import Max
 
 
@@ -23,7 +24,7 @@ class Room(models.Model):
         else:
             return no + 1
 
-    number = models.IntegerField(primary_key=True, verbose_name='No Hab.', default=room_number)
+    number = models.IntegerField(verbose_name='No Hab.', default=room_number)
     state = models.ForeignKey(RoomState, blank=True, null=True ,on_delete=models.CASCADE, verbose_name='Estado')
 
     def __str__(self):

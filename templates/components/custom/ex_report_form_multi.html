@@ -1,4 +1,5 @@
-{% load widget_tweaks%}
+    {% for form in formset %}
+        {% load widget_tweaks%}
 
 {% comment %} 
 
@@ -12,12 +13,12 @@
 {% endfor %}
 <div class="form-row mb-1">
     <div class="col-6">
-        {{ form.room.errors }}
-        {% if not form.room.is_hidden %}{{ form.room.label_tag }}{% endif %} 
-            {{ form.room }}
-        {% if form.room.help_text %}
+        {{ form.client_room.errors }}
+        {% if not form.client_room.is_hidden %}{{ form.client_room.label_tag }}{% endif %} 
+            {{ form.client_room }} TODO: Esto hay q cambiarlo por Room
+        {% if form.client_room.help_text %}
         
-        <p class="help">{{ form.room.help_text|safe }}</p>
+        <p class="help">{{ form.client_room.help_text|safe }}</p>
         {% endif %}
     </div>
     <div class="col-6">
@@ -103,10 +104,9 @@
         {% if form.responsed.help_text %}
         
         <p class="help">{{ form.responsed.help_text|safe }}</p>
-</div>
         {% endif %}
+</div>
     </div>
-
      <div class="col-6 report-response-conditional">
         {{ form.agree.errors }}
         {% if not form.agree.is_hidden %}{{ form.agree.label_tag }}{% endif %} 
@@ -147,3 +147,5 @@
         {% endif %}
     </div>
 </div>
+
+    {% endfor %}

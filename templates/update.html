@@ -1,0 +1,20 @@
+{% extends extend_template %} 
+{% load static %}
+{% block more_assets %}
+    <script src=" {% static 'js/report_create_update.js' %}" create-url="{% url crud_url.create %}" delete-url="{% url crud_url.delete %}"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% if context.title %}<h1>{{context.title}}{% if context.crud_extra_title %} {{context.crud_extra_title}}{% endif %}</h1>{% endif %}
+    <form method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% include form_template %}
+        <div class="float-right" style="padding-bottom: 10px;">
+            <button type="submit" class="btn btn-warning"><i class="fas fa-edit"></i> {{crud_button.update}}</button>
+            <a role="button" href="{% url crud_url.view %}" type="button" class="btn btn-secondary"><i class="fas fa-times"></i> {{crud_button.cancel}}</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

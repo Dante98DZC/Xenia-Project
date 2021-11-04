@@ -75,3 +75,7 @@
     display:none;
     visibility:hidden;
 }
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}

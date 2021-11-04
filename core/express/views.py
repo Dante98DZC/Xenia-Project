@@ -1,12 +1,13 @@
-from django.db.models.query_utils import Q
-# from django.shortcuts import render
-
+from blitz_work.blitzcrud import BlitzCRUD
+from core.express.models import *
+from django.contrib.auth.decorators import login_required
 from django.db.models import Count, F, Value
 from django.db.models.functions import Concat
-from core.express.models import *
-from blitz_work.blitzcrud import BlitzCRUD
+from django.db.models.query_utils import Q
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+
+# from django.shortcuts import render
+
 
 
 class XeniaCRUD(BlitzCRUD):
@@ -17,6 +18,7 @@ class XeniaCRUD(BlitzCRUD):
     template_name = "base_crud.html"
     table_template = "table.html"
     create_template = "create.html"
+    update_template = "update.html"
     create_title = "Nuevo"
     delete_title = "Eliminar"
     update_title = "Editar"
@@ -39,6 +41,7 @@ class XeniaCRUD(BlitzCRUD):
 class ReportCRUD(XeniaCRUD):
     model = Report
     form_template = "components/custom/ex_report_form.html"
+    multiform_template = "components/custom/ex_report_form_multi.html"
     fields= ["report_number","kind", "description",
                        "executive", "attendant", "get_date_time", "top_date_time",
                        "response_date_time", "responsed", "responce"]
@@ -61,7 +64,7 @@ class ExecutiveCRUD(XeniaCRUD):
 
 class RoomCRUD(XeniaCRUD):
     model = Room
-    exclude = ['']
+    exclude = ['id']
     form_exclude = []
     # include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
     # include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
