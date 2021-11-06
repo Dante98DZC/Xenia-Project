@@ -152,7 +152,7 @@ class KindRep(models.Model):
 
     class Meta:
         verbose_name = "Tipo de Reporte"
-        verbose_name_plural = "Tipo de Reportes"
+        verbose_name_plural = "Tipos de Reportes"
 
 
 class Executive(models.Model):
