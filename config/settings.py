@@ -15,8 +15,11 @@ import config.db as db
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    TIME_LIMIT=(int,30)
 )
+
+TIME_LIMIT=env('TIME_LIMIT')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
