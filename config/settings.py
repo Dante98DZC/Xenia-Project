@@ -19,7 +19,6 @@ env = environ.Env(
     TIME_LIMIT=(int,30)
 )
 
-TIME_LIMIT=env('TIME_LIMIT')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,6 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 environ.Env.read_env(BASE_DIR / '.env')
+
+TIME_LIMIT=env('TIME_LIMIT')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
