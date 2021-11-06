@@ -1,7 +1,14 @@
+import environ
+from config.settings import BASE_DIR
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 from django.db import models
 from django.db.models import Max
+
+environ.Env.read_env(BASE_DIR / '.env')
+
+env = environ.Env()
 
 class RoomState(models.Model):
     room_state = models.CharField(
@@ -176,6 +183,10 @@ class Responce(models.Model):
 
 
 class Report(models.Model):
+    def top_date():
+        time_limit = int(env('TIME_LIMIT'))
+        return datetime.now() + relativedelta(minutes=+time_limit)
+    
     report_number = models.AutoField(
         primary_key=True, verbose_name='No.')
     room = models.ForeignKey(
@@ -195,7 +206,7 @@ class Report(models.Model):
         default=datetime.now, verbose_name="Fecha de recibo"
     )
     top_date_time = models.DateTimeField(
-        default=datetime.now, verbose_name="Fecha tope"
+        default=top_date, verbose_name="Fecha tope"
     )
     response_date_time = models.DateTimeField(
         blank=True, null=True, verbose_name="Fecha de respuesta"
