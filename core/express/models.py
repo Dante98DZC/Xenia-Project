@@ -3,7 +3,6 @@ from datetime import datetime
 from django.db import models
 from django.db.models import Max
 
-
 class RoomState(models.Model):
     room_state = models.CharField(
         unique=True, max_length=120, verbose_name="Estado Habitación"
@@ -177,15 +176,8 @@ class Responce(models.Model):
 
 
 class Report(models.Model):
-<<<<<<< Updated upstream
-    report_number = models.AutoField(
-        primary_key=True, verbose_name='No.')
-    client_room = models.ForeignKey(
-        ClientRoom, on_delete=models.CASCADE, verbose_name='Habitación | Cliente')
-=======
     report_number = models.AutoField(primary_key=True, verbose_name="No.")
     room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name="Habitación")
->>>>>>> Stashed changes
     # client_name = models.ForeignKey(ClientRoom, on_delete=models.CASCADE, verbose_name='Cliente')
     executive = models.ForeignKey(
         Executive, on_delete=models.CASCADE, verbose_name="Ejecutivo"

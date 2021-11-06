@@ -101,7 +101,7 @@ class Command(BaseCommand):
         re2 = Responce.objects.create(description="Problema descartado")
         self.stdout.write(self.style.SUCCESS("Creating Report"))
         Report.objects.create(
-            client_room=ClientRoom.objects.first(),
+            room=r1,
             executive=e1,
             attendant=at1,
             kind=k1,
@@ -111,7 +111,7 @@ class Command(BaseCommand):
             responce=re1,
         )
         Report.objects.create(
-            client_room=ClientRoom.objects.last(),
+            room=r2,
             executive=e2,
             attendant=at2,
             kind=k2,

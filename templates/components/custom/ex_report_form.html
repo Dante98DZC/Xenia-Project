@@ -12,21 +12,12 @@
 {% endfor %}
 <div class="form-row mb-1">
     <div class="col-6">
-<<<<<<< Updated upstream
-        {{ form.client_room.errors }}
-        {% if not form.client_room.is_hidden %}{{ form.client_room.label_tag }}{% endif %} 
-            {{ form.client_room }} TODO: Esto hay q cambiarlo por Room
-        {% if form.client_room.help_text %}
-        
-        <p class="help">{{ form.client_room.help_text|safe }}</p>
-=======
         {{ form.room.errors }}
         {% if not form.room.is_hidden %}{{ form.room.label_tag }}{% endif %}
             {{ form.room }}
         {% if form.room.help_text %}
 
         <p class="help">{{ form.room.help_text|safe }}</p>
->>>>>>> Stashed changes
         {% endif %}
     </div>
     <div class="col-6">
