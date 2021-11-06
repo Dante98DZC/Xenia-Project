@@ -49,17 +49,17 @@
     background-position: 0 100%;
     /* animation-fill-mode: forwards; */
     animation-timing-function: linear;
-  
-    -webkit-animation: 1s linear 0s 2 alternate move_eye; 
+
+    -webkit-animation: 1s linear 0s 2 alternate move_eye;
     animation: 1s linear 0s 2 alternate move_eye;
   }
 
 /* --------------------------------------------------- */
-@-webkit-keyframes gradient { 
+@-webkit-keyframes gradient {
     0%   { background-position: 0 0; }
     100% { background-position: -200% 0; }
 }
-    @keyframes gradient { 
+    @keyframes gradient {
     0%   { background-position: 0 0; }
     100% { background-position: -200% 0; }
 }

@@ -1,7 +1,7 @@
-{% extends 'blitz_base_light_dark.html' %} 
-{% load static %} 
-{% block language%}en{% endblock language %} 
-{% block title %}Xenia{% endblock title%} 
+{% extends 'blitz_base_light_dark.html' %}
+{% load static %}
+{% block language%}en{% endblock language %}
+{% block title %}Xenia{% endblock title%}
 {% block extra_assets %}
 
 <meta name="description" content="Web Application for Client Relationship" />
@@ -18,15 +18,15 @@
 
 {% block main %}
 
-  
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
         {% block sidebar %}
         <div id="sticky-sidebar">
-        
-        
+
+
             <ul class="navbar-nav xenia-v-gradient-bg sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
@@ -110,7 +110,7 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-          
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -120,15 +120,15 @@
         <!-- End of Sidebar -->
 </div>
 {% endblock sidebar %}
-        
+
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
             <div id="content">
-              
-            
+
+
 {% block navbar %}
             <!-- Topbar -->
             <nav class="navbar navbar-expand xenia-animated-gradient-bg-2 navbar-dark topbar mb-4 static-top shadow">
@@ -139,7 +139,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    
+
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -307,7 +307,7 @@
                                 <img class="img-profile rounded-circle"
                                     src="{% static 'img/profile-avatar.jpg' %}">
                             </a>
-                            
+
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right"
                                 aria-labelledby="userDropdown">
@@ -337,10 +337,10 @@
                 <!-- End of Topbar -->
 
             {% endblock navbar %}
-                
+
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid px-3">  
+                <div class="container-fluid px-3">
 
 {% block content %}
 
@@ -375,18 +375,18 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 
 
     <!-- Bootstrap core JavaScript-->
-    
+
     <!-- Core plugin JavaScript-->
 
     <!--Notification Plugin: No funciona por libreria togle-bootstrap heredada de blitz-light-dark-->
     {% comment %} <script src="{% static 'lib/toastr/toastr.min.js' %}" type="text/javascript"></script>
     <link rel="stylesheet" href="{% static 'lib/toastr/toastr.min.css' %} "> {% endcomment %}
 
-    
+
     <!-- Custom scripts for all pages-->
     <script src=" {% static 'js/xenia-base.js' %} "></script>
 
@@ -404,8 +404,8 @@
             scrollTop:0
         },1000)
     });
-    
-   
+
+
     {% comment %} $('#logout-btn').click(function (event) { toastr.warning('Warning')
  }); {% endcomment %}
 

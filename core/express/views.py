@@ -1,13 +1,11 @@
 from blitz_work.blitzcrud import BlitzCRUD
 from core.express.models import *
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count, F, Value
-from django.db.models.functions import Concat
-from django.db.models.query_utils import Q
+from django.db.models import F
 from django.utils.decorators import method_decorator
+from django.views.generic.base import TemplateView
 
 # from django.shortcuts import render
-
 
 
 class XeniaCRUD(BlitzCRUD):
@@ -25,23 +23,33 @@ class XeniaCRUD(BlitzCRUD):
     detail_title = "Detalle"
     paginate_by = 10
     dark_mode_switch_label = None
-    delete_messages = {"success": "Operación completada",
-                       "error": "No fue posible completar la operación"}
+    delete_messages = {
+        "success": "Operación completada",
+        "error": "No fue posible completar la operación",
+    }
     delete_text = "¿Desea eliminar de forma permanente los siguientes elementos?"
-    crud_buttons = {"add": "Nuevo", "create": "Guardar", "details": "Detalle",
-                    "update": "Actualizar", "edit": "Editar", "delete": "Eliminar", "cancel": "Cancelar",
-                    "return": "Regresar", "search": "Buscar"}
-    
+    crud_buttons = {
+        "add": "Nuevo",
+        "create": "Guardar",
+        "details": "Detalle",
+        "update": "Actualizar",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "cancel": "Cancelar",
+        "return": "Regresar",
+        "search": "Buscar",
+    }
+
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
-
 
 
 class ReportCRUD(XeniaCRUD):
     model = Report
     form_template = "components/custom/ex_report_form.html"
     multiform_template = "components/custom/ex_report_form_multi.html"
+<<<<<<< Updated upstream
     fields= ["report_number","kind", "description",
                        "executive", "attendant", "get_date_time", "top_date_time",
                        "response_date_time", "responsed", "responce"]
@@ -55,6 +63,42 @@ class ReportCRUD(XeniaCRUD):
                        "executive", "attendant", "departament", "get_date_time", "top_date_time",
                        "response_date_time", "responsed", "agree", "responce"]
 
+=======
+    fields = [
+        "report_number",
+        "kind",
+        "description",
+        "executive",
+        "attendant",
+        "get_date_time",
+        "top_date_time",
+        "response_date_time",
+        "responsed",
+        "responce",
+    ]
+    exclude = []
+    include = {"departament": F("attendant__dpt__name_dpt")}
+    # include = {"client_name": Concat(F("client_room__client__first_name"), Value(
+    #     " "), F("client_room__client__last_name")),"room":F("client_room__room__number") , "departament": F("attendant__dpt__name_dpt")}
+    # include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
+    # include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
+    include_header = {"departament": "Departamento"}
+    fields_priority = [
+        "report_number",
+        "room",
+        "kind",
+        "description",
+        "executive",
+        "attendant",
+        "departament",
+        "get_date_time",
+        "top_date_time",
+        "response_date_time",
+        "responsed",
+        "agree",
+        "responce",
+    ]
+>>>>>>> Stashed changes
 
 
 class ExecutiveCRUD(XeniaCRUD):
@@ -63,7 +107,7 @@ class ExecutiveCRUD(XeniaCRUD):
 
 class RoomCRUD(XeniaCRUD):
     model = Room
-    exclude = ['id']
+    exclude = ["id"]
     form_exclude = []
     # include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
     # include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
@@ -85,19 +129,31 @@ class ClientsCRUD(XeniaCRUD):
 
 class ExecutiveCRUD(XeniaCRUD):
     model = Executive
-    
+
 
 class ObservCRUD(XeniaCRUD):
     model = Observ
 
+
 class AttendantCRUD(XeniaCRUD):
     model = Attendant
-    
+
+
 class DepartamentCRUD(XeniaCRUD):
     model = Departament
 
+
 class ResponceCRUD(XeniaCRUD):
     model = Responce
-    
+
+
 class KindCRUD(XeniaCRUD):
     model = KindRep
+
+
+class Dashboard(TemplateView):
+    template_name = "dashboard.html"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs) | {"data": "Test"}
+        return self.render_to_response(context)

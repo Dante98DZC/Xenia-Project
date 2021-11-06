@@ -1,4 +1,4 @@
-/* CSS Libraries Used 
+/* CSS Libraries Used
 
 Font: IBM Plex Thai Looped SemiBold
 */
@@ -37,7 +37,7 @@ body, html {
   border-top: 10px solid #7a6ff1;
   border-bottom: 10px solid #7a6ff1;
   box-shadow: 1px 1px 108.8px 19.2px rgb(25,31,53);
-  
+
   background-color: rgba(25, 31, 53, 0.9);  /* 50% transparent */
   /* filter: opacity(80%); */
 }
