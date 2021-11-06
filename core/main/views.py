@@ -46,23 +46,24 @@ class DashboardView(TemplateView):
             reports_remaining=reports_remaining,
             today_new_report=today_new_report
         )
-        min_date = Report.objects.aggregate(
-            first_date=Min("get_date_time"))["first_date"]
-        midnight = datetime.time(0)
-        range_date = datetime.datetime.combine(min_date.date(), midnight)
-        agree_count = Count("pk", Q(agree=True))
-        not_agree_count = Count("pk", Q(agree=False))
         agree_series = []
         not_agree_series = []
         dates_series = []
-        while range_date <= datetime.datetime.today():
-            next_day = range_date + relativedelta(days=1)
-            day_counts = Report.objects.filter(response_date_time__range=(current_timezone.localize(
-                range_date), current_timezone.localize(next_day))).aggregate(agree_count=agree_count, not_agree_count=not_agree_count)
-            agree_series.append(day_counts["agree_count"])
-            not_agree_series.append(day_counts["not_agree_count"])
-            dates_series.append(str(range_date))
-            range_date = next_day
+        min_date = Report.objects.aggregate(
+            first_date=Min("get_date_time"))["first_date"]
+        if(min_date is not None):
+            midnight = datetime.time(0)
+            range_date = datetime.datetime.combine(min_date.date(), midnight)
+            agree_count = Count("pk", Q(agree=True))
+            not_agree_count = Count("pk", Q(agree=False))
+            while range_date <= datetime.datetime.today():
+                next_day = range_date + relativedelta(days=1)
+                day_counts = Report.objects.filter(response_date_time__range=(current_timezone.localize(
+                    range_date), current_timezone.localize(next_day))).aggregate(agree_count=agree_count, not_agree_count=not_agree_count)
+                agree_series.append(day_counts["agree_count"])
+                not_agree_series.append(day_counts["not_agree_count"])
+                dates_series.append(str(range_date))
+                range_date = next_day
 
         context["panel"] = "Panel de control"
         context["data"] = today_report
