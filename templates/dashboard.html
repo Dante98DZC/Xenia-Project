@@ -1,5 +1,9 @@
 {% extends "base.html" %} {% load static %}
 
+{% block more_assets %}
+<script src="{% static 'js/chart.min.js' %}"></script>
+<script src="{%static 'js/dashboard.js'%}" data="{{series|safe}}"></script>
+{% endblock more_assets %}
 
 {% block content %}
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -113,5 +117,5 @@
     </div>
   </div>
 </div>
-
+<canvas id="myChart" class="chart-canvas" ></canvas>    
 {% endblock content%}
