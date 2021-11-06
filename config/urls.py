@@ -13,23 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from core.main.views import DashboardView
-from core.express.views import *
-
-from django.urls import path,include
-
-from django.contrib import admin
 from blitz_work.urls import urlpatterns
+from django.contrib import admin
+from django.urls import include, path
+
+from core.express.views import *
+from core.main.views import DashboardView
 
 urlpatterns = [
-    path('',include(urlpatterns)),
-    path('login/', include('core.login.urls')),
-    path('admin/', admin.site.urls),
-    path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path("", include(urlpatterns)),
+    path("login/", include("core.login.urls")),
+    path("admin/", admin.site.urls),
+    path("dashboard/", DashboardView.as_view(), name="dashboard"),
     # path('express/report', ReportCRUD, name='api_report'),
-    #el segundo parametro de get_urls(ReportCRUD,"api_report") es un nompre para el crud es opcional pq blitz lo coje del modelo
-    path('express/', include('core.express.urls')),
-    
-    
+    # el segundo parametro de get_urls(ReportCRUD,"api_report") es un nompre para el crud es opcional pq blitz lo coje del modelo
+    path("express/", include("core.express.urls")),
 ]
-

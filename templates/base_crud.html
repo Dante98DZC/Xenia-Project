@@ -1,5 +1,5 @@
 {% extends extend_template %}
-{% load static %}   
+{% load static %}
 {% block content %}
 
 {% comment %} {% for message in messages %}
@@ -7,28 +7,28 @@
 {% endfor %} {% endcomment %}
 
 {% comment %} <div class="container"> {% endcomment %}
-    
-  
+
+
     {% comment %} {% if context.title and context.show_title or context.title_as_caption%}
-    
+
     <h1>
-    
+
     {% if context.title_as_caption %}
-    
+
     {{context.caption}}
-    
+
         {% else %}
-        
+
         {{context.title}}
-        
+
     {% endif %}
-    
+
     </h1>{% endif %}  {% endcomment %}
-    
+
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"> {{context.caption}}</h1>
-    </div> 
+    </div>
 
     {% comment %} {% include 'blitz_crud_search.html' with search_text=crud_button.search %} {% endcomment %}
     {% comment %} <div class="btn-toolbar mb-3" role="toolbar">
@@ -64,7 +64,7 @@
 
 <!--Module Express Core Plugins-->
     <script src=" {% static 'js/report-view.js' %}" create-url="{% url crud_url.create %}" delete-url="{% url crud_url.delete %}"></script>
-    
+
 <!--Module Express Plugins JavaScript-->
     <script src="{% static 'lib/bootstrap-table/js/bootstrap-table.min.js' %} "></script>
     <script src="{% static 'lib/bootstrap-table/js/bootstrap-table-resizable.min.js' %}"></script>
