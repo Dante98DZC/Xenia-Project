@@ -4,7 +4,7 @@
 
 <div class="">
     {% block blitz_crud_table %}
-  
+
 
 <style>
 #toolbar {
@@ -23,7 +23,7 @@
 
 
 
-<table 
+<table
     id = "table"
 
     data-toolbar="#toolbar"
@@ -38,12 +38,12 @@
     data-toolbar-align= "right"
     data-buttons-align = "left"
     data-search-align = "left"
-    
+
     data-sticky-header = "true"
-    
+
     data-fixed-columns = "true"
     data-fixed-number = 1
-    
+
     data-buttons="buttons"
     data-buttons-class="secondary"
     data-buttons-order = ['export','btnAdd','btnEdit','btnDetail','btnDelete','paginationSwitch', 'toggle', 'fullscreen', 'columns']
@@ -73,7 +73,7 @@
 
     data-resizable = "true"
     data-search="true"
-    
+
     {% comment %} TODO: ponerle un padding a pantalla completa
     {% endcomment %}
 >
@@ -88,7 +88,7 @@
         {% for header in context.headers %}
             <th data-align="center" data-sortable="true">
             {{header.text}}
-            </th> 
+            </th>
         {% endfor %}
 
     </tr>
@@ -109,20 +109,20 @@
                             <label class="custom-control-label" for="blitz-select-{{forloop.counter0}}"><span class="str-only"></span></label>
                         </div>
                     </th>
-                    
+
 
                     {% for value in row.values %}
 
                         <td>{{value}}</td>
-                        
-                    {% endfor %}
-                    
-                </tr>
-            
-            {% endfor %}
-         
 
-     
+                    {% endfor %}
+
+                </tr>
+
+            {% endfor %}
+
+
+
     {% comment %} {% for row in context.values %}
                     {% for value in row.values %}
                         <td>{{value}}</td>
@@ -157,10 +157,10 @@
 </nav>
 </div>
 {% endblock blitz_crud_table %}
-    
-    
+
+
     {% endblock blitz_crud_table_template %}
-    
+
 
 {% block more_assets %}
 <script src=" {% static 'js/crud-buton-actions.js' %}"></script>

@@ -15,7 +15,7 @@
 //   var email = document.form1.email;
 //   var password = document.form1.password;
 //   var msg = document.getElementById('msg');
-  
+
 //   if (email.value == "") {
 //     msg.style.display = 'block';
 //     msg.innerHTML = "Please enter your email";
@@ -24,7 +24,7 @@
 //   } else {
 //     msg.innerHTML = "";
 //   }
-  
+
 //    if (password.value == "") {
 //     msg.innerHTML = "Please enter your password";
 //     password.focus();

@@ -1,10 +1,10 @@
 {% load widget_tweaks%}
 
-{% comment %} 
+{% comment %}
 
 ["report_number", "client_name", "client_room", "kind", "description",
                     "executive", "attendant", "get_date_time", "top_date_time",
-                    "response_date_time", "responsed", "responce"] 
+                    "response_date_time", "responsed", "responce"]
 
 {% endcomment %}
 {% for hidden in form.hidden_fields %}
@@ -22,10 +22,10 @@
     </div>
     <div class="col-6">
         {{ form.kind.errors }}
-        {% if not form.kind.is_hidden %}{{ form.kind.label_tag }}{% endif %} 
+        {% if not form.kind.is_hidden %}{{ form.kind.label_tag }}{% endif %}
             {{ form.kind }}
         {% if form.kind.help_text %}
-        
+
         <p class="help">{{ form.kind.help_text|safe }}</p>
         {% endif %}
     </div>
@@ -35,10 +35,10 @@
 <div class="form-row mb-1">
     <div class="col-12">
         {{ form.description.errors }}
-        {% if not form.description.is_hidden %}{{ form.description.label_tag }}{% endif %} 
+        {% if not form.description.is_hidden %}{{ form.description.label_tag }}{% endif %}
             {{ form.description| attr:'rows:"3"' }}
         {% if form.description.help_text %}
-        
+
         <p class="help">{{ form.description.help_text|safe }}</p>
         {% endif %}
     </div>
@@ -47,101 +47,101 @@
 <div class="form-row mb-1">
     <div class="col-8">
         {{ form.executive.errors }}
-        {% if not form.executive.is_hidden %}{{ form.executive.label_tag }}{% endif %} 
+        {% if not form.executive.is_hidden %}{{ form.executive.label_tag }}{% endif %}
             {{ form.executive }}
             TODO:Cambiar esto por info d usuario
         {% if form.executive.help_text %}
-        
+
         <p class="help">{{ form.executive.help_text|safe }}</p>
         {% endif %}
     </div>
     <div class="col-4">
         {{ form.get_date_time.errors }}
-        {% if not form.get_date_time.is_hidden %}{{ form.get_date_time.label_tag }}{% endif %} 
+        {% if not form.get_date_time.is_hidden %}{{ form.get_date_time.label_tag }}{% endif %}
             {{ form.get_date_time }}
         {% if form.get_date_time.help_text %}
-        
+
         <p class="help">{{ form.get_date_time.help_text|safe }}</p>
         {% endif %}
     </div>
-    
+
 </div>
 <div class="form-row mb-1">
     <div class="col-8">
         {{ form.attendant.errors }}
-        {% if not form.attendant.is_hidden %}{{ form.attendant.label_tag }}{% endif %} 
+        {% if not form.attendant.is_hidden %}{{ form.attendant.label_tag }}{% endif %}
             {{ form.attendant }}
         {% if form.attendant.help_text %}
-        
+
         <p class="help">{{ form.attendant.help_text|safe }}</p>
         {% endif %}
     </div>
     <div class="col-4">
         {{ form.top_date_time.errors }}
-        {% if not form.top_date_time.is_hidden %}{{ form.top_date_time.label_tag }}{% endif %} 
+        {% if not form.top_date_time.is_hidden %}{{ form.top_date_time.label_tag }}{% endif %}
             {{ form.top_date_time }}
         {% if form.top_date_time.help_text %}
-        
+
         <p class="help">{{ form.top_date_time.help_text|safe }}</p>
         {% endif %}
     </div>
-    
+
 </div>
 <div class="form-row mb-1 mt-3 align-content-center">
 <div class="border rounded d-flex col-4">
 <div class="col-6">
 <div class="responsed">
         {{ form.responsed.errors }}
-        {% if not form.responsed.is_hidden %}{{ form.responsed.label_tag }}{% endif %} 
-        
-       
+        {% if not form.responsed.is_hidden %}{{ form.responsed.label_tag }}{% endif %}
+
+
             {{ form.responsed }}
-   
-            
-        
+
+
+
 
         {% if form.responsed.help_text %}
-        
+
         <p class="help">{{ form.responsed.help_text|safe }}</p>
         {% endif %}
 </div>
     </div>
      <div class="col-6 report-response-conditional">
         {{ form.agree.errors }}
-        {% if not form.agree.is_hidden %}{{ form.agree.label_tag }}{% endif %} 
-        
-        
+        {% if not form.agree.is_hidden %}{{ form.agree.label_tag }}{% endif %}
+
+
             {{ form.agree }}
-        
-            
-        
+
+
+
 
         {% if form.agree.help_text %}
-        
+
         <p class="help">{{ form.agree.help_text|safe }}</p>
         {% endif %}
     </div>
 </div>
-    
+
     <div class="col-8 report-response-conditional">
         {{ form.response_date_time.errors }}
-        {% if not form.response_date_time.is_hidden %}{{ form.response_date_time.label_tag }}{% endif %} 
-            
+        {% if not form.response_date_time.is_hidden %}{{ form.response_date_time.label_tag }}{% endif %}
+
             {% if True%}{{ form.response_date_time}} {% else %} {{ form.response_date_time | attr:"disabled" }} {% endif %}
         {% if form.response_date_time.help_text %}
-        
+
         <p class="help">{{ form.response_date_time.help_text|safe }}</p>
         {% endif %}
     </div>
-    
+
 </div>
 <div class="form-row mb-1">
     <div class="col-12">
         {{ form.responce.errors }}
-        {% if not form.responce.is_hidden %}{{ form.responce.label_tag }}{% endif %} 
+        {% if not form.responce.is_hidden %}{{ form.responce.label_tag }}{% endif %}
             {{ form.responce }}
         {% if form.responce.help_text %}
-        
+
         <p class="help">{{ form.responce.help_text|safe }}</p>
         {% endif %}
     </div>
