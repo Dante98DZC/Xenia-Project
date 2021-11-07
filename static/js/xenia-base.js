@@ -59,9 +59,9 @@
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
-      $('body').addClass('dark-mode')
+      $('body').addClass('dark-mode bootstrap-dark')
     } else {
-      $('body').removeClass('dark-mode')
+      $('body').removeClass('dark-mode bootstrap-dark')
     }
   })
   var $dark_mode_container = $('<div />', { class: 'mb-4' }).append($dark_mode_checkbox).append('<span>Dark Mode</span>')
