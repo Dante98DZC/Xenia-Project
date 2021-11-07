@@ -15,7 +15,7 @@ from django.http.response import HttpResponseNotAllowed
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, DeleteView, TemplateView, UpdateView
 
 
 # Create your views here.
@@ -132,6 +132,7 @@ class OnlyView(XeniaCRUD):
     def get_crud_url(self):
         return {}
 
+
 @superuser_required()
 class UserManagement(OnlyView):
     model = User
@@ -161,9 +162,25 @@ class UserForm(UserCreationForm):
             "is_superuser",
         ]
 
+
 @superuser_required()
 class UserCreate(CreateView):
     model = User
     form_class = UserForm
     template_name = "user_create.html"
-    success_url = reverse_lazy('user_view')
+    success_url = reverse_lazy("user_view")
+
+
+@superuser_required()
+class UserUpdate(UpdateView):
+    model = User
+    form_class = UserForm
+    template_name = "user_update.html"
+    success_url = reverse_lazy("user_view")
+
+
+@superuser_required()
+class UserDelete(DeleteView):
+    model = User
+    template_name = "user_delete.html"
+    success_url = reverse_lazy("user_view")

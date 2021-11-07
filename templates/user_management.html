@@ -12,14 +12,57 @@
 }
 </style>
 
-<a href="{% url 'user_create' %}" class="btn btn-primary">Crear Usuario</a>
-
 <table
-    id = "table"
+     id = "table"
+
+    data-toolbar="#toolbar"
 
     data-id-field="id"
 
     data-toggle="table"
+    data-show-toggle="false"
+
+    data-show-button-text="false"
+
+    data-toolbar-align= "right"
+    data-buttons-align = "left"
+    data-search-align = "left"
+
+    data-sticky-header = "true"
+
+    data-fixed-columns = "true"
+    data-fixed-number = 1
+
+    data-buttons="buttons"
+    data-buttons-class="secondary"
+    data-buttons-order = ['export','btnAdd','btnEdit','btnDetail','btnDelete','paginationSwitch', 'toggle', 'fullscreen', 'columns']
+    data-minimum-count-columns = 2
+
+    data-show-export="true"
+    data-show-refresh="false"
+    data-show-fullscreen="true"
+
+    data-show-columns="true"
+    data-show-columns-toggle-all="true"
+
+    {% comment %} data-detail-view="true"
+    data-detail-formatter="detailFormatter {% endcomment %}
+
+    {% comment %} data-multiple-select-row="true" {% endcomment %}
+    data-click-to-select="true"
+
+    {% comment %} data-show-pagination-switch="true" {% endcomment %}
+
+    {% comment %} data-show-multi-sort="true"
+    data-sort-priority='[{"sortName": "github.count.forks","sortOrder":"desc"}]' {% endcomment %}
+
+    data-smart-display = "false"
+
+    data-classes="table table-striped table-bordered tableforblitz"
+
+    data-resizable = "true"
+    data-search="true"
+
 
 >
 
@@ -27,7 +70,8 @@
 
     <tr>
         {% comment %} <th data-field="state" data-checkbox="true"></th> {% endcomment %}
-
+        <th data-field="state" data-radio="true"></th>
+        <th></th>
         {% for header in context.headers %}
             <th data-align="center" data-sortable="true">
             {{header.text}}
@@ -44,7 +88,14 @@
             {% for row in context.values %}
 
                 <tr class="blitzTr">
-
+                    <td></td>
+                    <th scope="row" class="blitz-checkbox">
+                        <input type="hidden" value="{{row.pk}}" name="pk-{{forloop.counter0}}" id="pk-{{forloop.counter0}}">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input blitzCheck" id="blitz-select-{{forloop.counter0}}">
+                            <label class="custom-control-label" for="blitz-select-{{forloop.counter0}}"><span class="str-only"></span></label>
+                        </div>
+                    </th>
                     {% for value in row.values %}
 
                         <td>{{value}}</td>
@@ -97,6 +148,7 @@
 
 
 {% block more_assets %}
-
+<script src=" {% static 'js/crud-buton-actions.js' %}"></script>
+<script src=" {% static 'js/user-management.js' %}" create-url="{% url 'user_create' %}" update-url="{% url 'user_update' None %}" delete-url="{% url 'user_delete' None %}"></script>
 
 {% endblock more_assets %}
