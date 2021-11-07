@@ -1,0 +1,102 @@
+{% load static %}
+{% block blitz_crud_table_template %}
+
+
+<div class="">
+    {% block blitz_crud_table %}
+
+
+<style>
+#toolbar {
+  margin: 0;
+}
+</style>
+
+<a href="{% url 'user_create' %}" class="btn btn-primary">Crear Usuario</a>
+
+<table
+    id = "table"
+
+    data-id-field="id"
+
+    data-toggle="table"
+
+>
+
+<thead>
+
+    <tr>
+        {% comment %} <th data-field="state" data-checkbox="true"></th> {% endcomment %}
+
+        {% for header in context.headers %}
+            <th data-align="center" data-sortable="true">
+            {{header.text}}
+            </th>
+        {% endfor %}
+
+    </tr>
+
+</thead>
+
+<tbody>
+
+
+            {% for row in context.values %}
+
+                <tr class="blitzTr">
+
+                    {% for value in row.values %}
+
+                        <td>{{value}}</td>
+
+                    {% endfor %}
+
+                </tr>
+
+            {% endfor %}
+
+
+
+    {% comment %} {% for row in context.values %}
+                    {% for value in row.values %}
+                        <td>{{value}}</td>
+                    {% endfor %}
+    </tr>
+    {% endfor %} {% endcomment %}
+</tbody>
+</table>
+<nav>
+    <ul class="pagination justify-content-end">
+        <li class="page-item {% if context.page.has_previous is False %}disabled{% endif %}">
+            <a class="page-link" href="?table={{context.caption}}&order={{context.current_order}}&page={% if context.page.has_previous %}{{ context.page.previous_page_number }}{% else %}{{context.page.number}}{% endif %}{{context.search}}">&laquo;</a>
+        </li>
+        <li class="page-item">
+            <div class="dropdown">
+                <button class="page-link dropdown-toggle" type="button" id="blitzPaginationDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{context.page.number}}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="blitzPaginationDropdownMenuButton">
+                    {% for page in context.page.paginator.page_range %}
+                    <a class="dropdown-item {% if page == context.page.number %}active{% endif %}" href="?table={{context.caption}}&order={{context.current_order}}&page={{ page }}{{context.search}}">{{ page }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </li>
+        <li class="page-item disabled"><a class="page-link" >of</a></li>
+        <li class="page-item"><a class="page-link" href="?table={{context.caption}}&order={{context.current_order}}&page={{ context.page.paginator.num_pages }}{{context.search}}">{{ context.page.paginator.num_pages }}</a></li>
+        <li class="page-item {% if context.page.has_next is False %}disabled{% endif %}">
+        <a class="page-link" href="?table={{context.caption}}&order={{context.current_order}}&page={% if context.page.has_next %}{{ context.page.next_page_number }}{% else %}{{context.page.number}}{% endif %}{{context.search}}">&raquo;</a>
+        </li>
+    </ul>
+</nav>
+</div>
+{% endblock blitz_crud_table %}
+
+
+    {% endblock blitz_crud_table_template %}
+
+
+{% block more_assets %}
+
+
+{% endblock more_assets %}

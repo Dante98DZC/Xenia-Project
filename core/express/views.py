@@ -1,5 +1,17 @@
 from blitz_work.blitzcrud import BlitzCRUD
-from core.express.models import *
+from core.express.models import (
+    Attendant,
+    Client,
+    ClientRoom,
+    Departament,
+    Executive,
+    KindRep,
+    Observ,
+    Report,
+    Responce,
+    Room,
+    RoomState,
+)
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.utils.decorators import method_decorator
@@ -132,5 +144,3 @@ class ResponceCRUD(XeniaCRUD):
 
 class KindCRUD(XeniaCRUD):
     model = KindRep
-
-

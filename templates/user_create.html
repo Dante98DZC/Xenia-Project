@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <form method="POST">
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+
+
+    {{ form.username.errors }}
+    {% if not form.username.is_hidden %}{{ form.username.label_tag }}{% endif %} 
+        {{ form.username }}
+    {% if form.username.help_text %}
+    
+    <p class="help">{{ form.username.help_text|safe }}</p>
+    {% endif %}
+
+
+    {{ form.first_name.errors }}
+    {% if not form.first_name.is_hidden %}{{ form.first_name.label_tag }}{% endif %} 
+        {{ form.first_name }}
+    {% if form.first_name.help_text %}
+    
+    <p class="help">{{ form.first_name.help_text|safe }}</p>
+    {% endif %}
+
+    {{ form.last_name.errors }}
+    {% if not form.last_name.is_hidden %}{{ form.last_name.label_tag }}{% endif %} 
+        {{ form.last_name }}
+    {% if form.last_name.help_text %}
+    
+    <p class="help">{{ form.last_name.help_text|safe }}</p>
+    {% endif %}
+
+
+    {{ form.email.errors }}
+    {% if not form.email.is_hidden %}{{ form.email.label_tag }}{% endif %} 
+        {{ form.email }}
+    {% if form.email.help_text %}
+    
+    <p class="help">{{ form.email.help_text|safe }}</p>
+    {% endif %}
+
+
+    {{ form.is_superuser.errors }}
+    {% if not form.is_superuser.is_hidden %}{{ form.is_superuser.label_tag }}{% endif %} 
+        {{ form.is_superuser }}
+    {% if form.is_superuser.help_text %}
+    
+    <p class="help">{{ form.is_superuser.help_text|safe }}</p>
+    {% endif %}
+
+    {{ form.password1.errors }}
+    {% if not form.password1.is_hidden %}{{ form.password1.label_tag }}{% endif %} 
+        {{ form.password1 }}
+    {% if form.password1.help_text %}
+    
+    <p class="help">{{ form.password1.help_text|safe }}</p>
+    {% endif %}
+
+    {{ form.password2.errors }}
+    {% if not form.password2.is_hidden %}{{ form.password2.label_tag }}{% endif %} 
+        {{ form.password2 }}
+    {% if form.password2.help_text %}
+    
+    <p class="help">{{ form.password2.help_text|safe }}</p>
+    {% endif %}
+
+    <button class="btn btn-primary">Crear</button>
+    
+    <a href="{% url 'user_view' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}
+
+{% block more_assets %}
+<!--Module Express Plugins JavaScript-->
+    <link href="{% static 'lib/bootstrap-table/css/bootstrap-table.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'lib/bootstrap-table/css/jquery.resizableColumns.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/bootstrap-table/css/bootstrap-table-sticky-header.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'lib/bootstrap-table/css/bootstrap-table-fixed-columns.min.css' %}" rel="stylesheet" />
+
+
+<!--Module Express Plugins JavaScript-->
+    <script src="{% static 'lib/bootstrap-table/js/bootstrap-table.min.js' %} "></script>
+    <script src="{% static 'lib/bootstrap-table/js/bootstrap-table-resizable.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-table/js/jquery.resizableColumns.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/bootstrap-table/js/FileSaver.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-table/js/jspdf.umd.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-table/js/jspdf.plugin.autotable.js' %}"></script><!--TODO: agregar autotable plugin al export PDF-->
+    <script src="{% static 'lib/bootstrap-table/js/tableExport.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-table/js/bootstrap-table-export.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-table/js/bootstrap-table-sticky-header.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap-table/js/bootstrap-table-fixed-columns.min.js' %}"></script>
+{% endblock more_assets %}
