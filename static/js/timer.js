@@ -68,9 +68,9 @@
       timerInterval = setInterval(() => {
         timePassed = timePassed += 1;
         timeLeft = TIME_LIMIT - timePassed;
-        base_label.innerHTML = formatTime(
+        base_label.html(formatTime(
           timeLeft
-        );
+        ));
         setCircleDasharray();
         setRemainingPathColor(timeLeft);
     
