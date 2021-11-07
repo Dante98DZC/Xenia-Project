@@ -52,20 +52,26 @@
     '<h5>Customize Xenia</h5><hr class="mb-2"/>'
   )
 
+
+  
   var $dark_mode_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('dark-mode'),
+    checked: localStorage.getItem("blitz-dark-mode"),
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
-      $('body').addClass('dark-mode bootstrap-dark')
+      localStorage.setItem("blitz-dark-mode", true);
+      $('body').addClass('dark-mode bootstrap-dark ')
     } else {
-      $('body').removeClass('dark-mode bootstrap-dark')
+      localStorage.setItem("blitz-dark-mode", false);
+      $('body').removeClass('dark-mode bootstrap-dark ')
     }
   })
   var $dark_mode_container = $('<div />', { class: 'mb-4' }).append($dark_mode_checkbox).append('<span>Dark Mode</span>')
   $container.append($dark_mode_container)
+
+
 
   $container.append('<h6>Header Options</h6>')
   var $header_fixed_checkbox = $('<input />', {
