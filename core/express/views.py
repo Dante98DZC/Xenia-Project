@@ -3,7 +3,6 @@ from core.express.models import *
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
 from django.utils.decorators import method_decorator
-from django.views.generic.base import TemplateView
 
 # from django.shortcuts import render
 
@@ -95,7 +94,7 @@ class RoomCRUD(XeniaCRUD):
     form_exclude = []
     # include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
     # include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
-    include_header = {"client_name": "Cliente"}
+    # include_header = {"client_name": "Cliente"}
 
 
 class ClientRoomCRUD(XeniaCRUD):

@@ -1,0 +1,308 @@
+{% extends 'blitz_base_light_dark.html' %}
+{% load static %}
+{% block language%}en{% endblock language %}
+{% block title %}Xenia{% endblock title%}
+{% block extra_assets %}
+
+<meta name="description" content="Web Application for Client Relationship" />
+<meta name="author" content="David Zayas" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="keyword" content="Web App, CRM, Custom, Relationship, Magnament" />
+<link rel="shortcut icon" href="{% static 'img/logo-xenia-small-inv.png' %}" />
+
+<link href="{% static 'css/xenia-style.css' %}" rel="stylesheet" />
+<link href="{% static 'css/xenia-base.css' %}" rel="stylesheet">
+
+{% block more_assets %}{% endblock more_assets %}
+{% endblock extra_assets%}
+
+{% block main %}
+
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        {% block sidebar %}
+        <div id="sticky-sidebar">
+
+
+            <ul class="navbar-nav xenia-v-gradient-bg sidebar sidebar-dark accordion sticky-top" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a title="Ir arriba" class="my-2 text-center" style="cursor: pointer" id="brand">
+                <img src="{% static 'img/logo-xenia-big-tr.png' %}" height = 50px alt="Logo Xenia"/>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item" id = "nav-1"> 
+                <a class="nav-link" href="{% url 'dashboard'%}">
+                    <i class="fa fa-2x fa-fw fa-tachometer-alt" ></i>
+                    <span class= "text-light">Pánel de Control</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Módulos
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapse_express"
+                    aria-expanded="true" aria-controls="collapse_express">
+                    <i class="fa fa-2x fa-fw fa-bolt"></i>
+                    <span class= "text-light">Express</span>
+                </a>
+                <div id="collapse_express" class="collapse" data-parent="#accordionSidebar">
+                    <div class="xenia-color py-2 collapse-inner rounded">
+                        <h6 class="collapse-header text-light">Tablas:</h6>
+                        <a class="collapse-item" href="{% url 'api_report/view' %}">Reportes</a>
+                        <a class="collapse-item" href="{% url 'api_kindrep/view' %}">Tipos de reporte</a>
+                        <hr class="sidebar-divider my-0">
+                        <a class="collapse-item" href="{% url 'api_attendant/view' %}">Encargados</a>
+                        <a class="collapse-item" href="{% url 'api_departament/view' %}">Departamentos</a>
+                        <hr class="sidebar-divider my-0">
+                        <a class="collapse-item" href="{% url 'api_room/view' %}">Habitaciones</a>
+                        <a class="collapse-item" href="{% url 'api_room_state/view' %}">Estados de Hab</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+</div>
+{% endblock sidebar %}
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+
+{% block navbar %}
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand xenia-animated-gradient-bg-2 navbar-dark topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+
+                    <button id="sidebarToggleTop" class="btn d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars text-light"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <div class="d-flex h-100" >
+                    <img src="{% static 'img/pph-brand.png' %}" alt="Logo Hotel"/>
+                    </div>
+                    
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-2x fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">99+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Notificaciones
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="">Show All Alerts</a>
+                            </div>
+                        </li>
+
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline font-weight-bold small">{{request.user.username}}</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{% static 'img/profile-avatar.png' %}">
+                            </a>
+
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="">
+                                    <i class="fas fa-2x fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    <i class="fas fa-2x fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Configuración
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    <i class="fas fa-2x fa-archive fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Documentacíon
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-toggle="modal" id="logout-btn" data-target="#logout_modal">
+                                    <i class="fas fa-2x fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar sesión
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+            {% endblock navbar %}
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid px-3">
+
+{% block content %}
+
+
+{% endblock content %}
+
+
+                </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logout_modal" tabdashboard="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa fa-exclamation-triangle text-warning"> </i> Cerrar sesión.</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seguro que desea cerrar la sesión?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">No, volver</button>
+                    <a id="logout_confirm_btn" class="btn btn-primary" href="{% url 'logout' %}">Sí, cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+
+    <!-- Core plugin JavaScript-->
+
+    <!--Notification Plugin: No funciona por libreria togle-bootstrap heredada de blitz-light-dark-->
+    {% comment %} <script src="{% static 'lib/toastr/toastr.min.js' %}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{% static 'lib/toastr/toastr.min.css' %} "> {% endcomment %}
+
+
+    <!-- Custom scripts for all pages-->
+    <script src=" {% static 'js/xenia-base.js' %} "></script>
+
+
+    <script>
+
+     $("#logout_modal").keyup(function(event){
+        if(event.keyCode == 13){
+        $("#logout_confirm_btn").click();
+        }
+    });
+
+  $('#brand').click(function (event){
+        $('body,html').animate({
+            scrollTop:0
+        },1000)
+    });
+
+
+    {% comment %} $('#logout-btn').click(function (event) { toastr.warning('Warning')
+ }); {% endcomment %}
+
+    </script>
+{%endblock main %}
