@@ -58,4 +58,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
             },
         },
     });
+    $(".countdowns").each(function(){
+        let duration = $(this).data("duration");
+        let current = $(this).data("current");
+        $(this).timer({
+            duration: duration,
+            current:current,
+        });
+    });
 });
