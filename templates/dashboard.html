@@ -134,6 +134,8 @@
               <div class="col"><label for="">ID</label></div>
               <div class="col"><label for="">Hab</label></div>
               <div class="col"><label for="">Tipo</label></div>
+              <div class="col">Detalles</div>
+              <div class="col">Resolver</div>
             </div>
           </div>
           <div class="">
@@ -151,6 +153,12 @@
                 </div>
                 <div class="col">
                   <label for="">{{report.kind.name_kind}}</label>
+                </div>
+                <div class="col">
+                  <a role="button" href="{% url 'api_report/detail' %}?item={{report.report_number}}" class="btn btn-primary">Detalles</a>
+                </div>
+                <div class="col">
+                  <a role="button" href="{% url 'api_report/update' %}?item={{report.report_number}}" class="btn btn-primary">Resolver</a>
                 </div>
               </div>
             </div>

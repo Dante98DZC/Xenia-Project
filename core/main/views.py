@@ -82,7 +82,6 @@ class DashboardView(TemplateView):
                 top_date_time__gte=current_timezone.localize(datetime.datetime.now()),
             )
         ).select_related("room","kind").annotate(time_to_end=duration,current_time=current)
-        print([r.current_time for r in remaining_reports])
         context["panel"] = "Panel de control"
         context["data"] = today_report
         context["series"] = {

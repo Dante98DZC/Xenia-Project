@@ -1,10 +1,9 @@
 from blitz_work.blitzcrud import get_urls
+from core.express.views import *
 from django.urls import include, path
 
-from core.express.views import *
-
 urlpatterns = [
-    path("api/report/", include(get_urls(ReportCRUD, "api_report"))),
+    path("api/report/", include(get_urls(ReportCRUD, "api_report"),)),
     path("api/client/", include(get_urls(ClientsCRUD, "api_client"))),
     path("api/executive/", include(get_urls(ExecutiveCRUD, "api_executive"))),
     path("api/room/", include(get_urls(RoomCRUD, "api_room"))),
