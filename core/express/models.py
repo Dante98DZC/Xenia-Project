@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 from django.db import models
 from django.db.models import Max
+from django.contrib.auth.models import User
 
 
 class RoomState(models.Model):
@@ -151,22 +152,6 @@ class KindRep(models.Model):
         verbose_name_plural = "Tipos de Reportes"
 
 
-class Executive(models.Model):
-    ci_executive = models.CharField(
-        max_length=11, primary_key=True, verbose_name="CI ejecutivo"
-    )
-    first_name = models.CharField(max_length=30, verbose_name="Nombres")
-    last_name = models.CharField(max_length=30, verbose_name="Apellidos")
-    user_name = models.CharField(max_length=11, verbose_name="Usuario")
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-
-    class Meta:
-        verbose_name = "Ejecutivo"
-        verbose_name_plural = "Ejecutivos"
-
-
 class Responce(models.Model):
     description = models.TextField(unique=True, verbose_name="Descripción")
 
@@ -189,7 +174,7 @@ class Report(models.Model):
         Room, on_delete=models.CASCADE, verbose_name='Habitación')
     # client_name = models.ForeignKey(ClientRoom, on_delete=models.CASCADE, verbose_name='Cliente')
     executive = models.ForeignKey(
-        Executive, on_delete=models.CASCADE, verbose_name="Ejecutivo"
+        User, blank=True, null=True, on_delete=models.CASCADE, verbose_name="Ejecutivo"
     )
     attendant = models.ForeignKey(
         Attendant, on_delete=models.CASCADE, verbose_name="Encargado"
@@ -217,6 +202,10 @@ class Report(models.Model):
         verbose_name="Respuesta",
     )
 
+    def __str__(self):
+        return str(self.report_number)
+
     class Meta:
         verbose_name = "Reporte"
         verbose_name_plural = "Reportes"
+    

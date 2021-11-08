@@ -44,5 +44,5 @@ def notify_reports():
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(notify_reports, "interval", minutes=1)
+    scheduler.add_job(notify_reports, "interval", seconds=1)
     scheduler.start()

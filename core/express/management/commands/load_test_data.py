@@ -4,7 +4,7 @@ from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
 
 from core.express.models import (Attendant, Client, ClientOb, ClientRoom,
-                                 Departament, Executive, KindRep, Observ,
+                                 Departament, KindRep, Observ,
                                  Report, Responce, Room, RoomState)
 
 
@@ -83,26 +83,13 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("Creating KindRep"))
         k1 = KindRep.objects.create(name_kind="Urgente")
         k2 = KindRep.objects.create(name_kind="Semanal")
-        self.stdout.write(self.style.SUCCESS("Creating Executive"))
-        e1 = Executive.objects.create(
-            user_name="jd",
-            ci_executive=str(int(random.random() * 99999999999)),
-            first_name="Otto",
-            last_name="Doe",
-        )
-        e2 = Executive.objects.create(
-            user_name="jz",
-            ci_executive=str(int(random.random() * 99999999999)),
-            first_name="Liz",
-            last_name="Doe",
-        )
+        
         self.stdout.write(self.style.SUCCESS("Creating Responce"))
         re1 = Responce.objects.create(description="Problema resuelto")
         re2 = Responce.objects.create(description="Problema descartado")
         self.stdout.write(self.style.SUCCESS("Creating Report"))
         Report.objects.create(
             room=r1,
-            executive=e1,
             attendant=at1,
             kind=k1,
             description="Iluminacion defectuosa",
@@ -112,7 +99,6 @@ class Command(BaseCommand):
         )
         Report.objects.create(
             room=r2,
-            executive=e2,
             attendant=at2,
             kind=k2,
             description="Baño defectuoso",

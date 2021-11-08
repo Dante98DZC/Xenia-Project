@@ -13,7 +13,7 @@ class NotificationSource(models.IntegerChoices):
 class Notification(models.Model):
     notification_source = models.IntegerField(choices=NotificationSource.choices)
     report = models.ForeignKey(Report, on_delete=models.CASCADE)
-    notification_time = models.DateField(auto_created=True,blank=True,null=True)
+    notification_time = models.DateField(auto_now_add=True,blank=True,null=True)
 
 
 class NotificationUser(models.Model):

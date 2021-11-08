@@ -2,7 +2,6 @@ import datetime
 
 from core.express.models import Report
 from core.express.views import XeniaCRUD
-from core.main.decorators import superuser_required
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -16,6 +15,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, TemplateView, UpdateView
+from django.db.models.functions import Coalesce
 
 
 # Create your views here.
@@ -48,7 +48,8 @@ class DashboardView(TemplateView):
                 top_date_time__gte=current_timezone.localize(datetime.datetime.now()),
             ),
         )
-        today_new_report = Count("pk")
+        today_new_report = Coalesce(Count("pk"), 0)
+
         today_report = Report.objects.filter(
             get_date_time__date=current_timezone.localize(datetime.datetime.today())
         ).aggregate(
@@ -133,7 +134,6 @@ class OnlyView(XeniaCRUD):
         return {}
 
 
-@superuser_required()
 class UserManagement(OnlyView):
     model = User
     table_template = "user_management.html"
@@ -163,7 +163,6 @@ class UserForm(UserCreationForm):
         ]
 
 
-@superuser_required()
 class UserCreate(CreateView):
     model = User
     form_class = UserForm
@@ -171,7 +170,6 @@ class UserCreate(CreateView):
     success_url = reverse_lazy("user_view")
 
 
-@superuser_required()
 class UserUpdate(UpdateView):
     model = User
     form_class = UserForm
@@ -179,7 +177,6 @@ class UserUpdate(UpdateView):
     success_url = reverse_lazy("user_view")
 
 
-@superuser_required()
 class UserDelete(DeleteView):
     model = User
     template_name = "user_delete.html"

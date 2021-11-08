@@ -46,16 +46,7 @@
 </div>
 
 <div class="form-row mb-1">
-    <div class="col-8">
-        {{ form.executive.errors }}
-        {% if not form.executive.is_hidden %}{{ form.executive.label_tag }}{% endif %}
-            {{ form.executive }}
-            TODO:Cambiar esto por info d usuario
-        {% if form.executive.help_text %}
-
-        <p class="help">{{ form.executive.help_text|safe }}</p>
-        {% endif %}
-    </div>
+    
     <div class="col-4">
         {{ form.get_date_time.errors }}
         {% if not form.get_date_time.is_hidden %}{{ form.get_date_time.label_tag }}{% endif %}

@@ -4,7 +4,6 @@ from core.express.models import (
     Client,
     ClientRoom,
     Departament,
-    Executive,
     KindRep,
     Observ,
     Report,
@@ -51,7 +50,6 @@ class XeniaCRUD(BlitzCRUD):
         "search": "Buscar",
     }
 
-    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -95,11 +93,6 @@ class ReportCRUD(XeniaCRUD):
         "responce",
     ]
 
-
-class ExecutiveCRUD(XeniaCRUD):
-    model = Executive
-
-
 class RoomCRUD(XeniaCRUD):
     model = Room
     exclude = ["id"]
@@ -120,11 +113,6 @@ class RoomStateCRUD(XeniaCRUD):
 class ClientsCRUD(XeniaCRUD):
     form_exclude = []
     model = Client
-
-
-class ExecutiveCRUD(XeniaCRUD):
-    model = Executive
-
 
 class ObservCRUD(XeniaCRUD):
     model = Observ
