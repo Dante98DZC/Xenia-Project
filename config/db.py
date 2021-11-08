@@ -13,8 +13,8 @@ POSTGRESQL = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "tesisdb",
-        "USER": "admin",
-        "PASSWORD": "admin",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
         "HOST": "localhost",
         "PORT": "5432",
     }

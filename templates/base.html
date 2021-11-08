@@ -56,12 +56,20 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="navbar-badge badge-warning">15</span>
+          <span class="navbar-badge badge-warning">{{user_notifications|length}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <span class="dropdown-item dropdown-header">{{user_notifications|length}} Notifications</span>
           <div class="dropdown-divider"></div>
+          {% for notification in user_notifications %}
           <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i>
+            {% if notification.notification.notification_source == 1%}Nuevo reporte{% else %}{% if notification.notification.notification_source == 2 %}Tiemo de reporte expirado{% else %}Reporte resuelto{% endif %}{% endif %}
+            {{notification.notification.report}}
+            <span class="float-right text-muted text-sm">{{notification.notification.notification_time}}</span>
+          </a>
+          {% endfor %}
+          {% comment %} <a href="#" class="dropdown-item">
             <i class="fas fa-envelope mr-2"></i> 4 new messages
             <span class="float-right text-muted text-sm">3 mins</span>
           </a>
@@ -74,9 +82,9 @@
           <a href="#" class="dropdown-item">
             <i class="fas fa-file mr-2"></i> 3 new reports
             <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          </a> {% endcomment %}
+          {% comment %} <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a> {% endcomment %}
         </div>
       </li>
       <li class="nav-item">
