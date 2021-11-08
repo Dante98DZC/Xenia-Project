@@ -49,112 +49,159 @@
   // Checkboxes
 
   $container.append(
-    '<h5>Customize Xenia</h5><hr class="mb-2"/>'
+    '<div class="row"> <i class="fa fa-angle-double-right mt-1 ml-3" data-widget="control-sidebar" data-slide="true" role="button" ></i>  <h5 class="ml-auto mr-2">Configuración</h5></div><hr class="mb-2"/>'
+
   )
+
+
 
   var $dark_mode_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('dark-mode'),
+    checked: localStorage.getItem("blitz-dark-mode"),
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
-      $('body').addClass('dark-mode bootstrap-dark')
+      localStorage.setItem("blitz-dark-mode", true);
+      $(document.body).removeClass("bootstrap").addClass("bootstrap-dark");
     } else {
-      $('body').removeClass('dark-mode bootstrap-dark')
+      localStorage.setItem("blitz-dark-mode", false);
+      $(document.body).removeClass("bootstrap-dark").addClass("bootstrap");
     }
   })
   var $dark_mode_container = $('<div />', { class: 'mb-4' }).append($dark_mode_checkbox).append('<span>Dark Mode</span>')
   $container.append($dark_mode_container)
 
+  if (localStorage.getItem("blitz-dark-mode") === "true") {
+    $dark_mode_checkbox.prop("checked", true);
+    $(document.body).removeClass("bootstrap").addClass("bootstrap-dark");
+} else {
+    $dark_mode_checkbox.prop("checked", false);
+    $(document.body).removeClass("bootstrap-dark").addClass("bootstrap");
+    localStorage.setItem("blitz-dark-mode", false);
+}
+
+
+
+
+
+
+
   $container.append('<h6>Header Options</h6>')
+
+
   var $header_fixed_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('layout-navbar-fixed'),
+    checked: localStorage.getItem("xenia-layout-navbar-fixed"),
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
-      $('body').addClass('layout-navbar-fixed')
+      localStorage.setItem("xenia-layout-navbar-fixed", true);
+      $(document.body).addClass("layout-navbar-fixed");
     } else {
-      $('body').removeClass('layout-navbar-fixed')
+      localStorage.setItem("xenia-layout-navbar-fixed", false);
+      $(document.body).removeClass("layout-navbar-fixed");
     }
   })
   var $header_fixed_container = $('<div />', { class: 'mb-1' }).append($header_fixed_checkbox).append('<span>Fixed</span>')
   $container.append($header_fixed_container)
+
+
+  if (localStorage.getItem("xenia-layout-navbar-fixed") === "true") {
+    $header_fixed_checkbox.prop("checked", true);
+    $(document.body).addClass("layout-navbar-fixed");
+} else {
+    $header_fixed_checkbox.prop("checked", false);
+    $(document.body).removeClass("layout-navbar-fixed");
+    localStorage.setItem("xenia-layout-navbar-fixed", false);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   $container.append('<h6>Sidebar Options</h6>')
 
   var $sidebar_collapsed_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('body').hasClass('sidebar-collapse'),
+    checked: localStorage.getItem("xenia-sidebar-collapse"),
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
-      $('body').addClass('sidebar-collapse')
-      $(window).trigger('resize')
+      localStorage.setItem("xenia-sidebar-collapse", true);
+      $(document.body).addClass("sidebar-collapse");
+      $(window).trigger('resize');
     } else {
-      $('body').removeClass('sidebar-collapse')
-      $(window).trigger('resize')
+      localStorage.setItem("xenia-sidebar-collapse", false);
+      $(document.body).removeClass("sidebar-collapse");
+      $(window).trigger('resize');
     }
   })
   var $sidebar_collapsed_container = $('<div />', { class: 'mb-1' }).append($sidebar_collapsed_checkbox).append('<span>Collapsed</span>')
   $container.append($sidebar_collapsed_container)
 
+
+
+  if (localStorage.getItem("xenia-sidebar-collapse") === "true") {
+    $sidebar_collapsed_checkbox.prop("checked", true);
+    $(document.body).addClass("sidebar-collapse");
+    $(window).trigger('resize');
+} else {
+    $sidebar_collapsed_checkbox.prop("checked", false);
+    $(document.body).removeClass("sidebar-collapse");
+    $(window).trigger('resize');
+    localStorage.setItem("xenia-sidebar-collapse", false);
+}
+
+
+
   $(document).on('collapsed.lte.pushmenu', '[data-widget="pushmenu"]', function () {
-    $sidebar_collapsed_checkbox.prop('checked', true)
+    localStorage.setItem("xenia-sidebar-collapse", true);
   })
   $(document).on('shown.lte.pushmenu', '[data-widget="pushmenu"]', function () {
-    $sidebar_collapsed_checkbox.prop('checked', false)
+    localStorage.setItem("xenia-sidebar-collapse", false);
   })
 
-  var $child_indent_sidebar_checkbox = $('<input />', {
-    type: 'checkbox',
-    value: 1,
-    checked: $('.nav-sidebar').hasClass('nav-child-indent'),
-    class: 'mr-1'
-  }).on('click', function () {
-    if ($(this).is(':checked')) {
-      $('.nav-sidebar').addClass('nav-child-indent')
-    } else {
-      $('.nav-sidebar').removeClass('nav-child-indent')
-    }
-  })
-  var $child_indent_sidebar_container = $('<div />', { class: 'mb-1' }).append($child_indent_sidebar_checkbox).append('<span>Nav Child Indent</span>')
-  $container.append($child_indent_sidebar_container)
+  
 
 
   var $no_expand_sidebar_checkbox = $('<input />', {
     type: 'checkbox',
     value: 1,
-    checked: $('.main-sidebar').hasClass('sidebar-no-expand'),
+    checked: localStorage.getItem("xenia-sidebar-no-expand"),
     class: 'mr-1'
   }).on('click', function () {
     if ($(this).is(':checked')) {
+      localStorage.setItem("xenia-sidebar-no-expand", true);
       $('.main-sidebar').addClass('sidebar-no-expand')
     } else {
+      localStorage.setItem("xenia-sidebar-no-expand", false);
       $('.main-sidebar').removeClass('sidebar-no-expand')
     }
   })
   var $no_expand_sidebar_container = $('<div />', { class: 'mb-4' }).append($no_expand_sidebar_checkbox).append('<span>Disable Hover/Focus Auto-Expand</span>')
   $container.append($no_expand_sidebar_container)
 
-  $container.append('<h6>Small Text Options</h6>')
 
-  var $text_sm_body_checkbox = $('<input />', {
-    type: 'checkbox',
-    value: 1,
-    checked: $('body').hasClass('text-sm'),
-    class: 'mr-1'
-  }).on('click', function () {
-    if ($(this).is(':checked')) {
-      $('body').addClass('text-sm')
-    } else {
-      $('body').removeClass('text-sm')
-    }
-  })
-  var $text_sm_body_container = $('<div />', { class: 'mb-1' }).append($text_sm_body_checkbox).append('<span>Body</span>')
-  $container.append($text_sm_body_container)
+  if (localStorage.getItem("xenia-sidebar-no-expand") === "true") {
+    $no_expand_sidebar_container.prop("checked", true);
+    $('.main-sidebar').addClass('sidebar-no-expand')
+} else {
+    $no_expand_sidebar_container.prop("checked", false);
+    $('.main-sidebar').removeClass('sidebar-no-expand')
+    localStorage.setItem("xenia-sidebar-no-expand", false);
+}
+
 
 })(jQuery)
