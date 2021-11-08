@@ -13,7 +13,7 @@ class RoomState(models.Model):
 
     class Meta:
         verbose_name = "Estado Habitación"
-        verbose_name_plural = "Estado Habitaciones"
+        verbose_name_plural = "Estados de Habitaciones"
 
     def __str__(self):
         return self.room_state
