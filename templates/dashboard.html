@@ -14,9 +14,6 @@
 <h5>Resumen Diario</h5>
 
 
-
-
-
 <div class="row">
   <div class="col-12">
  <!-- Small boxes (Stat box) -->
@@ -124,8 +121,11 @@
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
+
+
+
               <!-- Calendar -->
-            <div class="card bg-gradient-success">
+            {% comment %} <div class="card bg-gradient-success">
               <div class="card-header border-0">
 
                 <h3 class="card-title">
@@ -161,7 +161,7 @@
                 <div id="calendar" style="width: 100%"></div>
               </div>
               <!-- /.card-body -->
-            </div>
+            </div> {% endcomment %}
             <!-- /.card -->
 
 
@@ -227,13 +227,17 @@
           </div>
 
 
-
-                
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Nuevo Reporte</button>
-              </div>
+               
+                {% comment %} <button href="{% url 'dashboard' %}" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Nuevo Reporte</button> {% endcomment %}
+              
+               <a   class="btn btn-primary float-right" role="button"
+                href="{% url 'api_report/create' %}"
+                type="button" ><i class="fas fa-plus"></i> Nuevo Reporte</a>
+                
+                </div>
             </div>
             <!-- /.card -->
 
@@ -241,7 +245,7 @@
 
 
             <!-- Map card -->
-            <div class="card bg-gradient-primary">
+            {% comment %} <div class="card bg-gradient-primary">
               <div class="card-header border-0">
                 <h3 class="card-title">
                   <i class="fas fa-map-marker-alt mr-1"></i>
@@ -282,7 +286,7 @@
                 </div>
                 <!-- /.row -->
               </div>
-            </div>
+            </div> {% endcomment %}
             <!-- /.card -->
 
         
