@@ -10,12 +10,13 @@
 {% block content_header %}Panel de control{% endblock content_header %}
 {% block content %}
  
- 
-<h5>Resumen Diario</h5>
+
 
 
 <div class="row">
   <div class="col-12">
+
+<h5>Resumen Diario : <span class="text-bold"> {{date}} </span></h5>
  <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
@@ -111,7 +112,9 @@
                   <!-- Morris chart - Sales -->
                   <div class="chart tab-pane active" id="revenue-chart"
                        style="position: relative; height: 300px;">
-                      <canvas id="myChart"  height="300" style="height: 300px;" class="chart-canvas" ></canvas>
+                      
+                      <canvas id="myChart"  height="300" style="max-height: 300px;" class="chart-canvas" ></canvas>
+                  
                    </div>
                   <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
                     {% comment %} <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas> {% endcomment %}

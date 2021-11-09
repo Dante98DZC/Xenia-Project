@@ -31,7 +31,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 data: not_agree_values,
                 backgroundColor: "rgba(255, 0, 0, 0.2)",
                 borderColor: "rgba(255, 0, 0, 1)",
-                borderWidth: 1,
+                borderWidth: 2,
                 fill: true,
             },
             {
@@ -39,7 +39,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 data: agree_values,
                 backgroundColor: "rgba(0, 255, 0, 0.2)",
                 borderColor: "rgba(0, 255, 0, 1)",
-                borderWidth: 1,
+                borderWidth: 2,
                 fill: true,
             },
         ],

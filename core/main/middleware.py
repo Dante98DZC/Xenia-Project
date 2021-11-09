@@ -1,5 +1,6 @@
 from core.main.models import NotificationUser
 from config.settings import TIME_LIMIT
+from datetime import date
 
 class UserNotificationsMiddleware:
     def __init__(self, get_response):
@@ -17,4 +18,7 @@ class UserNotificationsMiddleware:
             response.context_data[
                 "time_limit"
             ] = TIME_LIMIT
+            response.context_data[
+                "date"
+            ] = date.today()
         return response
