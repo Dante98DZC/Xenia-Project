@@ -1,5 +1,5 @@
 from core.main.models import NotificationUser
-
+from config.settings import TIME_LIMIT
 
 class UserNotificationsMiddleware:
     def __init__(self, get_response):
@@ -14,4 +14,7 @@ class UserNotificationsMiddleware:
             response.context_data[
                 "user_notifications"
             ] = NotificationUser.objects.filter(user=request.user)
+            response.context_data[
+                "time_limit"
+            ] = TIME_LIMIT
         return response
