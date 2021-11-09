@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 current_date.getFullYear()
         );
     }
-    var ctx = document.getElementById("myChart").getContext("2d");
+    var ctx = document.getElementById("Sat-line-chart").getContext("2d");
     var chartData = {
         labels: labels,
         datasets: [
