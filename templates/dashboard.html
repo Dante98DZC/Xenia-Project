@@ -12,92 +12,79 @@
  
  
 <h5>Resumen Diario</h5>
+
+
+
+
+
 <div class="row">
   <div class="col-7">
-    <div class="row">
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div
-                  class="text-xs font-weight-bold text-primary text-uppercase mb-1"
-                >
-                  Nuevos
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">{{data.today_new_report}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+ <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{data.today_new_report}}</h3>
 
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div
-                  class="text-xs font-weight-bold text-success text-uppercase mb-1"
-                >
-                  Pendientes
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">{{data.reports_remaining}}</div>
+                <p>Nuevos</p>
               </div>
+              <div class="icon">
+                <i class="fa fa-phone"></i>
+              </div>
+              <a href="#" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-        </div>
-      </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{data.reports_remaining}}</h3>
 
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                  Resueltos
-                </div>
-                <div class="row no-gutters align-items-center">
-                  <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                      {{data.today_solved_report}}
-                    </div>
-                  </div>
-                </div>
+                <p>Pendientes</p>
               </div>
-              {% comment %} <div class="col-auto">
-                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-              </div> {% endcomment %}
+              <div class="icon">
+                <i class="fa fa-clock"></i>
+              </div>
+              <a href="#" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-        </div>
-      </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{data.today_solved_report}}</h3>
 
-      <!-- Pending Requests Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div
-                  class="text-xs font-weight-bold text-warning text-uppercase mb-1"
-                >
-                  No resueltos
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">{{data.today_not_solved_report}}</div>
+                <p>Resueltos</p>
               </div>
-              {% comment %} <div class="col-auto">
-                <i class="fas fa-comments fa-2x text-gray-300"></i>
-              </div> {% endcomment %}
+              <div class="icon">
+                <i class="fa fa-check"></i>
+              </div>
+              <a href="#" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{data.today_not_solved_report}}</h3>
+
+                <p>No resueltos</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-exclamation-triangle"></i>
+              </div>
+              <a href="#" class="small-box-footer">Detalles <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
         </div>
-    </div>
+
+
       <canvas id="myChart" class="chart-canvas" ></canvas>
-    </div>
   </div>
 
   <div class="col-5">
