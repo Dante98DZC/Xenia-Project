@@ -67,12 +67,38 @@ window.addEventListener("DOMContentLoaded", (event) => {
             },
         },
     });
-    $(".countdowns").each(function(){
+    var ctx2 = document.getElementById("Sat-donut-chart").getContext("2d");
+    new Chart(ctx2, {
+        type: "doughnut",
+        data: {
+            labels: ["Resueltos", "No resueltos"],
+            datasets: [
+                {
+                    label: "# de reportes",
+                    data: [data["solved"], data["not_solved"]],
+                    backgroundColor: [
+                        "rgba(255, 99, 132, 0.5)",
+                        "rgba(54, 162, 235, 0.2)",
+                    ],
+                    borderColor: [
+                        "rgba(255,99,132,1)",
+                        "rgba(54, 162, 235, 1)",
+                    ],
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+            //cutoutPercentage: 40,
+            responsive: false,
+        },
+    });
+    $(".countdowns").each(function () {
         let duration = $(this).data("duration");
         let current = $(this).data("current");
         $(this).timer({
             duration: duration,
-            current:current,
+            current: current,
         });
     });
 });

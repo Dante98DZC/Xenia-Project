@@ -64,11 +64,11 @@ class DashboardView(TemplateView):
         min_date = Report.objects.filter(responsed=True).aggregate(
             first_date=Min("response_date_time")
         )["first_date"]
+        agree_count = Count("pk", Q(agree=True))
+        not_agree_count = Count("pk", Q(agree=False))
         if min_date is not None:
             midnight = datetime.time(0)
             range_date = datetime.datetime.combine(min_date.date(), midnight)
-            agree_count = Count("pk", Q(agree=True))
-            not_agree_count = Count("pk", Q(agree=False))
             while current_timezone.localize(range_date) <= current_timezone.localize(
                 datetime.datetime.today()
             ):
@@ -104,12 +104,18 @@ class DashboardView(TemplateView):
             .select_related("room", "kind")
             .annotate(time_to_end=duration, current_time=current)
         )
+        not_solved = Count("pk", Q(responsed=False))
+        value_donut = Report.objects.aggregate(
+            not_solved=not_solved, solved=today_solved_report
+        )
         context["panel"] = "Panel de control"
         context["data"] = today_report
         context["series"] = {
             "dates": dates_series,
             "agree_series": agree_series,
             "not_agree_serise": not_agree_series,
+            "not_solved": value_donut["not_solved"],
+            "solved": value_donut["solved"],
         }
         context["reports"] = remaining_reports
 
