@@ -31,19 +31,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 data: not_agree_values,
                 backgroundColor: "rgba(255, 0, 0, 0.2)",
                 borderColor: "rgba(255, 0, 0, 1)",
-                borderWidth: 2,
+                borderWidth: 1,
                 fill: true,
+                tension: 0.15
             },
             {
                 label: "Conformes",
                 data: agree_values,
                 backgroundColor: "rgba(0, 255, 0, 0.2)",
                 borderColor: "rgba(0, 255, 0, 1)",
-                borderWidth: 2,
+                borderWidth: 1,
                 fill: true,
+                tension: 0.15
             },
         ],
     };
+
     var myChart = new Chart(ctx, {
         type: "line",
         data: chartData,
@@ -53,8 +56,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 xAxes: [
                     {
                         type: "time",
-                    },
+                    }
                 ],
+                y:{
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+                
             },
         },
     });
