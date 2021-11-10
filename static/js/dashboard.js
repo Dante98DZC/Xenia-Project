@@ -78,11 +78,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     data: [data["solved"], data["not_solved"]],
                     backgroundColor: [
                         "rgba(60, 179, 113, 1)",
-                        "rgba(255, 99, 132, 0.5)",
+                        "rgba(255, 99, 132, 1)",
                     ],
                     borderColor: [
                         "rgba(60, 179, 113, 1)",
-                        "rgba(255, 99, 132, 0.5)",
+                        "rgba(255, 99, 132, 1)",
                     ],
                     borderWidth: 1,
                     hoverOffset: 4
