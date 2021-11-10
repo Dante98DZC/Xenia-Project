@@ -16,6 +16,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, TemplateView, UpdateView
+from django.views.generic.detail import DetailView
 
 
 # Create your views here.
@@ -184,6 +185,11 @@ class UserUpdate(UpdateView):
     form_class = UserForm
     template_name = "user_update.html"
     success_url = reverse_lazy("user_view")
+
+
+class UserDetail(DetailView):
+    model = User
+    template_name = "user_detail.html"
 
 
 class UserDelete(DeleteView):
