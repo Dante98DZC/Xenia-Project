@@ -17,12 +17,12 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
     TIME_LIMIT=(int, 30),
-    ENGINE=(str, 'django.db.backends.postgresql'),
-    NAME=(str, 'xenia'),
-    USER=(str, 'postgres'),
-    PASSWORD=(str, 'postgres'),
-    HOST=(str, 'localhost'),
-    PORT=(str, '5432')
+    DBENGINE=(str, "django.db.backends.postgresql"),
+    DBNAME=(str, "xenia"),
+    DBUSER=(str, "postgres"),
+    DBPASSWORD=(str, "postgres"),
+    DBHOST=(str, "localhost"),
+    DBPORT=(str, "5432"),
 )
 
 
@@ -104,12 +104,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 POSTGRESQL = {
     "default": {
-        "ENGINE": env("ENGINE"),
-        "NAME": env("NAME"),
-        "USER": env("USER"),
-        "PASSWORD": env("PASSWORD"),
-        "HOST": env("HOST"),
-        "PORT": env("PORT"),
+        "ENGINE": env("DBENGINE"),
+        "NAME": env("DBNAME"),
+        "USER": env("DBUSER"),
+        "PASSWORD": env("DBPASSWORD"),
+        "HOST": env("DBHOST"),
+        "PORT": env("DBPORT"),
     }
 }
 
