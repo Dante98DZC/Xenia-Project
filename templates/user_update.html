@@ -1,76 +1,126 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks%}
 
 {% block content %}
+    
     <form method="POST">
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}
     {{ hidden }}
     {% endfor %}
-    {{form.errors}}
 
-    {{ form.username.errors }}
-    {% if not form.username.is_hidden %}{{ form.username.label_tag }}{% endif %} 
-        {{ form.username }}
+
+<div class="form-row">
+<div class="form-group">
+
+{{ form.username.errors }}
+    <label> {% if not form.username.is_hidden %}{{ form.username.label_tag }}{% endif %} </label>
+
+    {{ form.username | add_class:'form-control'}}
+
     {% if form.username.help_text %}
-    
-    <p class="help">{{ form.username.help_text|safe }}</p>
+    <small class="form-text text-muted"> 
+    {{ form.username.help_text|safe }}
+   </small>
     {% endif %}
+</div>
 
 
+    <div class="custom-control custom-checkbox">
+        
+        {{ form.is_superuser.errors }}
+        {{ form.is_superuser | attr:"type:checkbox" | add_class:"mt-5"}}
+       {% comment %} <input type="checkbox" class="custom-control-input" id="customCheck1"> {% endcomment %}
+        
+        <label>
+            {% if not form.is_superuser.is_hidden %}Super usuario <span class="text-danger">(<i class="fa fa-wrench"></i> Administrador)</span>{% endif %} 
+        </label>
+    {% if form.is_superuser.help_text %}
+    <small class="form-text text-muted"> {{ form.is_superuser.help_text|safe }}</small>
+    {% endif %}
+    </div>
+
+
+</div>
+
+ <div class="form-row">
+    
+    <div class="form-group col-md-6">
     {{ form.first_name.errors }}
-    {% if not form.first_name.is_hidden %}{{ form.first_name.label_tag }}{% endif %} 
-        {{ form.first_name }}
-    {% if form.first_name.help_text %}
-    
-    <p class="help">{{ form.first_name.help_text|safe }}</p>
+      <label> {% if not form.first_name.is_hidden %}{{ form.first_name.label_tag }}{% endif %}</label>
+      {{ form.first_name | add_class:'form-control'}}
+   
+   {% if form.first_name.help_text %}
+    <small  class="form-text text-muted"> 
+        {{ form.first_name.help_text|safe }}
+   </small>
     {% endif %}
+    </div>
+    
 
+     <div class="form-group col-md-6">
     {{ form.last_name.errors }}
-    {% if not form.last_name.is_hidden %}{{ form.last_name.label_tag }}{% endif %} 
-        {{ form.last_name }}
+      <label> {% if not form.last_name.is_hidden %}{{ form.last_name.label_tag }}{% endif %} </label>
+      {{form.last_name | add_class:'form-control'}}
+
     {% if form.last_name.help_text %}
-    
-    <p class="help">{{ form.last_name.help_text|safe }}</p>
+    <small  class="form-text text-muted"> 
+    {{ form.last_name.help_text|safe }}
+    </small>
     {% endif %}
+    </div>
 
+</div>
 
-    {{ form.email.errors }}
-    {% if not form.email.is_hidden %}{{ form.email.label_tag }}{% endif %} 
-        {{ form.email }}
+    <div class="form-group">
+    <label>{% if not form.email.is_hidden %}{{ form.email.label_tag }}{% endif %} </label>
+    {{ form.email.errors}}
+    {{ form.email | add_class:"form-control" | attr:"placeholder:nombre@correo.com"}}
+
     {% if form.email.help_text %}
     
     <p class="help">{{ form.email.help_text|safe }}</p>
     {% endif %}
+    </div>
 
-
-    {{ form.is_superuser.errors }}
-    {% if not form.is_superuser.is_hidden %}{{ form.is_superuser.label_tag }}{% endif %} 
-        {{ form.is_superuser }}
-    {% if form.is_superuser.help_text %}
-    
-    <p class="help">{{ form.is_superuser.help_text|safe }}</p>
-    {% endif %}
-
+<div class="form-group">
     {{ form.password1.errors }}
     {% if not form.password1.is_hidden %}{{ form.password1.label_tag }}{% endif %} 
-        {{ form.password1 }}
-    {% if form.password1.help_text %}
+        {{ form.password1| add_class:"form-control" }}
     
-    <p class="help">{{ form.password1.help_text|safe }}</p>
+    {% if form.password1.help_text %}
+    <small  class="form-text text-muted"> {{ form.password1.help_text|safe }}</small>
     {% endif %}
+</div>
 
+
+
+
+<div class="form-group">
     {{ form.password2.errors }}
     {% if not form.password2.is_hidden %}{{ form.password2.label_tag }}{% endif %} 
-        {{ form.password2 }}
+        {{ form.password2 | add_class:"form-control"}}
     {% if form.password2.help_text %}
     
-    <p class="help">{{ form.password2.help_text|safe }}</p>
+     <small  class="form-text text-muted">{{ form.password2.help_text|safe }}</small>
     {% endif %}
+</div>
 
-    <button class="btn btn-primary">Crear</button>
-    
-    <a href="{% url 'user_view' %}" class="btn btn-secondary">Cancelar</a>
+
+    <div class="form-row align-items-center my-3">
+            <div class="mb-1 ml-auto pad-adjust">
+                <a   class="btn btn-outline-danger rounded-pill float-right" role="button"
+                href="{% url 'user_view' %}"
+                type="button" ><i class="fas fa-times"></i> Cancelar</a>
+
+            </div>
+            <div class="mb-1 ml-3 pad-adjust">
+
+                <button  class="btn btn-outline-primary btn-block rounded-pill"  type="submit"><i class="fas fa-save"></i> Guardar</button>
+            </div>
+        </div>
+
     </form>
 {% endblock %}
 
