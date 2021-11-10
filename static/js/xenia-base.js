@@ -1,6 +1,15 @@
 (function ($) {
     "use strict";
-
+    $(".delete-notifications").on("click", function (e) {
+        e.preventDefault();
+        $.post($(this).data("url"), {
+            csrfmiddlewaretoken: $(this).data("token"),
+        });
+        $(this).parent().hide();
+        $(".notifications-count").html(
+            parseInt($(".notifications-count").html()) - 1
+        );
+    });
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }

@@ -57,7 +57,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="navbar-badge badge-warning">{{user_notifications|length}}</span>
+          <span class="navbar-badge badge-warning notifications-count">{{user_notifications|length}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">{{user_notifications|length}} Notifications</span>
@@ -68,10 +68,8 @@
             {% if notification.notification.notification_source == 1%}Nuevo reporte{% else %}{% if notification.notification.notification_source == 2 %}Tiemo de reporte expirado{% else %}Reporte resuelto{% endif %}{% endif %}
             {{notification.notification.report}}
             <span class="float-right text-muted text-sm">{{notification.notification.notification_time}}</span>
-            <form action="" method="POST">
-              {% csrf_token %}
-              <input type="submit" class="btn btn-danger" value="X">
-            </form>
+              <button class="btn btn-danger delete-notifications" data-url="{% url 'notification_delete' notification.pk %}" data-token="{{csrf_token}}" value="X">
+              asdfasdf</button>
           </a>
           {% endfor %}
           {% comment %} <a href="#" class="dropdown-item">
