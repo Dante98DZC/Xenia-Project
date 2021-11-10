@@ -9,13 +9,13 @@ from django.contrib.auth.models import User
 from django.db.models import ExpressionWrapper, F
 from django.db.models.aggregates import Count, Min
 from django.db.models.fields import DurationField
+from django.db.models.functions import Coalesce
 from django.db.models.query_utils import Q
 from django.http.response import HttpResponseNotAllowed
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, TemplateView, UpdateView
-from django.db.models.functions import Coalesce
 
 
 # Create your views here.
@@ -61,21 +61,24 @@ class DashboardView(TemplateView):
         agree_series = []
         not_agree_series = []
         dates_series = []
-        min_date = Report.objects.aggregate(first_date=Min("get_date_time"))[
-            "first_date"
-        ]
+        min_date = Report.objects.filter(responsed=True).aggregate(
+            first_date=Min("response_date_time")
+        )["first_date"]
         if min_date is not None:
             midnight = datetime.time(0)
             range_date = datetime.datetime.combine(min_date.date(), midnight)
             agree_count = Count("pk", Q(agree=True))
             not_agree_count = Count("pk", Q(agree=False))
-            while range_date <= datetime.datetime.today():
+            while current_timezone.localize(range_date) <= current_timezone.localize(
+                datetime.datetime.today()
+            ):
                 next_day = range_date + relativedelta(days=1)
                 day_counts = Report.objects.filter(
                     response_date_time__range=(
                         current_timezone.localize(range_date),
                         current_timezone.localize(next_day),
-                    )
+                    ),
+                    responsed=True,
                 ).aggregate(agree_count=agree_count, not_agree_count=not_agree_count)
                 agree_series.append(day_counts["agree_count"])
                 not_agree_series.append(day_counts["not_agree_count"])
