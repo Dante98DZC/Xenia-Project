@@ -77,16 +77,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     label: "# de reportes",
                     data: [data["solved"], data["not_solved"]],
                     backgroundColor: [
+                        "rgba(60, 179, 113, 1)",
                         "rgba(255, 99, 132, 0.5)",
-                        "rgba(54, 162, 235, 0.2)",
                     ],
                     borderColor: [
-                        "rgba(255,99,132,1)",
-                        "rgba(54, 162, 235, 1)",
+                        "rgba(60, 179, 113, 1)",
+                        "rgba(255, 99, 132, 0.5)",
                     ],
                     borderWidth: 1,
+                    hoverOffset: 4
                 },
             ],
+            
         },
         options: {
             //cutoutPercentage: 40,
