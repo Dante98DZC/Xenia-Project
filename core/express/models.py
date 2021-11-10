@@ -1,10 +1,10 @@
-from config.settings import TIME_LIMIT
 from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
+from config.settings import TIME_LIMIT
+from dateutil.relativedelta import relativedelta
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Max
-from django.contrib.auth.models import User
 
 
 class RoomState(models.Model):
@@ -167,11 +167,9 @@ class Report(models.Model):
     def top_date():
         time_limit = int(TIME_LIMIT)
         return datetime.now() + relativedelta(minutes=+time_limit)
-    
-    report_number = models.AutoField(
-        primary_key=True, verbose_name='No.')
-    room = models.ForeignKey(
-        Room, on_delete=models.CASCADE, verbose_name='Habitación')
+
+    report_number = models.AutoField(primary_key=True, verbose_name="No.")
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name="Habitación")
     # client_name = models.ForeignKey(ClientRoom, on_delete=models.CASCADE, verbose_name='Cliente')
     executive = models.ForeignKey(
         User, blank=True, null=True, on_delete=models.CASCADE, verbose_name="Ejecutivo"
@@ -186,9 +184,7 @@ class Report(models.Model):
     get_date_time = models.DateTimeField(
         default=datetime.now, verbose_name="Fecha de recibo"
     )
-    top_date_time = models.DateTimeField(
-        default=top_date, verbose_name="Fecha tope"
-    )
+    top_date_time = models.DateTimeField(default=top_date, verbose_name="Fecha tope")
     response_date_time = models.DateTimeField(
         blank=True, null=True, verbose_name="Fecha de respuesta"
     )
@@ -202,10 +198,35 @@ class Report(models.Model):
         verbose_name="Respuesta",
     )
 
+    def save(self, *args, **kwargs):
+        from core.main.models import (Notification, NotificationSource,
+                                      NotificationUser)
+
+        is_new = False
+        is_edit = False
+        if self.pk is None:  # New report
+            is_new = True
+        elif (
+            Report.objects.get(pk=self.pk).responsed == False and self.responsed == True
+        ):
+            is_edit = True
+        super(Report, self).save(*args, **kwargs)
+        if is_new or is_edit:
+            _notification = Notification.objects.create(
+                notification_source=NotificationSource.REPORT_CREATED
+                if is_new
+                else NotificationSource.REPORT_SOLVED,
+                report=self,
+            )
+            user_notification = [
+                NotificationUser(notification=_notification, user=_user)
+                for _user in User.objects.all()
+            ]
+            NotificationUser.objects.bulk_create(user_notification)
+
     def __str__(self):
         return str(self.report_number)
 
     class Meta:
         verbose_name = "Reporte"
         verbose_name_plural = "Reportes"
-    
