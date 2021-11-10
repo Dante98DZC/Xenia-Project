@@ -2,6 +2,7 @@ import datetime
 
 from core.express.models import Report
 from core.express.views import XeniaCRUD
+from core.main.models import NotificationUser
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
@@ -11,7 +12,7 @@ from django.db.models.aggregates import Count, Min
 from django.db.models.fields import DurationField
 from django.db.models.functions import Coalesce
 from django.db.models.query_utils import Q
-from django.http.response import HttpResponseNotAllowed
+from django.http.response import HttpResponse, HttpResponseNotAllowed
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -196,3 +197,10 @@ class UserDelete(DeleteView):
     model = User
     template_name = "user_delete.html"
     success_url = reverse_lazy("user_view")
+
+
+def delete_notification(request, pk):
+    if request.method == "POST":
+        NotificationUser.objects.filter(pk=pk).delete()
+        return HttpResponse("")
+    return HttpResponseNotAllowed(["POST"])
