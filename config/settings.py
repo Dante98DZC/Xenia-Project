@@ -13,12 +13,16 @@ from pathlib import Path
 
 import environ
 
-import config.db as db
-
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
     TIME_LIMIT=(int, 30),
+    ENGINE=(str, 'django.db.backends.postgresql'),
+    NAME=(str, 'xenia'),
+    USER=(str, 'postgres'),
+    PASSWORD=(str, 'postgres'),
+    HOST=(str, 'localhost'),
+    PORT=(str, '5432')
 )
 
 
@@ -98,8 +102,18 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = db.POSTGRESQL
+POSTGRESQL = {
+    "default": {
+        "ENGINE": env("ENGINE"),
+        "NAME": env("NAME"),
+        "USER": env("USER"),
+        "PASSWORD": env("PASSWORD"),
+        "HOST": env("HOST"),
+        "PORT": env("PORT"),
+    }
+}
 
+DATABASES = POSTGRESQL
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -125,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "es-es"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/New_York"
 
 USE_I18N = True
 
