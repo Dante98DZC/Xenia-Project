@@ -68,6 +68,10 @@
             {% if notification.notification.notification_source == 1%}Nuevo reporte{% else %}{% if notification.notification.notification_source == 2 %}Tiemo de reporte expirado{% else %}Reporte resuelto{% endif %}{% endif %}
             {{notification.notification.report}}
             <span class="float-right text-muted text-sm">{{notification.notification.notification_time}}</span>
+            <form action="" method="POST">
+              {% csrf_token %}
+              <input type="submit" class="btn btn-danger" value="X">
+            </form>
           </a>
           {% endfor %}
           {% comment %} <a href="#" class="dropdown-item">
