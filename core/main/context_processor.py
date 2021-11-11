@@ -12,4 +12,5 @@ def genaral_context(request):
         )
         context["time_limit"] = TIME_LIMIT
         context["date"] = date.today()
+        context["logged_user"] = request.user.pk
     return context
