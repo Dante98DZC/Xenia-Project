@@ -64,12 +64,12 @@
           <div class="dropdown-divider"></div>
           {% for notification in user_notifications %}
           <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i>
-            {% if notification.notification.notification_source == 1%}Nuevo reporte{% else %}{% if notification.notification.notification_source == 2 %}Tiemo de reporte expirado{% else %}Reporte resuelto{% endif %}{% endif %}
+            <button class="btn btn-outline-primary badge delete-notifications" data-url="{% url 'notification_delete' notification.pk %}" data-token="{{csrf_token}}" value="">
+              <i class="fa fa-eye-slash"></i></button>
+            {% if notification.notification.notification_source == 1%}Nuevo reporte, No:{% else %}{% if notification.notification.notification_source == 2 %}Tiemo de reporte expirado, No:{% else %}Reporte resuelto, No:{% endif %}{% endif %}
             {{notification.notification.report}}
             <span class="float-right text-muted text-sm">{{notification.notification.notification_time}}</span>
-              <button class="btn btn-danger delete-notifications" data-url="{% url 'notification_delete' notification.pk %}" data-token="{{csrf_token}}" value="X">
-              asdfasdf</button>
+              
           </a>
           {% endfor %}
           {% comment %} <a href="#" class="dropdown-item">
