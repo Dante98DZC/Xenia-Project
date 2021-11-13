@@ -127,6 +127,17 @@ class ReportCRUD(XeniaCRUD):
 
     fields_priority = Report.get_fields_priority()
 
+    def put(self, request, *args, **kwargs):
+        data = request.POST.copy()
+        total_forms = int(request.POST.get("form-TOTAL_FORMS", 0))
+        for i in range(int(total_forms)):
+            if not data.get(f"form-{i}-solved", False):
+                data[f"form-{i}-top_date_time"] = None
+                data[f"form-{i}-responce"] = None
+                data[f"form-{i}-agree"] = False
+        request.POST = data
+        return super(ReportCRUD, self).put(request, *args, **kwargs)
+
 
 @login_required()
 def get_report_xlsx(request):
