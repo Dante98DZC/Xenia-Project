@@ -140,3 +140,8 @@
 </div>
 
     {% endfor %}
+<script>
+    {% if not request.user.is_superuser %}
+        $("#id_form-0-room, #id_form-0-kind, #id_form-0-description, #id_form-0-get_date_time, #id_form-0-attendant, #id_form-0-top_date_time").attr({disabled:true});
+    {% endif %}
+</script>
