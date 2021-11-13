@@ -198,8 +198,7 @@ class Report(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        from core.main.models import (Notification, NotificationSource,
-                                      NotificationUser)
+        from core.main.models import Notification, NotificationSource, NotificationUser
 
         is_new = False
         is_edit = False

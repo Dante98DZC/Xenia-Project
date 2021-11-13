@@ -58,7 +58,8 @@
 
 </div>
 <div class="form-row mb-1">
-<input type="hidden" name="{{form.executive.html_name}}" value="{{logged_user}}">
+<input type="hidden" name="{{form.executive.html_name}}" value="{{logged_user.pk}}">
+<input type="text" value="{{logged_user.first_name}}" readonly>
     <div class="col-8">
         {{ form.attendant.errors }}
         {% if not form.attendant.is_hidden %}{{ form.attendant.label_tag }}{% endif %}
