@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from blitz_work.blitzcrud import BlitzCRUD
 from core.express.models import (
     Attendant,
@@ -10,9 +12,12 @@ from core.express.models import (
 )
 from django.contrib.auth.decorators import login_required
 from django.db.models import F
-from django.utils.decorators import method_decorator
+from django.http import HttpResponse
+from django.utils.timezone import now
+import django_filters
 
 # from django.shortcuts import render
+from core.express.resources import ReportResource
 
 
 class XeniaCRUD(BlitzCRUD):
@@ -74,21 +79,41 @@ class ReportCRUD(XeniaCRUD):
     # include = {"client_first_name":F("client_room__client__first_name"),"client_last_name":F("client_room__client__last_name")}
     # include_header = {"client_first_name": "Nombre Cliente", "client_last_name" : "Apellidos Cliente"}
     include_header = {"departament": "Departamento"}
-    fields_priority = [
-        "report_number",
-        "room",
-        "kind",
-        "description",
-        "executive",
-        "attendant",
-        "departament",
-        "get_date_time",
-        "top_date_time",
-        "response_date_time",
-        "solved",
-        "agree",
-        "responce",
-    ]
+    fields_priority = Report.get_fields_priority()
+
+
+@login_required()
+def get_report_xlsx(request):
+    filename = f'Tabla_Reporte.xlsx'
+    DATE_CHOICES = (("today", "Hoy"), ("last_10_days", "Últimos 10 días"))
+
+    class DateRangeFilter(django_filters.DateRangeFilter):
+        filters = {
+            'today': lambda qs, name: qs.filter(**{
+                '%s__year' % name: now().year,
+                '%s__month' % name: now().month,
+                '%s__day' % name: now().day
+            }),
+            "last_10_days": lambda qs, name: qs.filter(**{
+                f"{name}__gte": now() - timedelta(10)
+            })
+        }
+
+    class CustomFilter(django_filters.FilterSet):
+        date_range = DateRangeFilter(field_name="get_date_time__date", choices=DATE_CHOICES)
+
+        class Meta:
+            model = Report
+            fields = ["date_range"]
+
+    queryset = CustomFilter(request.GET).qs
+    file = ReportResource().export(queryset).export("xlsx")
+    response = HttpResponse(
+        file,
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
+    return response
 
 
 class RoomCRUD(XeniaCRUD):

@@ -9,6 +9,7 @@ urlpatterns = [
             get_urls(ReportCRUD, "api_report"),
         ),
     ),
+    path("api/report/get_xlsx/", get_report_xlsx),
     path("api/room/", include(get_urls(RoomCRUD, "api_room"))),
     path("api/room_state/", include(get_urls(RoomStateCRUD, "api_room_state"))),
     path("api/attendant/", include(get_urls(AttendantCRUD, "api_attendant"))),

@@ -224,6 +224,24 @@ class Report(models.Model):
     def __str__(self):
         return str(self.report_number)
 
+    @staticmethod
+    def get_fields_priority():
+        return [
+            "report_number",
+            "room",
+            "kind",
+            "description",
+            "executive",
+            "attendant",
+            "departament",
+            "get_date_time",
+            "top_date_time",
+            "response_date_time",
+            "solved",
+            "agree",
+            "responce",
+        ]
+
     class Meta:
         verbose_name = "Reporte"
         verbose_name_plural = "Reportes"
