@@ -1,3 +1,6 @@
+# from django.shortcuts import render
+import datetime
+
 from blitz_work.blitzcrud import BlitzCRUD
 from core.express.models import (
     Attendant,
@@ -9,10 +12,11 @@ from core.express.models import (
     RoomState,
 )
 from django.contrib.auth.decorators import login_required
-from django.db.models import F
+from django.db.models import F, Q
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 
-# from django.shortcuts import render
+current_timezone = timezone.get_current_timezone()
 
 
 class XeniaCRUD(BlitzCRUD):
@@ -89,6 +93,47 @@ class ReportCRUD(XeniaCRUD):
         "agree",
         "responce",
     ]
+    lookup = None
+
+    def get_force_fields_lookup(self, value):
+        if self.lookup is not None:
+            today_filter = Q(
+                get_date_time__date=current_timezone.localize(datetime.datetime.today())
+            )
+            if self.lookup == "today":
+                return [today_filter]
+            elif self.lookup == "solved":
+                return [
+                    today_filter,
+                    Q(
+                        solved=True,
+                    ),
+                ]
+            elif self.lookup == "remaining":
+                return [
+                    today_filter,
+                    Q(
+                        solved=False,
+                        top_date_time__gte=current_timezone.localize(
+                            datetime.datetime.now()
+                        ),
+                    ),
+                ]
+            elif self.lookup == "expired":
+                return [
+                    today_filter,
+                    Q(
+                        solved=False,
+                        top_date_time__lte=current_timezone.localize(
+                            datetime.datetime.now()
+                        ),
+                    ),
+                ]
+        return []
+
+    def dispatch(self, request, *args, **kwargs):
+        self.lookup = request.GET.get("filter", None)
+        return super().dispatch(request, *args, **kwargs)
 
 
 class RoomCRUD(XeniaCRUD):
