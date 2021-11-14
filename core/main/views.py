@@ -38,15 +38,15 @@ class DashboardView(TemplateView):
         today_not_solved_report = Count(
             "pk",
             Q(
-                responsed=False,
+                solved=False,
                 top_date_time__lte=current_timezone.localize(datetime.datetime.now()),
             ),
         )
-        today_solved_report = Count("pk", Q(responsed=True))
+        today_solved_report = Count("pk", Q(solved=True))
         reports_remaining = Count(
             "pk",
             Q(
-                responsed=False,
+                solved=False,
                 top_date_time__gte=current_timezone.localize(datetime.datetime.now()),
             ),
         )
@@ -63,7 +63,7 @@ class DashboardView(TemplateView):
         agree_series = []
         not_agree_series = []
         dates_series = []
-        min_date = Report.objects.filter(responsed=True).aggregate(
+        min_date = Report.objects.filter(solved=True).aggregate(
             first_date=Min("response_date_time")
         )["first_date"]
         agree_count = Count("pk", Q(agree=True))
@@ -80,7 +80,7 @@ class DashboardView(TemplateView):
                         current_timezone.localize(range_date),
                         current_timezone.localize(next_day),
                     ),
-                    responsed=True,
+                    solved=True,
                 ).aggregate(agree_count=agree_count, not_agree_count=not_agree_count)
                 agree_series.append(day_counts["agree_count"])
                 not_agree_series.append(day_counts["not_agree_count"])
@@ -97,7 +97,7 @@ class DashboardView(TemplateView):
         remaining_reports = (
             Report.objects.filter(
                 Q(
-                    responsed=False,
+                    solved=False,
                     top_date_time__gte=current_timezone.localize(
                         datetime.datetime.now()
                     ),
@@ -106,7 +106,7 @@ class DashboardView(TemplateView):
             .select_related("room", "kind")
             .annotate(time_to_end=duration, current_time=current)
         )
-        not_solved = Count("pk", Q(responsed=False))
+        not_solved = Count("pk", Q(solved=False))
         value_donut = Report.objects.aggregate(
             not_solved=not_solved, solved=today_solved_report
         )

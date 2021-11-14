@@ -187,7 +187,7 @@ class Report(models.Model):
     response_date_time = models.DateTimeField(
         blank=True, null=True, verbose_name="Fecha de respuesta"
     )
-    responsed = models.BooleanField(default=False, verbose_name="Resuelto")
+    solved = models.BooleanField(default=False, verbose_name="Resuelto")
     agree = models.BooleanField(default=False, verbose_name="Conforme")
     responce = models.ForeignKey(
         Responce,
@@ -205,9 +205,7 @@ class Report(models.Model):
         is_edit = False
         if self.pk is None:  # New report
             is_new = True
-        elif (
-            Report.objects.get(pk=self.pk).responsed == False and self.responsed == True
-        ):
+        elif Report.objects.get(pk=self.pk).solved == False and self.solved == True:
             is_edit = True
         super(Report, self).save(*args, **kwargs)
         if is_new or is_edit:

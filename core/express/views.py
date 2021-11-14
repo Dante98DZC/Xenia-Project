@@ -64,7 +64,7 @@ class ReportCRUD(XeniaCRUD):
         "get_date_time",
         "top_date_time",
         "response_date_time",
-        "responsed",
+        "solved",
         "responce",
     ]
     exclude = []
@@ -85,10 +85,11 @@ class ReportCRUD(XeniaCRUD):
         "get_date_time",
         "top_date_time",
         "response_date_time",
-        "responsed",
+        "solved",
         "agree",
         "responce",
     ]
+
 
 class RoomCRUD(XeniaCRUD):
     model = Room
@@ -101,7 +102,7 @@ class RoomCRUD(XeniaCRUD):
 
 class RoomStateCRUD(XeniaCRUD):
     model = RoomState
-    
+
 
 class AttendantCRUD(XeniaCRUD):
     model = Attendant

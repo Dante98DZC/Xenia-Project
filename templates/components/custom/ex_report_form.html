@@ -4,7 +4,7 @@
 
 ["report_number", "client_name", "client_room", "kind", "description",
                     "executive", "attendant", "get_date_time", "top_date_time",
-                    "response_date_time", "responsed", "responce"]
+                    "response_date_time", "solved", "responce"]
 
 {% endcomment %}
 {% for hidden in form.hidden_fields %}
@@ -82,19 +82,19 @@
 <div class="form-row mb-1 mt-2 align-content-center">
 <div class="border rounded d-flex col-4">
 <div class="col-6">
-<div class="responsed">
-        {{ form.responsed.errors }}
-        {% if not form.responsed.is_hidden %}{{ form.responsed.label_tag }}{% endif %}
+<div class="solved">
+        {{ form.solved.errors }}
+        {% if not form.solved.is_hidden %}{{ form.solved.label_tag }}{% endif %}
 
 
-            {{ form.responsed }}
+            {{ form.solved }}
 
 
 
 
-        {% if form.responsed.help_text %}
+        {% if form.solved.help_text %}
 
-        <p class="help">{{ form.responsed.help_text|safe }}</p>
+        <p class="help">{{ form.solved.help_text|safe }}</p>
         {% endif %}
 </div>
     </div>

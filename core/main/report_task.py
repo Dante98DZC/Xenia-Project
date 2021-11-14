@@ -14,7 +14,7 @@ def notify_reports():
     reports = Report.objects.filter(
         Q(
             notification__report__isnull=True,
-            responsed=False,
+            solved=False,
             top_date_time__gte=current_timezone.localize(datetime.datetime.now()),
         )
         | Q(
@@ -22,7 +22,7 @@ def notify_reports():
                 notification__notification_source=NotificationSource.REPORT_TIME_EXPIRED
             ),
             notification__report__isnull=False,
-            responsed=False,
+            solved=False,
             top_date_time__gte=current_timezone.localize(datetime.datetime.now()),
         )
     )
