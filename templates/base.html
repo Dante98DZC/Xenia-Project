@@ -62,11 +62,14 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" id="notification-list-item">
           <span class="dropdown-item dropdown-header notifications-count-label">{{user_notifications|length}} Notifications</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          {% if user_notifications|length != 0 %}
+            <a href="#" class="dropdown-item align-content-center justify-content-center" style="min-width: 300px;">
             <button class="btn btn-outline-primary btn-sm rounded-pill delete-notifications w-50" data-url="{% url 'notification_delete_all' %}" data-all="true" data-token="{{csrf_token}}" value="">
               <i class="fa fa-bell-slash"></i></button>
             <span class="text-bold">Ocultar todas</span>
-          </a>
+            </a>
+          {% endif %}
+        
           <div class="dropdown-divider"></div>
           {% for notification in user_notifications %}
           <a href="#" class="dropdown-item">
