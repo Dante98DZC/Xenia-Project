@@ -1,5 +1,6 @@
 import datetime
 
+import django_filters
 from blitz_work.blitzcrud import BlitzCRUD
 from core.express.models import (
     Attendant,
@@ -10,17 +11,13 @@ from core.express.models import (
     Room,
     RoomState,
 )
-from django.contrib.auth.decorators import login_required
-from django.db.models import F, Q
-from django.utils import timezone
-
-current_timezone = timezone.get_current_timezone()
-import django_filters
 
 # from django.shortcuts import render
 from core.express.resources import ReportResource
-from django.db.models import F
+from django.contrib.auth.decorators import login_required
+from django.db.models import F, Q
 from django.http import HttpResponse
+from django.utils import timezone
 from django.utils.timezone import now
 
 
@@ -87,9 +84,7 @@ class ReportCRUD(XeniaCRUD):
 
     def get_force_fields_lookup(self, value):
         if self.lookup is not None:
-            today_filter = Q(
-                get_date_time__date=current_timezone.localize(datetime.datetime.today())
-            )
+            today_filter = Q(get_date_time__date=timezone.now().today())
             if self.lookup == "today":
                 return [today_filter]
             elif self.lookup == "solved":
@@ -104,9 +99,7 @@ class ReportCRUD(XeniaCRUD):
                     today_filter,
                     Q(
                         solved=False,
-                        top_date_time__gte=current_timezone.localize(
-                            datetime.datetime.now()
-                        ),
+                        top_date_time__gte=timezone.now(),
                     ),
                 ]
             elif self.lookup == "expired":
@@ -114,9 +107,7 @@ class ReportCRUD(XeniaCRUD):
                     today_filter,
                     Q(
                         solved=False,
-                        top_date_time__lte=current_timezone.localize(
-                            datetime.datetime.now()
-                        ),
+                        top_date_time__lte=timezone.now(),
                     ),
                 ]
         return []
@@ -134,7 +125,7 @@ class ReportCRUD(XeniaCRUD):
             if data.get(f"form-{i}-solved", "false") == "false":
                 data[f"form-{i}-response_date_time"] = None
                 data[f"form-{i}-responce"] = None
-                data[f"form-{i}-agree"] = 'false'
+                data[f"form-{i}-agree"] = "false"
         request.PUT = data
         return super(ReportCRUD, self).put(request, *args, **kwargs)
 

@@ -5,10 +5,25 @@
         $.post($(this).data("url"), {
             csrfmiddlewaretoken: $(this).data("token"),
         });
-        $(this).parent().hide();
-        $(".notifications-count").html(
-            parseInt($(".notifications-count").html()) - 1
-        );
+        if ($(this).data("all")) {
+            $(".notifications-count").html(0);
+            $(".notifications-count-label").html("0 Notifications");
+            $(this)
+                .parent()
+                .siblings("a")
+                .each(function () {
+                    $(this).hide();
+                });
+            $(this).parent().hide();
+        } else {
+            $(this).parent().hide();
+            $(".notifications-count").html(
+                parseInt($(".notifications-count").html()) - 1
+            );
+            $(".notifications-count-label").html(
+                parseInt($(".notifications-count").html()) - 1
+            );
+        }
     });
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);

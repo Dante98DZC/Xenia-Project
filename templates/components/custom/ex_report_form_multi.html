@@ -84,7 +84,7 @@
 <div class="form-row mb-1 mt-3 align-content-center">
 <div class="border rounded d-flex col-4">
 <div class="col-6">
-<div class="solved">
+<div class="solved" data-disable="report-response-conditional-{{form.report_number.value}}" data-disable-date="report-response-conditional-date-{{form.report_number.value}}">
         {{ form.solved.errors }}
         {% if not form.solved.is_hidden %}{{ form.solved.label_tag }}{% endif %}
 
@@ -100,7 +100,7 @@
         {% endif %}
 </div>
     </div>
-     <div class="col-6 report-response-conditional">
+     <div class="col-6 report-response-conditional-{{form.report_number.value}}">
         {{ form.agree.errors }}
         {% if not form.agree.is_hidden %}{{ form.agree.label_tag }}{% endif %}
 
@@ -117,7 +117,7 @@
     </div>
 </div>
 
-    <div class="col-8 report-response-conditional">
+    <div class="col-8 report-response-conditional-date-{{form.report_number.value}}">
         {{ form.response_date_time.errors }}
         {% if not form.response_date_time.is_hidden %}{{ form.response_date_time.label_tag }}{% endif %}
 
@@ -129,7 +129,7 @@
     </div>
 
 </div>
-<div class="form-row mb-1">
+<div class="form-row mb-1 report-response-conditional-{{form.report_number.value}}">
     <div class="col-12">
         {{ form.responce.errors }}
         {% if not form.responce.is_hidden %}{{ form.responce.label_tag }}{% endif %}

@@ -99,6 +99,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
         $(this).timer({
             duration: duration,
             current: current,
+            event: function () {
+                $.get(window.location).done(function (data) {
+                    $("#notification-list-item").html(
+                        $("#notification-list-item", data).html()
+                    );
+                    $(".notifications-count").html(
+                        $(".notifications-count", data).html()
+                    );
+                    $(".notifications-count-label").html(
+                        $(".notifications-count-label", data).html()
+                    );
+                    $("#report-list-container").html(
+                        $("#report-list-container", data).html()
+                    );
+                });
+            },
         });
     });
 });
