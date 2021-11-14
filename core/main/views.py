@@ -27,7 +27,6 @@ class DashboardView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_timezone = timezone.get_current_timezone()
         # """
         # {
         #     "today_not_solved_report":"",
@@ -40,7 +39,7 @@ class DashboardView(TemplateView):
             "pk",
             Q(
                 solved=False,
-                top_date_time__lte=current_timezone.localize(datetime.datetime.now()),
+                top_date_time__lte=timezone.now(),
             ),
         )
         today_solved_report = Count("pk", Q(solved=True))
@@ -48,13 +47,13 @@ class DashboardView(TemplateView):
             "pk",
             Q(
                 solved=False,
-                top_date_time__gte=current_timezone.localize(datetime.datetime.now()),
+                top_date_time__gte=timezone.now(),
             ),
         )
         today_new_report = Coalesce(Count("pk"), 0)
 
         today_report = Report.objects.filter(
-            get_date_time__date=current_timezone.localize(datetime.datetime.today())
+            get_date_time__date=timezone.now().today()
         ).aggregate(
             today_not_solved_report=today_not_solved_report,
             today_solved_report=today_solved_report,
@@ -72,14 +71,12 @@ class DashboardView(TemplateView):
         if min_date is not None:
             midnight = datetime.time(0)
             range_date = datetime.datetime.combine(min_date.date(), midnight)
-            while current_timezone.localize(range_date) <= current_timezone.localize(
-                datetime.datetime.today()
-            ):
+            while range_date <= timezone.now().today():
                 next_day = range_date + relativedelta(days=1)
                 day_counts = Report.objects.filter(
                     response_date_time__range=(
-                        current_timezone.localize(range_date),
-                        current_timezone.localize(next_day),
+                        range_date,
+                        next_day,
                     ),
                     solved=True,
                 ).aggregate(agree_count=agree_count, not_agree_count=not_agree_count)
@@ -89,7 +86,7 @@ class DashboardView(TemplateView):
                 range_date = next_day
 
         current = ExpressionWrapper(
-            current_timezone.localize(datetime.datetime.now()) - F("get_date_time"),
+            timezone.now() - F("get_date_time"),
             output_field=DurationField(),
         )
         duration = ExpressionWrapper(
@@ -99,9 +96,7 @@ class DashboardView(TemplateView):
             Report.objects.filter(
                 Q(
                     solved=False,
-                    top_date_time__gte=current_timezone.localize(
-                        datetime.datetime.now()
-                    ),
+                    top_date_time__gte=timezone.now(),
                 )
             )
             .select_related("room", "kind")
@@ -205,6 +200,7 @@ def delete_notification(request, pk):
         NotificationUser.objects.filter(pk=pk).delete()
         return HttpResponse("")
     return HttpResponseNotAllowed(["POST"])
+
 
 def delete_all_notification(request):
     if request.method == "POST":
