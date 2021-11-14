@@ -63,10 +63,11 @@
           <span class="dropdown-item dropdown-header notifications-count-label">{{user_notifications|length}} Notifications</span>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <button class="btn btn-outline-primary badge delete-notifications" data-url="{% url 'notification_delete_all' %}" data-all="true" data-token="{{csrf_token}}" value="">
-              <i class="fa fa-eye-slash"></i></button>
-            Eliminar todas
+            <button class="btn btn-outline-primary btn-sm rounded-pill delete-notifications w-50" data-url="{% url 'notification_delete_all' %}" data-all="true" data-token="{{csrf_token}}" value="">
+              <i class="fa fa-bell-slash"></i></button>
+            <span class="text-bold">Ocultar todas</span>
           </a>
+          <div class="dropdown-divider"></div>
           {% for notification in user_notifications %}
           <a href="#" class="dropdown-item">
             <button class="btn btn-outline-primary badge delete-notifications" data-url="{% url 'notification_delete' notification.pk %}" data-token="{{csrf_token}}" value="">
@@ -76,6 +77,7 @@
             <span class="float-right text-muted text-sm">{{notification.notification.notification_time}}</span>
               
           </a>
+          <div class="dropdown-divider"></div>
           {% endfor %}
           {% comment %} <a href="#" class="dropdown-item">
             <i class="fas fa-envelope mr-2"></i> 4 new messages
