@@ -1,4 +1,4 @@
-import datetime
+from datetime import timedelta
 
 import django_filters
 from blitz_work.blitzcrud import BlitzCRUD

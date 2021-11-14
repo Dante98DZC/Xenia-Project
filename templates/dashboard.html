@@ -89,11 +89,87 @@
         <div class="row">
           <!-- Left col -->
           <section class="col-lg-5 connectedSortable">
+
+
+
+
+
+
+
+
+
+
+ <!-- Custom tabs (Charts with tabs)-->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fa fa-file-alt mr-1"></i>
+                  Generar Informes
+                </h3>
+                
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content p-0" style="min-height: 100px;">
+                  
+
+
+<div class="row row-cols-2 align-items-center justify-content-center mb-3 text-bold">
+    <div class="col">
+      Tipo
+    </div>
+    <div class="col text-center">
+      Acción
+    </div>
+
+  </div>
+  <div class="dropdown-divider"></div>
+<div class="row row-cols-2 align-items-center justify-content-center mb-3 ">
+    <div class="col">
+      Informe Diario
+    </div>
+    <div class="col text-center">
+        <a role="button" class="btn btn-success" href="{% url 'get_xlsx' %}?date_range=today"> 
+          <i class="fa fa-download"></i> Generar 
+        </a>
+    </div>
+
+  </div>
+<div class="dropdown-divider"></div>
+<div class="row row-cols-2 align-items-center justify-content-center mb-3">
+    <div class="col">
+      Informe Por habitación
+    </div>
+    <div class="col text-center">
+        <a role="button" class="btn btn-success" href="{% url 'get_xlsx' %}?date_range=last_10_days">
+          <i class="fa fa-download"></i> Generar 
+        </a>
+    </div>
+
+  </div>
+
+                 
+
+                </div>
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+
+
+
+
+
+
+
+
+
+
+
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <i class="fas fa-chart-pie mr-1"></i>
+                  <i class="fas fa-chart-line mr-1"></i>
                   Satisfacción
                 </h3>
                 <div class="card-tools">
