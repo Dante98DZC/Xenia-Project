@@ -60,8 +60,13 @@
           <span class="navbar-badge badge-warning notifications-count">{{user_notifications|length}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">{{user_notifications|length}} Notifications</span>
+          <span class="dropdown-item dropdown-header notifications-count-label">{{user_notifications|length}} Notifications</span>
           <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <button class="btn btn-outline-primary badge delete-notifications" data-url="{% url 'notification_delete_all' %}" data-all="true" data-token="{{csrf_token}}" value="">
+              <i class="fa fa-eye-slash"></i></button>
+            Eliminar todas
+          </a>
           {% for notification in user_notifications %}
           <a href="#" class="dropdown-item">
             <button class="btn btn-outline-primary badge delete-notifications" data-url="{% url 'notification_delete' notification.pk %}" data-token="{{csrf_token}}" value="">

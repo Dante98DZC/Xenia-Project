@@ -16,7 +16,8 @@ from django.http.response import HttpResponse, HttpResponseNotAllowed
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, DeleteView, TemplateView, UpdateView
+from django.views.generic import (CreateView, DeleteView, TemplateView,
+                                  UpdateView)
 from django.views.generic.detail import DetailView
 
 
@@ -202,5 +203,11 @@ class UserDelete(DeleteView):
 def delete_notification(request, pk):
     if request.method == "POST":
         NotificationUser.objects.filter(pk=pk).delete()
+        return HttpResponse("")
+    return HttpResponseNotAllowed(["POST"])
+
+def delete_all_notification(request):
+    if request.method == "POST":
+        NotificationUser.objects.filter(user=request.user).delete()
         return HttpResponse("")
     return HttpResponseNotAllowed(["POST"])
