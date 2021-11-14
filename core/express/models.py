@@ -45,72 +45,71 @@ class Room(models.Model):
         verbose_name_plural = "Habitaciones"
 
 
-class Observ(models.Model):
-    observ_name = models.CharField(
-        unique=True, max_length=120, verbose_name="Nombre de Estancia"
-    )
+# class Observ(models.Model):
+#     observ_name = models.CharField(
+#         unique=True, max_length=120, verbose_name="Nombre de Estancia"
+#     )
 
-    def __str__(self):
-        return str(self.observ_name)
+#     def __str__(self):
+#         return str(self.observ_name)
 
-    class Meta:
-        verbose_name = "Estancia"
-        verbose_name_plural = "Estancias"
+#     class Meta:
+#         verbose_name = "Estancia"
+#         verbose_name_plural = "Estancias"
 
+# class Client(models.Model):
+#     id = models.CharField(max_length=11, primary_key=True, verbose_name="CI/Pasaporte")
+#     rooms = models.ManyToManyField(
+#         Room, through="ClientRoom", through_fields=("client", "room")
+#     )
+#     first_name = models.CharField(max_length=30, verbose_name="Nombres")
+#     last_name = models.CharField(max_length=30, verbose_name="Apellidos")
+#     fly = models.CharField(max_length=50, verbose_name="Vuelo")
+#     agency = models.CharField(max_length=50, verbose_name="Agencia")
+#     arrive_date = models.DateField(default=datetime.now, verbose_name="Fecha LLegada")
+#     leave_date = models.DateField(verbose_name="Fecha Salida")
+#     observations = models.ManyToManyField(
+#         Observ,
+#         through="ClientOb",
+#         through_fields=("client", "observ"),
+#         verbose_name="Estancia",
+#     )
 
-class Client(models.Model):
-    id = models.CharField(max_length=11, primary_key=True, verbose_name="CI/Pasaporte")
-    rooms = models.ManyToManyField(
-        Room, through="ClientRoom", through_fields=("client", "room")
-    )
-    first_name = models.CharField(max_length=30, verbose_name="Nombres")
-    last_name = models.CharField(max_length=30, verbose_name="Apellidos")
-    fly = models.CharField(max_length=50, verbose_name="Vuelo")
-    agency = models.CharField(max_length=50, verbose_name="Agencia")
-    arrive_date = models.DateField(default=datetime.now, verbose_name="Fecha LLegada")
-    leave_date = models.DateField(verbose_name="Fecha Salida")
-    observations = models.ManyToManyField(
-        Observ,
-        through="ClientOb",
-        through_fields=("client", "observ"),
-        verbose_name="Estancia",
-    )
+#     def __str__(self):
+#         return f"{self.first_name} {self.last_name}"
 
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-
-    class Meta:
-        verbose_name = "Cliente"
-        verbose_name_plural = "Clientes"
-
-
-class ClientOb(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Cliente")
-    observ = models.ForeignKey(
-        Observ, on_delete=models.CASCADE, verbose_name="Estancia"
-    )
-    observ_date = models.DateField(default=datetime.now, verbose_name="Fecha estancia")
-
-    class Meta:
-        verbose_name = "Estancia Cliente"
-        verbose_name_plural = "Estancias Clientes"
+#     class Meta:
+#         verbose_name = "Cliente"
+#         verbose_name_plural = "Clientes"
 
 
-class ClientRoom(models.Model):
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name="No. Hab")
-    client = models.ForeignKey(
-        Client, blank=True, null=True, on_delete=models.CASCADE, verbose_name="Cliente"
-    )
-    host_date = models.DateField(
-        default=datetime.now, blank=True, null=True, verbose_name="Fecha hospedaje"
-    )
+# class ClientOb(models.Model):
+#     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Cliente")
+#     observ = models.ForeignKey(
+#         Observ, on_delete=models.CASCADE, verbose_name="Estancia"
+#     )
+#     observ_date = models.DateField(default=datetime.now, verbose_name="Fecha estancia")
 
-    def __str__(self):
-        return f"{self.room} : {self.client}"
+#     class Meta:
+#         verbose_name = "Estancia Cliente"
+#         verbose_name_plural = "Estancias Clientes"
 
-    class Meta:
-        verbose_name = "Habitación Cliente"
-        verbose_name_plural = "Habitación Clientes"
+
+# class ClientRoom(models.Model):
+#     room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name="No. Hab")
+#     client = models.ForeignKey(
+#         Client, blank=True, null=True, on_delete=models.CASCADE, verbose_name="Cliente"
+#     )
+#     host_date = models.DateField(
+#         default=datetime.now, blank=True, null=True, verbose_name="Fecha hospedaje"
+#     )
+
+#     def __str__(self):
+#         return f"{self.room} : {self.client}"
+
+#     class Meta:
+#         verbose_name = "Habitación Cliente"
+#         verbose_name_plural = "Habitación Clientes"
 
 
 class Departament(models.Model):

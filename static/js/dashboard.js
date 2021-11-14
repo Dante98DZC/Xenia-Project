@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 borderColor: "rgba(255, 0, 0, 1)",
                 borderWidth: 1,
                 fill: true,
-                tension: 0.15
+                tension: 0.15,
             },
             {
                 label: "Conformes",
@@ -42,7 +42,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 borderColor: "rgba(0, 255, 0, 1)",
                 borderWidth: 1,
                 fill: true,
-                tension: 0.15
+                tension: 0.15,
             },
         ],
     };
@@ -56,14 +56,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 xAxes: [
                     {
                         type: "time",
-                    }
+                    },
                 ],
-                y:{
+                y: {
                     ticks: {
-                        stepSize: 1
-                    }
-                }
-                
+                        stepSize: 1,
+                    },
+                },
             },
         },
     });
@@ -71,7 +70,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     new Chart(ctx2, {
         type: "doughnut",
         data: {
-            labels: ["Resueltos", "No resueltos"],
+            labels: ["Resueltos", "Expirados"],
             datasets: [
                 {
                     label: "# de reportes",
@@ -85,10 +84,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         "rgba(255, 99, 132, 1)",
                     ],
                     borderWidth: 1,
-                    hoverOffset: 4
+                    hoverOffset: 4,
                 },
             ],
-            
         },
         options: {
             //cutoutPercentage: 40,

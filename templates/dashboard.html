@@ -70,7 +70,7 @@
               <div class="inner">
                 <h3>{{data.today_not_solved_report}}</h3>
 
-                <p>No resueltos</p>
+                <p>Expirados</p>
               </div>
               <div class="icon">
                 <i class="fa fa-exclamation-triangle"></i>
@@ -228,7 +228,7 @@
  {% for report in reports %}
   <div class="row  row-cols-6 align-items-center justify-content-center text-center mb-3" style="position: relative; height: 80px;">
     <div class="col">
-      <div class="countdowns" data-duration="{{report.time_to_end|duration}}" data-current="{{report.current_time|duration}}"> min</div>
+      <div class="countdowns"  style="max-width: 90px; min-width: 60px;" data-duration="{{report.time_to_end|duration}}" data-current="{{report.current_time|duration}}"> min</div>
     </div>
     <div class="col">
       <label for="">{{report.report_number}}</label>

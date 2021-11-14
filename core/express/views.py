@@ -1,11 +1,8 @@
 from blitz_work.blitzcrud import BlitzCRUD
 from core.express.models import (
     Attendant,
-    Client,
-    ClientRoom,
     Departament,
     KindRep,
-    Observ,
     Report,
     Responce,
     Room,
@@ -102,21 +99,9 @@ class RoomCRUD(XeniaCRUD):
     # include_header = {"client_name": "Cliente"}
 
 
-class ClientRoomCRUD(XeniaCRUD):
-    model = ClientRoom
-
-
 class RoomStateCRUD(XeniaCRUD):
     model = RoomState
-
-
-class ClientsCRUD(XeniaCRUD):
-    form_exclude = []
-    model = Client
-
-class ObservCRUD(XeniaCRUD):
-    model = Observ
-
+    
 
 class AttendantCRUD(XeniaCRUD):
     model = Attendant

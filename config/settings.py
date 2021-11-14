@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "core.main",
     "core.login",
     "widget_tweaks",
+    'django_extensions',
 ]
 
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"

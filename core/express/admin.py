@@ -6,10 +6,6 @@ from core.express.models import *
 
 admin.site.register(RoomState)
 admin.site.register(Room)
-admin.site.register(Observ)
-admin.site.register(Client)
-admin.site.register(ClientOb)
-admin.site.register(ClientRoom)
 admin.site.register(Departament)
 admin.site.register(Attendant)
 admin.site.register(KindRep)
