@@ -5,6 +5,7 @@ from core.express.views import XeniaCRUD
 from core.main.models import NotificationUser
 from dateutil.relativedelta import relativedelta
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db.models import ExpressionWrapper, F
@@ -141,6 +142,7 @@ class OnlyView(XeniaCRUD):
         return {}
 
 
+
 class UserManagement(OnlyView):
     model = User
     table_template = "user_management.html"
@@ -154,6 +156,10 @@ class UserManagement(OnlyView):
         "email",
         "last_login",
     ]
+    @user_passes_test(lambda u: u.is_superuser)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
 
 
 class UserForm(UserCreationForm):
@@ -175,6 +181,11 @@ class UserCreate(CreateView):
     form_class = UserForm
     template_name = "user_create.html"
     success_url = reverse_lazy("user_view")
+    
+    @user_passes_test(lambda u: u.is_superuser)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
 
 
 class UserUpdate(UpdateView):
@@ -182,17 +193,29 @@ class UserUpdate(UpdateView):
     form_class = UserForm
     template_name = "user_update.html"
     success_url = reverse_lazy("user_view")
+    
+    @user_passes_test(lambda u: u.is_superuser)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
 
 
 class UserDetail(DetailView):
     model = User
     template_name = "user_detail.html"
-
+    
+    # @user_passes_test(lambda u: u.is_superuser)
+    # def dispatch(self, request, *args, **kwargs):
+    #     return super().dispatch(request, *args, **kwargs)
 
 class UserDelete(DeleteView):
     model = User
     template_name = "user_delete.html"
     success_url = reverse_lazy("user_view")
+    
+    @user_passes_test(lambda u: u.is_superuser)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
 
 def delete_notification(request, pk):

@@ -1,6 +1,7 @@
 {% extends extend_template %}
 {% load static %}
  {% block content %}
+
 {% block more_assets %}
     <script src=" {% static 'js/report_create_update.js' %}" create-url="{% url crud_url.create %}" delete-url="{% url crud_url.delete %}"></script>
 {% endblock %}
@@ -26,9 +27,9 @@
     <div class="card-body">{% include form_template %}</div>
   </div>
 
-           <div class="form-row align-items-center my-3">
+           <div class="form-row my-3">
             <div class="mb-1 ml-auto pad-adjust">
-                <a   class="btn btn-outline-danger rounded-pill float-right" role="button"
+                <a   class="btn btn-outline-secondary rounded-pill float-right" role="button"
                 href="{% if return %}{% url return %}{% if extra_return %}?return={{extra_return}}{% endif %}{% else %}{% url crud_url.view %}{% endif %}"
                 type="button" ><i class="fas fa-times"></i> {{crud_button.cancel}}</a>
 

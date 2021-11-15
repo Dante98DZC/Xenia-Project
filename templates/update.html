@@ -4,17 +4,80 @@
     <script src=" {% static 'js/report_create_update.js' %}" create-url="{% url crud_url.create %}" delete-url="{% url crud_url.delete %}"></script>
 {% endblock %}
 {% block content %}
+
+
 <div class="container">
-    {% if context.title %}<h1>{{context.title}}{% if context.crud_extra_title %} {{context.crud_extra_title}}{% endif %}</h1>{% endif %}
+    
+    
+    
+
+    {% if context.title %}
+<div class="d-flex align-items-center mb-4">
+  <h1 class="h3 mb-0 text-gray-800">{{context.title}}{% if context.crud_extra_title %} {{context.crud_extra_title}}{% endif %}</h1>
+  <a
+    role="button"
+    href="{% if return %}{% url return %}{% if extra_return %}?return={{extra_return}}{% endif %}{% else %}{% url crud_url.view %}{% endif %}"
+    type="button"
+    title="Cerrar"
+    class="ml-auto mr-3 close"
+    ><i class="fas fa-times text-dark"></i
+  ></a>
+</div>
+
+
+{% endif %}
+
+    
+    
+    
     <form method="POST">
         <input type="hidden" name="_method" value="PUT">
         {% csrf_token %}
-        {{ formset.management_form }}
-        {% include form_template %}
-        <div class="float-right" style="padding-bottom: 10px;">
-            <button type="submit" class="btn btn-warning"><i class="fas fa-edit"></i> {{crud_button.update}}</button>
-            <a role="button" href="{% url crud_url.view %}" type="button" class="btn btn-secondary"><i class="fas fa-times"></i> {{crud_button.cancel}}</a>
+            <div class="card" style="margin-bottom: 7px">
+                {{ formset.management_form }}
+                <div class="card-body">{% include form_template %}</div>
+     
+            </div>
+
+        <div class="form-row align-items-center my-3">
+            <div class="mb-1 ml-auto pad-adjust">
+                <a   class="btn btn-outline-secondary rounded-pill float-right" role="button"
+                href="{% if return %}{% url return %}{% if extra_return %}?return={{extra_return}}{% endif %}{% else %}{% url crud_url.view %}{% endif %}"
+                type="button" ><i class="fas fa-times"></i> {{crud_button.cancel}}</a>
+
+            </div>
+            <div class="mb-1 ml-3 pad-adjust">
+
+                {% comment %} <button  class="btn btn-outline-primary btn-block rounded-pill"  type="submit"><i class="fas fa-save"></i> {{crud_button.create}}</button> {% endcomment %}
+                 <button type="submit" class="btn btn-outline-primary btn-block rounded-pill"><i class="fas fa-edit"></i> {{crud_button.update}}</button>
+            </div>
         </div>
+        
     </form>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

@@ -1,0 +1,34 @@
+{% extends extend_template %}
+{% block content %}
+<div class="container">
+    {% if context.title %}<h1>{{context.title}}{% if context.crud_extra_title %} {{context.crud_extra_title}}{% endif %}</h1>{% endif %}
+    <form method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="items" value="{{context.pk}}">
+        {% csrf_token %}
+        <div class="card" style="margin-bottom: 7px;">
+            <div class="card-body">
+            {% if context.message %}<h5>{{context.message}}</h5>{% endif %}
+                <ul>
+                {% for item in context.items %}
+                    <li>{{item}}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+         <div class="form-row my-3">
+            <div class="mb-1 ml-auto pad-adjust">
+                <a   class="btn btn-secondary rounded-pill float-right" role="button"
+                href="{% if return %}{% url return %}{% if extra_return %}?return={{extra_return}}{% endif %}{% else %}{% url crud_url.view %}{% endif %}"
+                type="button" ><i class="fas fa-times"></i> {{crud_button.cancel}}</a>
+
+            </div>
+            <div class="mb-1 ml-3 pad-adjust">
+
+                <button type="submit" class="btn btn-danger btn-block rounded-pill"><i class="fas fa-trash"></i> {{crud_button.delete}}</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

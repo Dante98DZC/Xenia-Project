@@ -1,0 +1,25 @@
+{% extends extend_template %}
+{% block content %}
+<div class="container">
+    {% if context.title %}<h1>{{context.title}}{% if context.crud_extra_title %} {{context.crud_extra_title}}{% endif %}</h1>{% endif %}
+    <form method="POST">
+        {{ formset.management_form }}
+        <fieldset disabled>
+            {% for form in formset %}
+                <div class="card" style="margin-bottom: 7px;">
+                    <div class="card-body">
+                        {% include multiform_template %}
+                    </div>
+                </div>
+            {% endfor %}
+        </fieldset>
+
+        <div class="form-row my-3">
+            <div class="mb-1 ml-auto pad-adjust">
+                <a role="button" href="{% url crud_url.view %}" type="button" class="btn btn-secondary btn-block rounded-pill"><i class="fas fa-caret-left"></i> {{crud_button.return}}</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
