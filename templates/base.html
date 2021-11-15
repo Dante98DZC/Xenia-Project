@@ -60,7 +60,7 @@
           <span class="navbar-badge badge-warning notifications-count">{{user_notifications|length}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" id="notification-list-item">
-          <span class="dropdown-item dropdown-header notifications-count-label">{{user_notifications|length}} Notifications</span>
+          <span class="dropdown-item dropdown-header notifications-count-label">{{user_notifications|length}} Notificaciones</span>
           <div class="dropdown-divider"></div>
           {% if user_notifications|length != 0 %}
             <a href="#" class="dropdown-item align-content-center justify-content-center" style="min-width: 300px;">
@@ -75,7 +75,7 @@
           <a href="#" class="dropdown-item">
             <button class="btn btn-outline-primary badge delete-notifications" data-url="{% url 'notification_delete' notification.pk %}" data-token="{{csrf_token}}" value="">
               <i class="fa fa-eye-slash"></i></button>
-            {% if notification.notification.notification_source == 1%}<i class="fa fa-plus-circle text-info"></i> Nuevo reporte, No:{% else %}{% if notification.notification.notification_source == 2 %}<i class="fa fa-exclamation-circle text-danger"></i>  Tiemo de reporte expirado, No:{% else %}<i class="fa fa-check-circle text-success"></i> Reporte resuelto, No:{% endif %}{% endif %}
+            {% if notification.notification.notification_source == 1%}<i class="fa fa-plus-circle text-info"></i> Nuevo{% else %}{% if notification.notification.notification_source == 2 %}<i class="fa fa-exclamation-circle text-danger"></i>  Expirado{% else %}<i class="fa fa-check-circle text-success"></i> Resuelto{% endif %}{% endif %}
             {{notification.notification.report}}
             <span class="float-right text-muted text-sm">{{notification.notification.notification_time}}</span>
               
