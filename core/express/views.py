@@ -129,6 +129,7 @@ class ReportCRUD(XeniaCRUD):
                 data[f"form-{i}-responce"] = None
                 data[f"form-{i}-agree"] = "false"
         request.PUT = data
+        # formset = self.formset(request.PUT)
         return super(ReportCRUD, self).put(request, *args, **kwargs)
 
 

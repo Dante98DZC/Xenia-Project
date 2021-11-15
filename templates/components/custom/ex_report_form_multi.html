@@ -41,7 +41,7 @@
 </div>
 
 <div class="form-row mb-1">
-    <div class="col-12">
+    <div class="col-12 no_editable">
         {{ form.description.errors }}
         {% if not form.description.is_hidden %}{{ form.description.label_tag }}{% endif %}
             {{ form.description| attr:'rows:"3"' }}
@@ -63,14 +63,13 @@
 
     <div class="form-group">
 
-
     <label for="exampleInputEmail1">Creado por</label>
     {{form.executive | attr:"disabled"}}
 
     </div>
 
-</div>
-    <div class="col-4">
+</div> 
+    <div class="col-4 no_editable">
         {{ form.get_date_time.errors }}
         {% if not form.get_date_time.is_hidden %}{{ form.get_date_time.label_tag }}{% endif %}
             {{ form.get_date_time }}
@@ -91,7 +90,7 @@
         <p class="help">{{ form.attendant.help_text|safe }}</p>
         {% endif %}
     </div>
-    <div class="col-4">
+    <div class="col-4 no_editable">
         {{ form.top_date_time.errors }}
         {% if not form.top_date_time.is_hidden %}{{ form.top_date_time.label_tag }}{% endif %}
             {{ form.top_date_time }}
@@ -151,7 +150,7 @@
 
 </div>
 <div class="form-row mb-1 report-response-conditional-{{form.report_number.value}}">
-    <div class="col-12">
+    <div class="col-12 responce">
         {{ form.responce.errors }}
         {% if not form.responce.is_hidden %}{{ form.responce.label_tag }}{% endif %}
             {{ form.responce }}
@@ -162,9 +161,23 @@
     </div>
 </div>
 
+    {% if formset|length >= 2 %}
+        <div class="border border-primary my-4"></div>
+    {% endif %}
+    
     {% endfor %}
 <script>
     {% if not request.user.is_superuser %}
-        $("#id_form-0-room, #id_form-0-kind, #id_form-0-description, #id_form-0-get_date_time, #id_form-0-attendant, #id_form-0-top_date_time").attr({disabled:true});
+        {% comment %} $("#id_form-0-room, #id_form-0-kind, #id_form-0-description, #id_form-0-get_date_time, #id_form-0-attendant, #id_form-0-top_date_time").attr({disabled:true}); {% endcomment %}
+        $(".blitzSelect").not(".responce .blitzSelect").select2({disabled:'readonly'});
+        
+        $(".no_editable>input,.no_editable>textarea").prop("readonly",true);
+
+        $( "form" ).submit(function( event ) { 
+            $(".blitzSelect").prop("disabled", false);
+            });
+
+
+        $(".blitz-crud-related-model-add").hide();
     {% endif %}
 </script>

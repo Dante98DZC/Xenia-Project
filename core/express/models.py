@@ -221,7 +221,7 @@ class Report(models.Model):
             NotificationUser.objects.bulk_create(user_notification)
 
     def __str__(self):
-        return str(self.report_number)
+        return str("Reporte No: " + str(self.report_number))
 
     @staticmethod
     def get_fields_priority():
