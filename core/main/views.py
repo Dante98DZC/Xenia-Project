@@ -19,6 +19,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import (CreateView, DeleteView, TemplateView,
                                   UpdateView)
 from django.views.generic.detail import DetailView
+from django.http import FileResponse
+from django.http import Http404
 
 
 # Create your views here.
@@ -228,3 +230,16 @@ def delete_all_notification(request):
         NotificationUser.objects.filter(user=request.user).delete()
         return HttpResponse("")
     return HttpResponseNotAllowed(["POST"])
+
+@login_required
+# def pdf_view(request):
+#     try:
+#         return FileResponse(open('foobar.pdf', 'rb'), content_type='application/pdf')
+#     except FileNotFoundError:
+#         raise Http404()
+def pdf_view(request):
+    with open('static/docs/manual_xenia.pdf', 'rb') as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        response['Content-Disposition'] = 'inline;filename=manual_xenia.pdf'
+        return response
+    pdf.closed

@@ -8,6 +8,7 @@ from core.main.views import (
     UserUpdate,
     delete_all_notification,
     delete_notification,
+    pdf_view,
 )
 from django.conf.urls import include
 from django.urls import path
@@ -22,4 +23,5 @@ urlpatterns = [
     path("management/user/delete/<path:pk>/", UserDelete.as_view(), name="user_delete"),
     path("notification/<path:pk>/", delete_notification, name="notification_delete"),
     path("notification/", delete_all_notification, name="notification_delete_all"),
+    path("docs/", pdf_view, name="docs_view"),
 ]
