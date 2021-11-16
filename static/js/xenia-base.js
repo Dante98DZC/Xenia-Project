@@ -1,7 +1,7 @@
 (function ($) {
     "use strict";
     $(".delete-notifications").on("click", function (e) {
-        e.preventDefault();
+        e.stopPropagation();
         $.post($(this).data("url"), {
             csrfmiddlewaretoken: $(this).data("token"),
         });

@@ -60,9 +60,9 @@
           <span class="navbar-badge badge-warning notifications-count">{{user_notifications|length}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" id="notification-list-item">
-          <span class="dropdown-item dropdown-header notifications-count-label">{{user_notifications|length}} Notificaciones</span>
-          <div class="dropdown-divider"></div>
-          {% if user_notifications|length != 0 %}
+          {% comment %} <span class="dropdown-item dropdown-header notifications-count-label">{{user_notifications|length}} Notificaciones</span> {% endcomment %}
+          {% comment %} <div class="dropdown-divider"></div> {% endcomment %}
+          {% if user_notifications|length >= 1 %}
             <a href="#" class="dropdown-item align-content-center justify-content-center" style="min-width: 300px;">
             <button class="btn btn-outline-primary btn-sm rounded-pill delete-notifications w-50" data-url="{% url 'notification_delete_all' %}" data-all="true" data-token="{{csrf_token}}" value="">
               <i class="fa fa-bell-slash"></i></button>
@@ -363,9 +363,10 @@
     
      <!-- overlayScrollbars -->
     <script src="{% static 'js/jquery.overlayScrollbars.min.js' %}"></script>
+      <!-- Xenia UI Customization -->
+    <script src="{% static 'js/xenia-base.js' %}"></script>
     <!-- AdminLTE App -->
     <script src="{% static 'js/adminlte.js' %}"></script>
-    <!-- Xenia UI Customization -->
-    <script src="{% static 'js/xenia-base.js' %}"></script>
+  
 
 {%endblock main %}

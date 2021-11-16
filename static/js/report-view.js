@@ -5,7 +5,7 @@ $(function () {
         .change(function () {
             $table.bootstrapTable("destroy").bootstrapTable({
                 exportDataType: $(this).val(),
-                exportTypes: ["xml", "csv", "txt", "excel", "pdf"],
+                exportTypes: ["excel"],
             });
         })
         .trigger("change");
@@ -57,7 +57,7 @@ $(function () {
                 $("table").html($("table", response).html());
                 $("#table").bootstrapTable({
                     exportDataType: null,
-                    exportTypes: ["xml", "csv", "txt", "excel", "pdf"],
+                    exportTypes: ["excel"],
                 });
                 $(
                     "div.dropdown-menu.dropdown-menu-right>label.dropdown-item.dropdown-item-marker>input.toggle-all+span"
